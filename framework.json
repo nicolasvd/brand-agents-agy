@@ -1,17 +1,15 @@
 {
-  "name": "sales-agents-agy",
-  "version": "1.1.0",
+  "name": "brand-agents-agy",
+  "version": "1.0.0",
   "repository": {
     "owner": "nicolasvd",
-    "name": "sales-agents-agy",
+    "name": "brand-agents-agy",
     "branch": "main",
-    "api_base": "https://api.github.com/repos/nicolasvd/sales-agents-agy",
-    "raw_base": "https://raw.githubusercontent.com/nicolasvd/sales-agents-agy"
+    "api_base": "https://api.github.com/repos/nicolasvd/brand-agents-agy",
+    "raw_base": "https://raw.githubusercontent.com/nicolasvd/brand-agents-agy"
   },
   "sanctuary": [
     "reports/**",
-    ".agents/.scratchpad/**",
-    ".agents/rules/product-context.md",
-    ".agents/rules/customer-context.md"
+    ".agents/.scratchpad/**"
   ]
 }

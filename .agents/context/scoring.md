@@ -1,88 +1,81 @@
-# Rule: Deterministic Scoring Frameworks
+# Deterministic Brand Audit Scoring Framework (10-Point Scale)
 
 > [!IMPORTANT]
-> **Language Directive:** Scoring dimensions, grades, and calculation logs operate strictly in English. All point attributions, bonuses, and penalties must be applied mechanically without optimistic bias.
+> **Unified 10-Point Standard:** All ratings, pillar evaluations, historical progression tables, and deliverable scores operate strictly on the deterministic 10-point scale (e.g. 6.6 / 10). US-style letter grades (Grade A, B-, etc.) and vanity follower-following ratios are strictly prohibited.
 
-## BANT Framework — 100 Total Points (25 pts per dimension)
+---
 
-### Budget (0–25 pts) — Willingness & Capacity to Spend
-*(Score is strictly capped: $\text{Budget} = \max(0, \min(25, \sum \text{Points}))$)*
+## 1. Core Evaluation Pillars (0 to 10 points each)
 
-| Detected Signal | Points |
+The brand audit measures omnichannel digital health across four core pillars:
+
+### Pillar 1: Tone of Voice (ToV) & Community Reception (0–10 pts)
+Evaluates alignment between stated positioning and real-world audience reception.
+
+| Evaluation Criteria | Scoring Impact |
 |---|---|
-| Recent Series C+ / IPO (< 18 months) | +20 |
-| Confirmed high ARR (> $10M) or confirmed profitable enterprise | +18 |
-| Recent Series B (< 18 months) | +16 |
-| Confirmed recurring revenue (ARR $2M–$10M) | +12 |
-| Recent Series A (< 18 months) | +12 |
-| Active hiring in relevant product/functional category | +10 |
-| Confirmed multi-tool enterprise SaaS stack | +8 |
-| Headcount > 200 | +6 |
-| Headcount 50–200 | +4 |
-| Cost-cutting signals, downsizings, or layoffs | −10 |
+| Strong editorial voice, cohesive messaging across platforms | 8.5 – 10.0 |
+| Minor tonal drift between corporate (B2B) and social/lifestyle channels | 7.0 – 8.4 |
+| Severe dissonance between corporate claims and customer reality | 4.0 – 6.9 |
+| Comments section acts as unhandled customer complaint overflow | **Capped at max 6.5 / 10** |
+| Conversational Ratio ($\frac{\text{Comments}}{\text{Reactions}}$) $< 0.5\%$ | **Flag audience passivity / severe moderation** |
 
-### Authority (0–25 pts) — Access to Decision-Makers
-*(Score is strictly capped: $\text{Authority} = \max(0, \min(25, \sum \text{Points}))$)*
+$$\text{Conversational Ratio} = \frac{\text{Total Comments}}{\text{Total Reactions}}$$
 
-| Detected Signal | Points |
+### Pillar 2: Omnichannel Consistency & Dark Social (0–10 pts)
+Evaluates visual identity coherence and technical readiness for private channel sharing (WhatsApp, Slack, SMS, Teams).
+
+| Evaluation Criteria | Scoring Impact |
 |---|---|
-| Economic Buyer identified with confirmed decision process line | +20 |
-| Flat structure (founder = sole primary decision-maker) | +15 |
-| C-suite / VP organizational structure publicly visible | +12 |
-| Named executive found on LinkedIn without confirmed buying role | +8 |
-| Multiple complex approval layers detected | +5 |
+| Complete Open Graph metadata (`og:title`, `og:description`, `og:image`, `og:url`), valid dimensions ($\ge 1200\times 630\text{px}$), Twitter Cards verified | 9.0 – 10.0 (`RESOLVED`) |
+| Minor tag omissions or generic non-branded preview images | 6.0 – 8.9 |
+| Missing Open Graph tags, broken image URLs, or unconfigured root domain metadata | 1.0 – 5.9 (`FAILED`) |
+| Cross-platform handle discrepancies or unlinked active profiles | −1.5 penalty |
 
-### Need (0–25 pts) — Intensity of the Problem
-| Detected Signal | Points |
+### Pillar 3: Publication Velocity & Engagement Trajectories (0–10 pts)
+Evaluates sustained publishing rhythm, content half-life, and multi-format vitality.
+
+| Evaluation Criteria | Scoring Impact |
 |---|---|
-| Explicit pain point on website or blog (direct quotation) | +20 |
-| Active job posting addressing the exact problem | +15 |
-| Negative reviews on incumbent vendor (G2 / Capterra) | +12 |
-| Published blog content discussing challenges in our category | +10 |
-| No identifiable need signal detected | 0 |
+| Active, predictable publishing cadence across all verified tier-1 platforms | 8.5 – 10.0 |
+| Healthy format distribution (% Reels / Shorts, Carousels, Thought Leadership) | +1.0 bonus |
+| Fading frequency (> 30 days without post on primary channel) | 4.0 – 6.0 |
+| Broken cadence or abandoned channels (> 90 days silence) | 1.0 – 3.9 |
+| Engagement trajectory ($\Delta$ reactions, $\Delta$ comments) positive over elapsed audit window | Trajectory: 🟢 Positive |
 
-### Timeline (0–25 pts) — Urgency & Trigger Events
-| Detected Signal | Points |
+### Pillar 4: Conversion & Product Narrative (0–10 pts)
+Evaluates commercial activation, link-in-bio infrastructure, and organic vs amplified discovery.
+
+| Evaluation Criteria | Scoring Impact |
 |---|---|
-| Trigger event < 30 days (funding, M&A, executive hire) | +20 |
-| Trigger event 30–90 days | +12 |
-| Active hiring surge in category | +15 |
-| Confirmed fast growth (> 30%/year) | +10 |
-| No urgency signal detected | 0 |
+| Frictionless conversion paths, clear CTA, multi-link hub configured | 8.5 – 10.0 |
+| Generic link-in-bio (pointing only to homepage without context) | 6.0 – 8.4 |
+| Dead links, 404 targets, or missing calls to action | 1.0 – 5.9 |
+| Confirmed native advertising badge in DOM (`ad_badge_present: true`) | Documented as verified paid media |
+| Anomalous view velocity without DOM badge | Must use conditional formulation: *estimated amplified reach* (*portée amplifiée estimée*) with methodological caveat |
 
-## MEDDIC Framework — Completeness (0–100%)
+---
 
-| Dimension | "Identified" Criterion (Confidence ≥ Medium) |
-|---|---|
-| **M** etrics | Business KPIs with explicit target values identified |
-| **E** conomic Buyer | Name + title of primary budget holder confirmed |
-| **D** ecision Criteria | Evaluation criteria explicitly stated or standard |
-| **D** ecision Process | Buying evaluation process mapped (formal or informal) |
-| **I** dentify Pain | Specific operational pain point documented with source |
-| **C** hampion | Potential internal champion identified (name or role) |
+## 2. Composite Global Score Formula
 
-$$\text{MEDDIC Completeness (\%)} = \left(\frac{\text{Dimensions} \text{ with Medium+ Confidence}}{6}\right) \times 100$$
+$$\text{Global Consistency Score (/10)} = \frac{\text{P1 (ToV)} + \text{P2 (Dark Social)} + \text{P3 (Velocity)} + \text{P4 (Conversion)}}{4}$$
 
-## Composite Formula — Prospect Score
+### Qualitative Performance Tiers (Strictly No Letter Grades)
 
-```text
-Prospect Score = (BANT × 0.50) + (MEDDIC% × 0.30) + (Urgency × 0.20)
-```
+| Score Range | Qualitative Tier Qualifier | CSS Badge Class | Strategic Meaning |
+|:---:|:---:|:---:|---|
+| **8.0 – 10.0 / 10** | *Excellence & Strong Cohesion* | `.score-high` | High brand authority, optimized omnichannel presence |
+| **6.0 – 7.9 / 10** | *Moderate Cohesion in Consolidation* | `.score-medium` | Solid foundation, actionable tactical gaps identified |
+| **< 6.0 / 10** | *Critical Misalignment* | `.score-low` | Major structural dissonance, broken touchpoints, urgent remediation needed |
 
-**Urgency Modifier (0–100):**
-| Situation | Score |
-|---|---|
-| Active procurement in progress or trigger event < 30 days | 80–100 |
-| Trigger event < 90 days | 60–79 |
-| Growth trend without immediate catalyst | 40–59 |
-| Low urgency | 20–39 |
-| No discernible urgency signal | 0–19 |
+---
 
-## Tier Grading Grid
+## 3. Gap Resolution Matrix & Statuses
 
-| Score | Grade | Classification | Action Directive |
-|---|---|---|---|
-| 75–100 | **A — SQL** | Sales Qualified Lead | Immediate outreach, maximum priority |
-| 50–74 | **B — MQL** | Marketing Qualified Lead | Standard sequence + discovery focus |
-| 25–49 | **C — IQL** | Interest Qualified Lead | Nurture campaign, monitor future triggers |
-| 0–24 | **D** | Unqualified | Deprioritize / Archive |
+Every identified brand gap is assigned one of three deterministic lifecycle statuses:
+
+- `🟢 RESOLVED` — Flaw or gap has been completely remediated by the brand.
+- `🟡 IN_PROGRESS` — Partial progress, improved trajectory, or mitigation in progress.
+- `🔴 PERSISTENT` — Flaw remains unaddressed and active across audit iterations.
+
+> **1:1 Actionability Invariant:** Every gap marked `🔴 PERSISTENT` or `🟡 IN_PROGRESS` must receive a dedicated 4-tier tactical blueprint (Business Diagnostic, Platform Lever, Step-by-Step Rollout, Impact KPI).

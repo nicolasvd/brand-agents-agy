@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{PAGE_TITLE}}</title>
+  <title>Brand Intelligence Hub — Brand Agents Antigravity</title>
   <style>
     :root {
       --font-sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -93,7 +93,7 @@
     .search-input { flex: 1; padding: 0.75rem 1rem; border-radius: 10px; border: 1px solid var(--border); font-size: 0.9375rem; background: var(--surface); color: var(--text); outline: none; transition: border-color 0.2s; }
     .search-input:focus { border-color: var(--primary); }
 
-    /* Grid of Companies */
+    /* Grid of Brands */
     .company-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
     .company-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; box-shadow: var(--card-shadow); transition: transform 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
     .company-card:hover { transform: translateY(-2px); box-shadow: var(--card-shadow-hover); border-color: var(--primary-border); }
@@ -173,13 +173,13 @@
       font-weight: 600;
     }
 
-    /* Print */
+    /* Print & Links */
     .card-link { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.65rem; border-radius: 6px; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-size: 0.75rem; font-weight: 600; text-decoration: none; transition: all 0.15s ease; }
     .card-link:hover { background: var(--primary-light); border-color: var(--primary-border); color: var(--primary); transform: translateY(-1px); }
     .card-link-md { background: var(--surface-subtle); border: 1px solid var(--border); color: var(--text-muted); font-family: var(--font-mono, monospace); font-size: 0.7rem; }
     .card-link-md:hover { background: var(--surface); color: var(--primary); }
 
-    .card-link[data-optional][style*="opacity"] { display: none; } /* Hide unavailable links cleanly */
+    .card-link[data-optional][style*="opacity"] { display: none; }
     .card-links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border, #e2e8f0); }
     .card-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; }
     .card-company { font-size: 1.125rem; font-weight: 700; color: var(--text); margin: 0; }
@@ -197,28 +197,28 @@
   <div class="container">
     <header class="header">
       <div class="header-info">
-        <h1>{{HEADER_TITLE}}</h1>
-        <p>{{HEADER_SUBTITLE}}</p>
+        <h1>Brand Intelligence Hub</h1>
+        <p>Omnichannel social media audits, reverse brand books, and strategic evaluations</p>
       </div>
       <div class="header-actions">
-        <a href="my-company/company-dna.html" class="header-btn">
-          <span>🏢 My Company DNA</span>
-        </a>
-        <a href="radar/RADAR-DISCOVERY.html" class="header-btn">
-          <span>📡 Opportunity Radar</span>
-        </a>
-        <a href="my-company/pipeline.html" class="header-btn">
-          <span>📊 Commercial Pipeline</span>
-        </a>
+        <span class="badge-hub">AI Brand Strategy Team</span>
       </div>
     </header>
 
     <div class="filter-bar">
-      <input type="text" id="searchInput" class="search-input" placeholder="{{SEARCH_PLACEHOLDER}}" onkeyup="filterCards()">
+      <input type="text" id="searchInput" class="search-input" placeholder="Search audited brands by name or industry..." onkeyup="filterCards()">
     </div>
 
     <main class="company-grid" id="companyGrid">
-      {{COMPANIES_CARDS_HTML}}
+      <!-- Audited brands cards injected here by brand-sub-styler -->
+      <div class="empty-state">
+        <div class="empty-icon">🎯</div>
+        <h2 class="empty-title">No Brand Audits Yet</h2>
+        <p class="empty-desc">Launch your first autonomous brand audit by invoking <code>brand-lead</code> with a target URL.</p>
+        <div class="empty-actions">
+          <span class="empty-action-tag">brand-lead https://example.com</span>
+        </div>
+      </div>
     </main>
   </div>
 
@@ -232,7 +232,6 @@
       });
     }
 
-    /* Check optional report links — hide those that return 404 */
     async function checkReportLink(linkEl) {
       const href = linkEl.getAttribute('href');
       if (!href) return;
@@ -245,7 +244,7 @@
           linkEl.style.opacity = '0.35';
         }
       } catch {
-        /* file:// protocol may throw on CORS — treat as potentially available */
+        /* file:// protocol fallback */
       }
     }
 

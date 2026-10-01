@@ -87,7 +87,7 @@ Generate the in-depth Strategic Audit Critique:
   - Header Hero & Overall Scorecard (/10, NO letter grade).
   - **Multi-Audit Scorecard Progression Table:** Multi-audit historical scores (/10, NO Grade column), date, mode, pillar breakdowns, and score deltas.
   - Detailed Analysis of the 4 Pillars (ToV & Community Reception, Dark Social & Omnichannel, Velocity & Frequency, Conversion & Product).
-  - **Prior Gap Tracking & Resolution Table:** Tabular tracking of each gap with status badge (`🟢 Résolu`, `🟡 En Progrès`, `🔴 Persistant`) and trajectory notes.
+  - **Prior Gap Tracking & Resolution Table:** Tabular tracking of each gap with status badge (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`) and trajectory notes.
   - Actionable Strategic Recommendations (4-tier format).
 
 ---
@@ -113,9 +113,9 @@ For each audited platform (e.g. `linkedin`, `instagram`, `facebook`, `tiktok`, `
 ---
 
 ### Step 5 — Update Global Dashboard (`reports/index.html`) & GC Sentinel
-1. **Dashboard Update:**
-   - Read `reports/index.html`.
-   - Update `{slug}` card with consistency score on 10 (e.g. `<span class="score-pill score-medium">Score: 6.6 / 10 · Cohérence Modérée</span>`), audit date, and working relative links to `{slug}/OVERVIEW.html` and `{slug}/STRATEGIC-AUDIT.html`. Use `.score-pill`, `.score-high`, `.score-medium`, `.score-low` classes (never `.grade-*`).
+1. **Dashboard Bootstrap & Update:**
+   - Check if `reports/index.html` exists. If `reports/index.html` does not exist yet (virgin clean repository on first audit), copy and bootstrap from `.agents/context/templates/index-template.html` to `reports/index.html`.
+   - Update or insert the `{slug}` card with consistency score on 10 (e.g. `<span class="score-pill score-medium">Score: 6.6 / 10 · Moderate Cohesion</span>`), audit date, and working relative links to `{slug}/OVERVIEW.html` and `{slug}/STRATEGIC-AUDIT.html`. Use `.score-pill`, `.score-high`, `.score-medium`, `.score-low` classes (never `.grade-*`).
 2. **Garbage Collection Sentinel:**
    - If `.agents/.scratchpad/{slug}/` exists, write `.done` to signal orchestrator cleanup:
      - Target: `.agents/.scratchpad/{slug}/.done`

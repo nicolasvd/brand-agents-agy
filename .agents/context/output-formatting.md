@@ -1,76 +1,98 @@
-# Rule: Output Formatting & Modern Markdown Chat Standard
+# Rule: Output Formatting & Brand Hub & Spoke Architecture
 
 > [!IMPORTANT]
 > **Linguistic Hierarchy & Chat Mirroring:**
-> - **Internal Engine (100% Technical English):** All `SKILL.md` instructions, declarative rules, HTML templates, scratchpads, and execution logs operate strictly in technical English.
-> - **Conversational Chat (Strict Language Mirroring):** Conversational chat responses systematically mirror the user's prompt language (French for French, English for English), regardless of the audited prospect's country or language.
-> - **Report Deliverables (`reports/`):** Universal English UI shell and frontmatter schema. Analytical deliverable copy adapts to the target market's business language.
+> - **Internal Engine (100% Technical English):** All agent definitions, prompt templates, declarative rules, HTML templates, scratchpads, and execution logs operate strictly in technical English.
+> - **Conversational Chat (Strict Language Mirroring):** Conversational chat responses systematically mirror the user's prompt language (French for French, English for English).
+> - **Deliverables (`reports/`):** Universal English UI shell and schema. Analytical deliverable copy adapts to the user's language.
 
-## Conversational Chat Standard (Direct Markdown)
+---
 
-Deliver executive insights directly in natural, clean Markdown (bold headings, bullet points, inline bold for metrics, inline code for commands). Do not wrap conversational text in text code blocks or monospace delimiters.
-- **Tone & Structure:** Start with a concise executive summary (verdict/grade, key signals with cited sources, points of vigilance, and actionable next steps).
-- **Flexibility:** Adapt the presentation structure to the specific sales domain (e.g., MEDDIC breakdown, A-R-C objection handling, or chronological outreach sequence).
+## 1. Hub & Spoke Architecture
 
-## Storage Architecture: HTML for Humans & Markdown for AI
+For every audited brand, deliverables are organized into a decoupled Hub & Spoke structure under `reports/{slug}/`:
 
-For each analysis, two deliverables are generated under `reports/`:
-- **Visual Version (Humans):** `reports/{slug}/{DELIVERABLE}.html` (clean SaaS UI, SVG gauges, print styling).
-- **Raw Data Version (AI):** `reports/{slug}/markdown/{DELIVERABLE}.md` (AI skills ingest Markdown exclusively).
-- **Central Cockpit (`reports/index.html`):** System views live in header buttons; audited prospects populate `companyGrid`.
+```text
+reports/
+├── index.html                               # Global Brands Portal & Cockpit
+└── {slug}/                                  # Brand workspace
+    ├── OVERVIEW.html                        # Central Hub: Executive Reverse Brand Book
+    ├── STRATEGIC-AUDIT.html                 # Spoke: Multi-Audit Scorecard & 4-Tier Action Plan
+    ├── channels/                            # Channel Spokes (Dedicated platform reports)
+    │   ├── linkedin.html
+    │   ├── instagram.html
+    │   ├── tiktok.html
+    │   ├── facebook.html
+    │   ├── youtube.html
+    │   └── x.html
+    ├── assets/                              # Permanent screenshots and stylesheets
+    │   ├── css/
+    │   │   └── design-tokens.css
+    │   ├── screenshot-hub.png
+    │   └── ...
+    └── markdown/                            # AI Source of Truth (Permanent Markdown)
+        ├── REVERSE-BRAND-BOOK.md
+        ├── STRATEGIC-AUDIT.md
+        └── channels/
+            ├── linkedin.md
+            ├── instagram.md
+            └── ...
+```
 
-### Folder Segregation: System Views vs. Prospect Cards
-- **System Reserved:** `reports/my-company/`, `reports/radar/` (linked in header buttons only, never in `companyGrid`).
-- **Prospect Folders:** `reports/{slug}/` (only audited target accounts generate cards in `companyGrid`).
-- **Root `reports/` Directory Invariant:** Must contain ONLY `index.html`, `.gitkeep`, and account directories (`reports/{slug}/`, `reports/my-company/`, `reports/radar/`). Generating flat mirror files directly at the root of `reports/` is strictly prohibited.
+---
 
-| Skill | Deliverable Base (.html & markdown/.md) | Scope | Reference Template |
+## 2. Deliverable Roles & Scope
+
+| Component | Path | Audience | Source File |
 |---|---|---|---|
-| `sales-prospect` | `reports/{slug}/PROSPECT-ANALYSIS` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
-| `sales-outreach` | `reports/{slug}/OUTREACH-SEQUENCE` | Prospect | `.agents/skills/sales-outreach/references/outreach-template.html` |
-| `sales-followup` | `reports/{slug}/FOLLOWUP-SEQUENCE` | Prospect | `.agents/skills/sales-outreach/references/outreach-template.html` |
-| `sales-prep` | `reports/{slug}/MEETING-PREP` | Prospect | `.agents/skills/sales-prep/references/meeting-prep-template.html` |
-| `sales-proposal` | `reports/{slug}/CLIENT-PROPOSAL` | Prospect | `.agents/skills/sales-proposal/references/proposal-template.html` |
-| `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
-| `sales-research` | `reports/{slug}/COMPANY-RESEARCH` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
-| `sales-contacts` | `reports/{slug}/DECISION-MAKERS` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
-| `sales-competitors` | `reports/{slug}/COMPETITIVE-INTEL` | Prospect | `.agents/skills/sales-prospect/references/report-template.html` |
-| `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK` | Prospect | `.agents/skills/sales-competitors/references/battle-card-template.html` |
-| `sales-icp` | `reports/my-company/ICP-FRAMEWORK` | System | `.agents/context/templates/context-template.html` |
-| `sales-setup` | `reports/my-company/company-dna` | System | `.agents/context/templates/context-template.html` |
-| `sales-radar` | `reports/radar/RADAR-DISCOVERY` | System | `.agents/skills/sales-radar/references/radar-template.html` |
-| `sales-report` | `reports/my-company/pipeline` | System | `.agents/context/templates/pipeline-summary-template.html` |
+| **Global Portal** | `reports/index.html` | Strategist | Bootstrap from `.agents/context/templates/index-template.html` |
+| **Executive Hub** | `reports/{slug}/OVERVIEW.html` | Leadership & CMO | `reports/{slug}/markdown/REVERSE-BRAND-BOOK.md` |
+| **Strategic Critique** | `reports/{slug}/STRATEGIC-AUDIT.html` | Brand Strategists | `reports/{slug}/markdown/STRATEGIC-AUDIT.md` |
+| **Channel Spokes** | `reports/{slug}/channels/{platform}.html` | Community Managers | `reports/{slug}/markdown/channels/{platform}.md` |
+| **Canonical Archives** | `reports/{slug}/markdown/**/*.md` | Subagents (AI Memory) | Produced by Wave 1 & Wave 2 agents |
 
-## Machine Metadata Standard (YAML Frontmatter)
+---
 
-Every Markdown deliverable begins with standard frontmatter:
+## 3. Strict Relative Path Hygiene
+
+Never generate HTML attributes or markdown links with absolute filesystem URIs (`file:///Users/...`, `/var/folders/...`, etc.). Always use strict relative paths:
+- From Hub: `assets/...`, `channels/{platform}.html`, `markdown/...`
+- From Channels: `../assets/...`, `../OVERVIEW.html`, `../STRATEGIC-AUDIT.html`, `../markdown/channels/{platform}.md`
+- From Global Portal: `{slug}/OVERVIEW.html`, `{slug}/STRATEGIC-AUDIT.html`
+
+---
+
+## 4. Machine Metadata Standard (YAML Frontmatter)
+
+Every canonical Markdown deliverable begins with standard frontmatter:
 
 ```yaml
 ---
 slug: "{slug}"
-company_name: "{company_name}"
-domain: "{domain}"
-audit_date: "YYYY-MM-DD"
-scoring:
-  prospect_score: {0-100}
-  lead_grade: "A|B|C|D"
-  bant_total: {0-100}
-  meddic_completeness_pct: {0-100}
-primary_contacts:
-  economic_buyer: "{Name or Not publicly available}"
-  champion: "{Name or Not publicly available}"
-competitive_context: { incumbent_tools: ["{Tool1}"], switching_cost: "Low|Med|High" }
-top_triggers: ["{Verified Trigger (< 90 days)}"]
+brand_name: "{brand_name}"
+primary_url: "{primary_url}"
+first_audit_date: "YYYY-MM-DD"
+latest_audit_date: "YYYY-MM-DD"
+total_audits: 1
+score: 6.6
+dark_social_status: "RESOLVED|FAILED"
+audits_history:
+  - audit_id: 1
+    date: "YYYY-MM-DD"
+    score: 6.6
+    mode: "INITIAL_BASELINE|INCREMENTAL_UPDATE"
 ---
 ```
 
-## Universal Cockpit Navigation & Deliverables Generated
+---
 
-Every report generated within the workspace links back to `reports/index.html` via the standard navigation button defined in the reference templates.
+## 5. Universal Completion Block
 
-Every skill concludes its response with the standardized completion block:
+When concluding an audit run, the orchestrator outputs the standardized completion block in chat:
 
 ### 📦 Deliverables Generated
-- **Web (Interactive):** `reports/{slug}/{DELIVERABLE}.html`
-- **AI Data (Markdown):** `reports/{slug}/markdown/{DELIVERABLE}.md`
+- **Executive Hub:** `reports/{slug}/OVERVIEW.html`
+- **Strategic Audit:** `reports/{slug}/STRATEGIC-AUDIT.html`
+- **Channel Deep-Dives:** `reports/{slug}/channels/*.html`
+- **AI Data Archives:** `reports/{slug}/markdown/`
 - **Portal Updated:** `reports/index.html`
