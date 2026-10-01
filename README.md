@@ -1,153 +1,169 @@
 <p align="center">
-  <img src="banner.svg" alt="AI Sales Team - Antigravity Native" width="100%" />
+  <img src="banner.svg" alt="AI Brand Strategy Team - Antigravity Native" width="100%" />
 </p>
 
-# AI Sales Team — Antigravity Native
+# AI Brand Strategy Team — Antigravity Native
 
-[![Release](https://img.shields.io/badge/Release-v1.2.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/sales-agents-agy/releases)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/brand-agents-agy/releases)
 [![Runtime](https://img.shields.io/badge/Runtime-Google%20Antigravity%202.0-4285F4.svg?style=flat-square)](https://antigravity.google)
-[![Architecture](https://img.shields.io/badge/Architecture-100%25%20Declarative-success.svg?style=flat-square)](#-hub--spoke-architecture--folder-structure)
-[![Engine](https://img.shields.io/badge/Engine-Gemini%203-8E75C4.svg?style=flat-square)](#)
+[![Architecture](https://img.shields.io/badge/Architecture-Hub%20%26%20Spoke%20Declarative-success.svg?style=flat-square)](#-hub--spoke-architecture)
+[![Engine](https://img.shields.io/badge/Engine-Gemini%203%20Native%20Browser-8E75C4.svg?style=flat-square)](#)
 [![Dependencies](https://img.shields.io/badge/Dependencies-Zero%20(No%20Python%2FNode)-brightgreen.svg?style=flat-square)](#)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
 > 🇬🇧 **English** | [🇫🇷 Français](README.fr.md)
 
-100% declarative B2B sales intelligence platform engineered natively for **Google Antigravity (Standalone / v2.0)** and orchestrated by **Gemini 3**. It transforms verified public web data into end-to-end sales intelligence: 360° prospect audits, deterministic BANT/MEDDIC qualification, buying committee mapping, multi-channel outreach sequences, and business cases calculating the quantified Cost of Inaction.
+Autonomous Brand Strategy and Omnichannel Social Media Intelligence framework engineered natively for **Google Antigravity (Standalone / v2.0)** and powered by **Gemini 3**. Starting from a single company URL, it explores the brand's digital footprint, crawls active social channels via human-simulated browser sessions, extracts authentic user verbatims, audits Dark Social previews, and delivers agency-grade visual reports alongside permanent Markdown archives.
 
 ---
 
 ## 🚀 Quickstart
 
-### Path A: 30-Second Fast-Track (100% No-Code)
+### 1-Minute Launch (Zero Dependencies)
 
-Zero technical setup, terminal commands, or runtime environments (`npm`, `pip`, `venv`) required.
+No package managers (`npm`, `pip`), runtime setups, or environment variables required.
 
-1. **Download the Latest Release:** Navigate to the [Latest Release](https://github.com/nicolasvd/sales-agents-agy/releases/latest) page, download the **Source code (zip)** archive, unzip it, and **rename the folder** to your preferred company or project name (e.g., `my-sales-agency`, `growth-intelligence`).
-2. **Open in Antigravity:** Open **Google Antigravity**, click **Projects (+)** > **Open Folder**, and select your renamed project folder.
-3. **Calibrate Your Offering:** In the prompt bar, simply run:
-   ```text
-   setup my-company.com
+1. **Clone or Download Workspace:**
+   ```bash
+   git clone https://github.com/nicolasvd/brand-agents-agy.git my-brand-audit
+   cd my-brand-audit
    ```
-   *The agent crawls your domain, extracts your value proposition and core personas, and prompts 2 short questions to confirm your pricing rules.*
-4. **The Golden Browser Cockpit Rule:**
-    - In your file explorer, navigate to the `reports/` folder.
-    - Right-click **`reports/index.html`** > **Open with Google Chrome** (or your preferred browser).
-    - **Pin this browser tab.**
-    - Whenever an agent completes a task, hit **Cmd + R** (or **F5**) on this tab to refresh your cockpit and inspect the new deliverables.
+2. **Open in Google Antigravity:**
+   Open Google Antigravity, click **Open Folder**, and select `my-brand-audit`.
+3. **Launch an Audit:**
+   In the Antigravity chat, run:
+   ```text
+   Audit https://example.com
+   ```
+   *The `brand-lead` orchestrator crawls the homepage, maps social channels, deploys parallel browser scanners, and synthesizes the strategic audit.*
+4. **Inspect Deliverables in the Cockpit:**
+   Open `reports/index.html` in your browser. Whenever an audit completes, hit **Cmd + R** (or **F5**) to refresh and view your reports.
 
-### Path B: Developer Track (Terminal / CLI)
+---
 
-```bash
-# Clone repository and enter workspace
-git clone https://github.com/nicolasvd/sales-agents-agy.git my-sales-agency
-cd my-sales-agency
+## 🏛️ Multi-Agent Architecture (Waves 1, 2, and 3)
 
-# Launch Antigravity
-agy
+```mermaid
+flowchart TD
+    subgraph Wave1["Wave 1: Digital Footprint & Scanners"]
+        A["Target URL"] --> B["brand-sub-hub-crawler"]
+        B --> C["Value Proposition, Dark Social, Social URLs"]
+        C --> D["Native Browser Scanners (Parallel)"]
+        D --> D1["LinkedIn Scanner"]
+        D --> D2["Instagram Scanner"]
+        D --> D3["TikTok Scanner"]
+        D --> D4["Facebook Scanner"]
+        D --> D5["YouTube Scanner"]
+        D --> D6["X (Twitter) Scanner"]
+    end
+
+    subgraph Wave2["Wave 2: Strategic Synthesis & Longitudinal Intelligence"]
+        D1 & D2 & D3 & D4 & D5 & D6 --> E["brand-sub-analyst"]
+        E --> F["Conversational Ratio & Sentiment Confrontation"]
+        E --> G["Longitudinal Velocity & Trajectory Deltas (Δ)"]
+        E --> H["Gap Resolution Matrix & 4-Tier Blueprint"]
+        E --> I["Draft Outputs: w2-draft-audit.md + w2-draft-brandbook.md"]
+    end
+
+    subgraph Wave3["Wave 3: Deliverable Promotion & Async HTML Compilation"]
+        I --> J["Promotion to reports/{slug}/markdown/"]
+        J --> K["brand-sub-styler (Async Background Compiler)"]
+        K --> L["OVERVIEW.html (Executive Hub)"]
+        K --> M["STRATEGIC-AUDIT.html (Critique & Scorecard)"]
+        K --> N["channels/*.html (Dedicated Platform Spokes)"]
+        K --> O["reports/index.html (Global Cockpit Update)"]
+        K --> P[".done Sentinel & Automatic Scratchpad GC"]
+    end
 ```
 
-> [!TIP]
-> **Zero Dependencies:** No Python or Node.js runtimes, no virtual environments, and no package managers (`pip`, `npm`, `venv`). All agents execute using native declarative Antigravity tools (`read_url_content`, `search_web`, `create_file`, `view_file`).
+### Wave 1: The Zero-Knowledge Footprint
+- **`brand-sub-hub-crawler`**: Navigates to the brand homepage with full SPA hydration. Captures above-the-fold visual proof, extracts Dark Social Open Graph metadata (`og:*`, `twitter:*`), and maps all outbound social channels.
+- **Parallel Browser Scanners**: Drive human-simulated Chrome browser sessions to bypass anti-scraping walls on LinkedIn, Instagram, TikTok, Facebook, YouTube, and X.
+  - Extracts follower metrics (strictly no vanity following).
+  - Collects 3 to 5 authentic qualitative verbatims on top posts (`comment-sampling`).
+  - Fast-exit sentinel (`NONE_OR_DISABLED`) when comments are absent or disabled.
+
+### Wave 2: Strategic & Longitudinal Evaluation
+- **`brand-sub-analyst`**: Ingests Wave 1 findings and historical Markdown archives.
+  - Evaluates Tone of Voice (ToV) coherence and calculates Conversational Ratio ($\frac{\text{Comments}}{\text{Reactions}}$).
+  - Enforces Tone of Voice capping (max 6.5/10) if unresolved customer complaints appear in comments.
+  - Tracks prior gaps across audits (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`).
+  - Writes a comprehensive 4-Tier Action Blueprint for every unaddressed gap.
+
+### Wave 3: Deliverable Promotion & Asynchronous HTML Compilation
+- **`brand-sub-styler`**: Deterministic, offline compiler. Reads directly from permanent Markdown archives in `reports/{slug}/markdown/` and builds agency-grade HTML views with shared design tokens and bi-directional source linking. Automatically bootstraps `reports/index.html` on first run.
 
 ---
 
-## ⚡ Unified 15-Command Index
+## 🔄 Incremental Re-Audit Protocol
 
-The framework utilizes an intelligent context-resolution syntax `[prospect]*`:
-* **Explicit Target:** `outreach https://target.com` immediately targets the provided URL.
-* **Omitted Argument (`*`):** If an account is already active in the ongoing chat session, the agent continues seamlessly.
-* **Zero Active Context:** The agent halts immediately and prompts for a prospect target, preventing orphan deliverable generation.
-
-| Category | Command | Skill | Primary Deliverables (HTML + AI Markdown) | Commercial Focus |
-|---|---|---|---|---|
-| **Foundation** | `setup <url>` | `sales-setup` | `reports/my-company/company-dna.html` | Audits your website & calibrates pricing rules |
-| **Foundation** | `update` | `framework-update` | Console / `.agents/` | Updates skills & verifies declarative rule integrity |
-| **Foundation** | `icp [segment]*` | `sales-icp` | `reports/my-company/ICP-FRAMEWORK.html` | Defines Ideal Customer Profile & negative exclusions |
-| **Market** | `radar [topic/event]` | `sales-radar` | `reports/radar/RADAR-DISCOVERY.html` | Scans trailing triggers (D-60) and future catalysts (D+90) |
-| **Audit** | `prospect <url>` | `sales-prospect`| `reports/{slug}/PROSPECT-ANALYSIS.html` | 2-Wave 360° audit (firmographics, signals, strategy) |
-| **Audit** | `qualify [prospect]*` | `sales-qualify` | `reports/{slug}/LEAD-QUALIFICATION.html` | BANT scoring (0–100) & MEDDIC completeness |
-| **Audit** | `research [prospect]*`| `sales-research`| `reports/{slug}/COMPANY-RESEARCH.html` | 8-dimension firmographics & headcount trends |
-| **Audit** | `contacts [prospect]*`| `sales-contacts`| `reports/{slug}/DECISION-MAKERS.html` | Buying committee personas & verified recent hooks (< 90d) |
-| **Audit** | `competitors [prospect]*`| `sales-competitors`| `reports/{slug}/COMPETITIVE-INTEL.html` | Incumbent tech stack identification & Battle Cards |
-| **Action** | `prep [prospect]*` | `sales-prep` | `reports/{slug}/MEETING-PREP.html` | 10-point meeting brief & SPIN discovery questions |
-| **Action** | `outreach [prospect]*` | `sales-outreach`| `reports/{slug}/OUTREACH-SEQUENCE.html` | 5-touch omnichannel sequence + LinkedIn angles |
-| **Action** | `followup [prospect]*` | `sales-followup`| `reports/{slug}/FOLLOWUP-SEQUENCE.html` | 5 high-value lifecycle follow-up cadences |
-| **Action** | `proposal [prospect]*` | `sales-proposal`| `reports/{slug}/CLIENT-PROPOSAL.html` | Value proposal & quantified Cost of Inaction (COI) |
-| **Action** | `objections [prospect]* <topic>` | `sales-objections` | `reports/{slug}/OBJECTION-PLAYBOOK.html` | Consultative objection handling via A-R-C framework |
-| **Pipeline** | `report` | `sales-report` | `reports/my-company/pipeline.html` | Consolidated pipeline rollup & Master Hub refresh |
+When auditing a brand that was audited previously:
+1. **Archive Detection:** `brand-lead` automatically detects existing archives in `reports/{slug}/markdown/REVERSE-BRAND-BOOK.md` and activates `AUDIT_MODE = INCREMENTAL_UPDATE`.
+2. **Pinned Post Bypass & $K=2$ Stop Counter:** Scanners inspect recent feed posts, bypass pinned posts without advancing the counter, and halt scrolling as soon as $K=2$ consecutive unpinned posts are recognized as already archived.
+3. **Engagement Trajectory Deltas ($\Delta$):** Top-performing historical posts are re-checked for freshness, logging delta velocity ($\Delta$ reactions, $\Delta$ comments).
+4. **Screenshot Restraint:** Existing header screenshots and archived post media are reused. Zero redundant screenshot captures.
 
 ---
 
-## 🏛️ Hub & Spoke Architecture & Folder Structure
+## 📁 Hub & Spoke Architecture
 
-Deliverables follow a sandboxed hierarchy: no orphan reports are written to the root of `reports/` except the master portal.
+All reports and visual artifacts follow a clean, hermetic directory structure:
 
 ```text
-my-sales-agency/
-├── AGENTS.md                          ← Session entry point & rules matrix
-├── .agents/
-│   ├── skills.json                    ← 15 native Antigravity skill definitions
-│   ├── .scratchpad/                   ← Ephemeral inter-agent state buffer (gitignored)
-│   ├── agents/                        ← Specialized subagents (analyst, reviewer, styler)
-│   │   └── sales-sub-styler.md        ← Async HTML compilation subagent
-│   ├── context/                       ← Commercial product truth & shared design templates
-│   │   ├── product-context.md         ← Commercial product truth (sanctuary denylist)
-│   │   ├── customer-context.md        ← Target ICP boundaries & negative filters
-│   │   ├── output-formatting.md       ← Dual Output standard & typed YAML specifications
-│   │   └── templates/                 ← HTML templates & shared design tokens
-│   └── rules/                         ← Behavioral governance rules (< 5 KB each)
-│       ├── fact-checking.md           ← Source validation protocol
-│       └── scoring.md                 ← Deterministic BANT / MEDDIC scorecards
-└── reports/                           ← Local-first deliverables & master cockpit (gitignored)
-    ├── index.html                     ← MASTER COCKPIT (Interactive Hub view)
-    │
-    ├── my-company/                    ← INTERNAL FOUNDATION: Product truth & ICP
-    │   ├── company-dna.html           ← Visual value proposition card
-    │   ├── pipeline.html              ← Consolidated commercial pipeline summary
-    │   ├── ICP-FRAMEWORK.html         ← Target framework
-    │   └── markdown/                  ← Machine context files
-    │
-    ├── radar/                         ← UPSTREAM MARKET INTEL: Signals & events
-    │   ├── RADAR-DISCOVERY.html       ← Market opportunities and detected hooks
-    │   └── markdown/
-    │
-    └── {prospect-slug}/               ← ISOLATED PROSPECT WORKSPACES (1 per account)
-        ├── PROSPECT-ANALYSIS.html     ← Polished Light & Dark Mode SaaS HTML deliverables
-        ├── MEETING-PREP.html          ← Print-ready A4 styling (@media print)
-        ├── CLIENT-PROPOSAL.html
-        └── markdown/                  ← RAW MACHINE TWINS (Typed YAML Frontmatter)
-            ├── PROSPECT-ANALYSIS.md
+reports/
+├── index.html                               # Global Cockpit & Audited Brands Directory
+├── .gitkeep                                 # Preserves directory in Git
+└── {slug}/                                  # Brand Dossier (e.g., ag-be)
+    ├── OVERVIEW.html                        # Central Hub: Executive Reverse Brand Book
+    ├── STRATEGIC-AUDIT.html                 # Spoke: In-Depth Strategic Critique & Scorecard
+    ├── channels/                            # Platform Spokes (Dedicated channel reports)
+    │   ├── linkedin.html
+    │   ├── instagram.html
+    │   ├── tiktok.html
+    │   ├── facebook.html
+    │   ├── youtube.html
+    │   └── x.html
+    ├── assets/                              # Permanent Screenshots & CSS
+    │   ├── css/
+    │   │   └── design-tokens.css
+    │   ├── screenshot-hub-20260930.png
+    │   └── ...
+    └── markdown/                            # AI Source of Truth (Permanent Archives)
+        ├── REVERSE-BRAND-BOOK.md
+        ├── STRATEGIC-AUDIT.md
+        └── channels/
+            ├── linkedin.md
             └── ...
 ```
 
 ---
 
-## 🎯 Dual Output Standard: Human HTML + AI Machine Memory
+## 🎯 Deterministic 10-Point Scorecard
 
-Every skill simultaneously produces two synchronized formats:
-1. **Visual Reports (Humans):** Modern, interactive Light & Dark Mode SaaS HTML deliverables (offline, self-contained) with dynamic scorecards, quick-copy buttons, collapsible sections, `@media print` A4 optimization, and a standardized return button (`<a href="../index.html" class="btn-back">← Back to Portal</a>`).
-2. **Machine Memory (AI):** Raw Markdown files with **typed YAML Frontmatter** (`prospect_score`, `bant_total`, `meddic_completeness_pct`, `key_contacts`, `trigger_events`). Downstream skills (`prep`, `proposal`, `followup`) ingest these raw files directly, preventing token waste and hallucinations.
+All appraisals use the standardized 10-point scale (US letter grades are strictly prohibited):
+
+$$\text{Global Consistency Score (/10)} = \frac{\text{P1 (ToV)} + \text{P2 (Dark Social)} + \text{P3 (Velocity)} + \text{P4 (Conversion)}}{4}$$
+
+- **Pillar 1: Tone of Voice & Community Reception (0–10):** Semantic alignment, conversational ratio ($< 0.5\%$ alert), customer support overflow detection (capped at 6.5/10 if unresolved complaints exist).
+- **Pillar 2: Omnichannel Consistency & Dark Social (0–10):** Visual identity cohesion, complete Open Graph tags, private sharing simulation (`RESOLVED` vs `FAILED`).
+- **Pillar 3: Publication Velocity & Cadence (0–10):** Publishing frequency, multi-format distribution (% Reels/Shorts), engagement half-life.
+- **Pillar 4: Conversion & Product Narrative (0–10):** Bio link infrastructure, clear commercial CTA, paid vs organic epistemic rigor (`ad_badge_present`).
+
+### Qualitative Scale
+- **8.0 – 10.0 / 10:** *Excellence & Strong Cohesion* (`.score-high`)
+- **6.0 – 7.9 / 10:** *Moderate Cohesion in Consolidation* (`.score-medium`)
+- **< 6.0 / 10:** *Critical Misalignment* (`.score-low`)
 
 ---
 
-## ⚖️ Cardinal Principles & Governance
+## 🛡️ Passive Safety & Epistemic Rigor
 
-1. **Zero Hallucination:** Rely strictly on verified public web data. Missing parameters are labeled `Not publicly available`.
-2. **Absolute Passivity:** The system never transmits external messages or initiates outreach. Every output is a draft for human review (*Human-in-the-Loop*).
-3. **Deterministic Arithmetic Scoring:** Qualification relies strictly on transparent rules documented in `scoring.md`. No arbitrary ratings.
-4. **Consultative Sales Alignment:** Anti-spam, anti-pressure sales posture. Objections are addressed through the **A-R-C (Acknowledge, Reframe, Clarify)** framework to deepen discovery, strictly forbidding premature closing.
-
----
-
-## 💡 Origin & Attribution
-
-This project is inspired by the pioneering work of [Zubair Trabzada](https://github.com/zubair-trabzada) on [ai-sales-team-claude](https://github.com/zubair-trabzada/ai-sales-team-claude), originally developed for Anthropic's Claude Code.
-
-**Architectural Distinction:** This repository represents a complete declarative re-architecture for **Google Antigravity 2.0**. It eliminates Python execution scripts in favor of native declarative skills, structured file-based memory, and Gemini 3 multi-agent orchestration.
+1. **Read-Only External Posture:** Scanners navigate exclusively in read-only mode. Never post comments, fill forms, send messages, or mutate third-party accounts.
+2. **Epistemic Rigor (Paid vs Organic):** Never assert advertising spend without direct DOM ad badges (`ad_badge_present: true`). Outsized virality is labeled conditionally as *estimated amplified reach* (*portée amplifiée estimée*) with a mandatory methodological caveat.
+3. **Local Path Hygiene:** Zero absolute path leaks (`file:///Users/...`, `/var/folders/...`). All links and media use clean project-relative paths.
 
 ---
 
 ## 📄 License
 
-Distributed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
