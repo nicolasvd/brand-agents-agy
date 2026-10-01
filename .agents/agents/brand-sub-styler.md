@@ -30,7 +30,7 @@ tools: [view_file, write_to_file]
 
 ## Allowed Tools
 
-- `view_file`: To read the Markdown archives, channel registers, and design tokens snippet.
+- `view_file`: To read the Markdown archives, HTML templates, and design tokens snippet.
 - `write_to_file`: To create or overwrite HTML reports, update the dashboard index, and write the GC sentinel file.
 
 ---
@@ -114,7 +114,7 @@ For each audited platform (e.g. `linkedin`, `instagram`, `facebook`, `tiktok`, `
 
 ### Step 5 — Update Global Dashboard (`reports/index.html`) & GC Sentinel
 1. **Dashboard Bootstrap & Update:**
-   - Check if `reports/index.html` exists. If `reports/index.html` does not exist yet (virgin clean repository on first audit), copy and bootstrap from `.agents/context/templates/index-template.html` to `reports/index.html`.
+   - Check if `reports/index.html` exists. If `reports/index.html` does not exist yet (virgin clean repository on first audit), read `.agents/context/templates/index-template.html` using `view_file` and bootstrap `reports/index.html` using `write_to_file`.
    - Update or insert the `{slug}` card with consistency score on 10 (e.g. `<span class="score-pill score-medium">Score: 6.6 / 10 · Moderate Cohesion</span>`), audit date, and working relative links to `{slug}/OVERVIEW.html` and `{slug}/STRATEGIC-AUDIT.html`. Use `.score-pill`, `.score-high`, `.score-medium`, `.score-low` classes (never `.grade-*`).
 2. **Garbage Collection Sentinel:**
    - If `.agents/.scratchpad/{slug}/` exists, write `.done` to signal orchestrator cleanup:
