@@ -1,0 +1,28 @@
+# Generated reports & brand audits (100% local, never committed to GitHub)
+reports/**
+!reports/
+!reports/.gitkeep
+
+# Ephemeral scratchpad data (transient inter-agent buffers)
+.agents/.scratchpad/*
+!.agents/.scratchpad/README.md
+
+# Antigravity runtime artifacts, GC sentinels & temporary files
+.system_generated/
+.done
+*.done
+*.tmp
+
+# Operating System & IDEs
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Local credentials & environment overrides
+.env
+.env.*
+*.local
