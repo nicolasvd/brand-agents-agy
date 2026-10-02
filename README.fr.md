@@ -7,13 +7,13 @@
 [![Release](https://img.shields.io/badge/Release-v1.0.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/brand-agents-agy/releases)
 [![Runtime](https://img.shields.io/badge/Runtime-Google%20Antigravity%202.0-4285F4.svg?style=flat-square)](https://antigravity.google)
 [![Architecture](https://img.shields.io/badge/Architecture-Hub%20%26%20Spoke%20Declarative-success.svg?style=flat-square)](#-architecture-des-dossiers-hub--spoke)
-[![Engine](https://img.shields.io/badge/Engine-Gemini%203%20Native%20Browser-8E75C4.svg?style=flat-square)](#)
+[![Engine](https://img.shields.io/badge/Engine-Multi--Model%20AI-8E75C4.svg?style=flat-square)](#)
 [![Dependencies](https://img.shields.io/badge/Dependencies-Z%C3%A9ro%20(Sans%20Python%2FNode)-brightgreen.svg?style=flat-square)](#)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat-square)](LICENSE)
 
 > [🇬🇧 English](README.md) | 🇫🇷 **Français**
 
-Framework autonome d'audit stratégique de marque et d'intelligence réseaux sociaux omnicanale, conçu nativement pour **Google Antigravity (Standalone / v2.0)** et orchestré par **Gemini 3**. À partir d'une simple URL de marque, il cartographie l'empreinte digitale, pilote des sessions de navigation réelles pour auditer les canaux sociaux sans blocage, échantillonne les verbatims authentiques, analyse les aperçus Dark Social et génère des livrables visuels de niveau exécutif adossés à des archives Markdown permanentes.
+Framework autonome d'audit stratégique de marque et d'intelligence réseaux sociaux omnicanale, conçu nativement pour **Google Antigravity (Standalone / v2.0)** et orchestré par **l'IA Multi-Modèles (Gemini, Claude, OpenAI)**. À partir d'une simple URL de marque, il cartographie l'empreinte digitale, pilote des sessions de navigation réelles pour auditer les canaux sociaux sans blocage, échantillonne les verbatims authentiques, analyse les aperçus Dark Social et génère des livrables visuels de niveau exécutif adossés à des archives Markdown permanentes.
 
 ---
 
@@ -166,4 +166,4 @@ $$\text{Score Global de Cohérence (/10)} = \frac{\text{P1 (ToV)} + \text{P2 (Da
 
 ## 📄 Licence
 
-Ce projet est distribué sous licence [MIT](LICENSE).
+Ce projet est distribué sous licence [Apache 2.0](LICENSE).

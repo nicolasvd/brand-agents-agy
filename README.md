@@ -7,13 +7,13 @@
 [![Release](https://img.shields.io/badge/Release-v1.0.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/brand-agents-agy/releases)
 [![Runtime](https://img.shields.io/badge/Runtime-Google%20Antigravity%202.0-4285F4.svg?style=flat-square)](https://antigravity.google)
 [![Architecture](https://img.shields.io/badge/Architecture-Hub%20%26%20Spoke%20Declarative-success.svg?style=flat-square)](#-hub--spoke-architecture)
-[![Engine](https://img.shields.io/badge/Engine-Gemini%203%20Native%20Browser-8E75C4.svg?style=flat-square)](#)
+[![Engine](https://img.shields.io/badge/Engine-Multi--Model%20AI-8E75C4.svg?style=flat-square)](#)
 [![Dependencies](https://img.shields.io/badge/Dependencies-Zero%20(No%20Python%2FNode)-brightgreen.svg?style=flat-square)](#)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat-square)](LICENSE)
 
 > 🇬🇧 **English** | [🇫🇷 Français](README.fr.md)
 
-Autonomous Brand Strategy and Omnichannel Social Media Intelligence framework engineered natively for **Google Antigravity (Standalone / v2.0)** and powered by **Gemini 3**. Starting from a single company URL, it explores the brand's digital footprint, crawls active social channels via human-simulated browser sessions, extracts authentic user verbatims, audits Dark Social previews, and delivers agency-grade visual reports alongside permanent Markdown archives.
+Autonomous Brand Strategy and Omnichannel Social Media Intelligence framework engineered natively for **Google Antigravity (Standalone / v2.0)** and powered by **Multi-Model AI**. Starting from a single company URL, it explores the brand's digital footprint, crawls active social channels via human-simulated browser sessions, extracts authentic user verbatims, audits Dark Social previews, and delivers agency-grade visual reports alongside permanent Markdown archives.
 
 ---
 
@@ -166,4 +166,4 @@ $$\text{Global Consistency Score (/10)} = \frac{\text{P1 (ToV)} + \text{P2 (Dark
 
 ## 📄 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [Apache License 2.0](LICENSE).
