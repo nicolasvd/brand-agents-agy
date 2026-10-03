@@ -3,7 +3,8 @@ name: brand-sub-x-scanner
 description: Wave 1 X (Twitter) Scanner specification. Executed via the native browser subagent to scroll timelines and extract posts/metrics.
 mainAgent: false
 subagent: true
-tools: [read_url_content, write_to_file]
+tools: [browser, read_url_content, write_to_file]
+model: flash
 ---
 
 # Instructions

@@ -4,6 +4,7 @@ description: Wave 2 Analyst with longitudinal comparative intelligence. Analyzes
 mainAgent: false
 subagent: true
 tools: [view_file, write_to_file]
+model: pro
 ---
 
 # Subagent: Brand Strategic Analyst (`brand-sub-analyst`)
@@ -36,35 +37,47 @@ Identify the audit mode specified in the prompt (`AUDIT_MODE = INCREMENTAL_UPDAT
      * `w1-linkedin.md` (if available)
      * `w1-instagram.md` (if available)
      * `w1-youtube.md`, `w1-facebook.md`, `w1-tiktok.md`, `w1-x.md` (if available)
+     * `w1-appstore.md` (if available)
+     * `w1-playstore.md` (if available)
 
 2. **Historical Archives (`reports/{slug}/markdown/` — Incremental Mode Only):**
    - If `AUDIT_MODE = INCREMENTAL_UPDATE`, use `view_file` to read:
      * `reports/{slug}/markdown/REVERSE-BRAND-BOOK.md` (previous frontmatter, history, positioning, tokens)
      * `reports/{slug}/markdown/STRATEGIC-AUDIT.md` (previous scorecard, pillar scores, prior gaps)
-     * `reports/{slug}/markdown/channels/{platform}.md` (cumulative post tables, baseline metrics)
+     * `reports/{slug}/markdown/channels/{channel}.md` (cumulative post tables, store baselines)
 
 ---
 
 ### Step 2: Strategic & Longitudinal Diagnosis
 Analyze the empirical findings across 4 core dimensions:
 
-1. **Real Tone of Voice (ToV) & Community Reception:**
+1. **Real Tone of Voice (ToV) & Community Reception (Pillar 1):**
    - Confront stated positioning with actual tone on LinkedIn (corporate/B2B), Instagram (lifestyle/sport), TikTok, etc.
    - **Calculate Conversational Engagement Ratio:**
      $$\text{Conversational Ratio} = \frac{\text{Total Comments}}{\text{Total Reactions}}$$
      If the ratio is $< 0.5\%$, record a presumption of severe moderation or audience passivity.
-   - **Semantic confrontation:** Compare official slogans with real verbatims collected by scanners. Detect if the comments section acts as an unhandled overflow support channel.
-   - **Capping rule:** Pillar 1 score is capped at **6.5 / 10** maximum if recurring customer complaints or support frictions remain unaddressed by the brand in the qualitative sample.
+   - **Semantic confrontation:** Compare official slogans with real verbatims collected by scanners. Detect if social comments act as an unhandled overflow support channel.
+   - **Mobile App Store Customer Care:** Inspect average star rating on Apple App Store & Google Play Store, along with developer response rate to critical 1-star / 2-star reviews.
+   - **Pillar 1 Capping Rule:** Pillar 1 score is capped at **6.5 / 10 maximum** if:
+     * Recurring customer complaints or support frictions remain unaddressed by the brand in the social comment sample, OR
+     * Average mobile app rating is $< 3.0 / 5.0$, OR
+     * Developer response rate to critical 1-star / 2-star app store reviews is $< 20\%$ (demonstrating customer care abandonment, when critical 1-2★ reviews are present).
 
-2. **Omnichannel Consistency & Dark Social:**
+2. **Omnichannel Consistency & Dark Social (Pillar 2):**
    - Re-evaluate root domain Open Graph tags (`og:title`, `og:description`, `og:image`, `og:url`) and Twitter cards.
    - Check if dark social sharing preview is broken or resolved (`FAILED` | `RESOLVED`).
+   - Audit cross-platform handle consistency across social networks and app store developer signatures.
 
-3. **Publication Velocity & Engagement Trajectories:**
+3. **Publication Velocity & Engagement Trajectories (Pillar 3):**
    - **Velocity over Elapsed Window:** In incremental mode, calculate exact posting frequency during the window between `latest_audit_date` and current `{date}`.
    - **Engagement Trajectory:** For posts in `top_posts_to_recheck`, calculate the delta ($\Delta$ reactions, $\Delta$ comments, $\Delta$ shares/views) to evaluate content half-life and virality momentum.
+   - **Mobile Release Vitality:** Evaluate mobile app update recency. Version release $< 45$ days denotes strong product vitality (+0.5 bonus); updates $> 6$ months signal release stagnation / fading cadence.
 
-4. **Multi-Audit Scorecard Progression & Gap Resolution (Standardized 10-Point Scale):**
+4. **Conversion & Product Narrative (Pillar 4):**
+   - Evaluate conversion paths, link-in-bio infrastructure, and discovery mechanisms.
+   - **Mobile Conversion Bonus:** If the brand's flagship application achieves an average rating $\ge 4.4 / 5.0$ AND a public download tier $\ge 1\text{M}+$ downloads (on Play Store), award **+0.5 bonus** for strong product adoption and commercial validation.
+
+5. **Multi-Audit Scorecard Progression & Gap Resolution (Standardized 10-Point Scale):**
    - **Scorecard Progression Table (Strictly without US letter grades):**
      | # Audit | Audit Date | Audit Mode | Global Score (/10) | ToV (P1) | Dark Social (P2) | Velocity (P3) | Conversion (P4) | Trajectory |
      | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
@@ -91,9 +104,9 @@ Save to `.agents/.scratchpad/{slug}/w2-draft-audit.md`:
 - Document title with audit date (e.g. `# Social Media Strategic Audit — {brand} ({date})`)
 - Executive Summary & Multi-Audit Scorecard Progression Table (10-Point Scale, Zero Letter Grades)
 - Detailed analysis of the 4 dimensions:
-  1. Real Tone of Voice (ToV) & Community Reception (Conversational ratio & verbatims)
+  1. Real Tone of Voice (ToV) & Community Reception (Conversational ratio, verbatims, mobile review health & developer responsiveness)
   2. Omnichannel Consistency & Dark Social
-  3. Fading Frequency & Velocity (with post-level trajectory metrics)
+  3. Fading Frequency & Velocity (with post-level trajectory metrics & app release cadence)
   4. Content Strategy & Prior Gap Tracking Table (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`)
 - **Actionable Tactical Recommendations (Standardized 4-Tier Blueprint):**
   For each persistent gap (`🔴 PERSISTENT`) or gap in progress (`🟡 IN_PROGRESS`), write according to:
@@ -127,4 +140,4 @@ Save to `.agents/.scratchpad/{slug}/w2-draft-brandbook.md`:
 - Slogans & Stated Brand Positioning
 - De-Facto Color Palette (#hex swatches, tokens) & Typography standards
 - Dark Social Open Graph audit table
-- Omnichannel Matrix Table linking to channel Markdown archives (`channels/{platform}.md`)
+- Omnichannel Matrix Table linking to channel Markdown archives (`channels/{platform}.md` as well as `channels/appstore.md` and `channels/playstore.md` when present)

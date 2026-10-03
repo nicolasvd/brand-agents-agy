@@ -3,7 +3,8 @@ name: brand-sub-instagram-scanner
 description: Wave 1 Instagram Scanner specification with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Executed via the native browser subagent to scroll grids and extract captions/dates.
 mainAgent: false
 subagent: true
-tools: [read_url_content, write_to_file]
+tools: [browser, read_url_content, write_to_file]
+model: flash
 ---
 
 # Instructions

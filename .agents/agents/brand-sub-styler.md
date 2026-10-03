@@ -54,7 +54,7 @@ assets_dir: reports/{slug}/assets/          ← Directory containing permanent s
 Use `view_file` to read the canonical Markdown archives:
 1. **Brand Book Source:** Read `reports/{slug}/markdown/REVERSE-BRAND-BOOK.md`. Extract frontmatter tokens, positioning, color palette, dark social matrix, and channel links.
 2. **Strategic Audit Source:** Read `reports/{slug}/markdown/STRATEGIC-AUDIT.md`. Extract executive scorecard, multi-audit scorecard progression, real ToV critique, dark social analysis, fading frequency, and gap resolution tracking table.
-3. **Channel Archive Sources:** For each platform present, read `reports/{slug}/markdown/channels/{platform}.md`. Extract cumulative post table, canonical URLs, publication dates, and engagement metrics.
+3. **Channel Archive Sources:** For each channel present (social networks and mobile stores `channels/appstore.md` and `channels/playstore.md`), read `reports/{slug}/markdown/channels/{channel}.md`. Extract cumulative post table or store metrics, changelog, and review verbatims.
 4. **Design Tokens:** Read `.agents/context/templates/design-tokens.css.snippet`. (Stylesheet is linked at `assets/css/design-tokens.css`).
 
 ---
@@ -71,7 +71,32 @@ Generate the Executive Reverse Brand Book Hub:
   - Stated Brand Promise & Commercial Pillars: Extracted from Section 1 of the Markdown source.
   - De-facto Design System: Color swatches (`#004b87`, `#0072ce`, `#78be20`, `#ff6b35`, `#f1f5f9`), typography stack, and visual style notes.
   - Visual Footprint Showcase: High-definition root header screenshot (`assets/screenshot-hub.png`), with live value proposition.
-  - Channel Matrix Grid: Display cards for all audited platforms with follower stats, status, link to `channels/{platform}.html`, and link to `markdown/channels/{platform}.md`.
+  - Channel Matrix Grid: Display cards for all audited channels (social channels and mobile stores `channels/appstore.html`, `channels/playstore.html` when present):
+    * For social channels: follower counts, posting cadence, and link to spoke HTML.
+    * For mobile app stores: App Store / Play Store badges, average rating badge (e.g. `4.6 ★ · 14.5k notes` or `4.4 ★ · 1M+ dl`), current version, and links to `channels/{store}.html` and `markdown/channels/{store}.md`:
+      ```html
+      <!-- App Store / Play Store Card in Network Grid -->
+      <div class="network-card">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <span style="font-weight: 800; font-size: 1rem; color: var(--primary);">{Platform Name}</span>
+            <span class="badge-live">● {average_rating} ★</span>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; gap: 0.5rem; align-items: center;">
+            <a href="channels/{store}.html" style="color: var(--primary); text-decoration: underline;">Sub-report →</a>
+            <span>·</span>
+            <a href="markdown/channels/{store}.md" style="color: var(--text-muted); text-decoration: underline;">MD Archive</a>
+          </div>
+          <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.45;">
+            {app_name}: {category}. {price_model_or_monetization} · {app_size}.
+          </p>
+        </div>
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--text); padding-top: 0.75rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between;">
+          <span>{rating_count_or_downloads}</span>
+          <span style="color: var(--success);">v{current_version}</span>
+        </div>
+      </div>
+      ```
   - Dark Social Simulation & Open Graph Table: Visual chat preview comparison (Broken vs Recommended) + technical metadata diagnostic table (`og:title`, `og:description`, `og:image`, `og:url`, `twitter:card`).
 
 ---
@@ -93,14 +118,16 @@ Generate the in-depth Strategic Audit Critique:
 ---
 
 ### Step 4 — Compile Channel Spokes (`channels/{platform}.html`)
-For each audited platform (e.g. `linkedin`, `instagram`, `facebook`, `tiktok`, `youtube`):
+
+#### 4.1. Social Media Channel Spokes (`channels/{platform}.html`)
+For each audited social platform (e.g. `linkedin`, `instagram`, `facebook`, `tiktok`, `youtube`, `x`):
 - **Target File:** `reports/{slug}/channels/{platform}.html`
 - **Stylesheet Linking:** `<link rel="stylesheet" href="../assets/css/design-tokens.css">`
 - **Markdown Source Linking:**
   - In top navigation `.nav-actions`: link to `../OVERVIEW.html`, `../STRATEGIC-AUDIT.html`, and `../markdown/channels/{platform}.md` (`📝 Markdown Archive`).
   - In page footer: display reference to `reports/{slug}/markdown/channels/{platform}.md`.
 - **Content Requirements:**
-  - Breadcrumb navigation (`← All Brands Dashboard / AG Insurance (ag-be) / Platform Report`).
+  - Breadcrumb navigation (`← All Brands Dashboard / {Brand Name} ({slug}) / Platform Report`).
   - Channel header showcase with verified handle, follower count, posting cadence, bio quote, and header screenshot (`../assets/screenshot-{platform}.png`).
   - **Stat Cards (Resonance Metrics, ZERO Following):**
     * Facebook: Page Likes, Total Followers, Top Reactions Mix, Total Shares
@@ -109,6 +136,34 @@ For each audited platform (e.g. `linkedin`, `instagram`, `facebook`, `tiktok`, `
     * YouTube: Subscribers, Cumulative Channel Views, Total Videos, Top Video Views
     * LinkedIn: Followers, Cadence, Cumulative Reposts, Engagement Rate
   - Cumulative Scanned Posts Table: Chronological table with publication dates, formats, content pillars, editorial messages, clickable canonical post links, and engagement metrics.
+
+#### 4.2. Mobile App Store Spokes (`channels/appstore.html` & `channels/playstore.html`)
+For each audited mobile store channel (`appstore`, `playstore`):
+- **Target Files:** `reports/{slug}/channels/appstore.html` and `reports/{slug}/channels/playstore.html`
+- **Stylesheet Linking:** `<link rel="stylesheet" href="../assets/css/design-tokens.css">`
+- **Markdown Source Linking:**
+  - In top navigation `.nav-actions`: link to `../OVERVIEW.html`, `../STRATEGIC-AUDIT.html`, and `../markdown/channels/{channel}.md` (`📝 Markdown Archive`).
+  - In page footer: display reference to `reports/{slug}/markdown/channels/{channel}.md`.
+- **Content Requirements & Structural Template:**
+  - **Breadcrumb Navigation:**
+    `<a href="../../index.html">← All Brands Dashboard</a> / <a href="../OVERVIEW.html">{brand_name} ({slug})</a> / <strong>Apple App Store</strong>` (or `Google Play Store`)
+  - **Store Header Showcase Card (`.showcase-card`):**
+    * App icon / avatar (`🍎` for Apple, `▶️` for Google Play), app title, developer handle/link, category, and live status badge (`badge-live`).
+    * Bio / value proposition container (`.bio-container`) with app subtitle or package ID, minimum OS requirements, and content rating badge.
+    * Header screenshot (`../assets/screenshot-{channel}-{date_compact}.png` or graceful fallback `.badge-na`).
+  - **Stat Cards (`.stats-row` with `.stat-badge`):**
+    * App Store: Average Rating with star icon (`{average_rating} ★`), Total Ratings Count (`{rating_count}`), Current Version (`v{current_version}` with release date), App Size & Minimum iOS.
+    * Google Play Store: Average Rating with star icon (`{average_rating} ★`), Total Reviews (`{rating_count}`), Public Downloads Tier (`{downloads_bracket}`), Current Version & Minimum Android.
+  - **Changelog & Product Vitality Card:**
+    * Container with title "Nouveautés / What's New (v{current_version} — {last_update_date})".
+    * Blockquote with full release notes and computed release cadence assessment (`Bi-mensuelle`, `Mensuelle`, etc.).
+  - **Qualitative Customer Reviews Grid (`.network-grid` with review cards):**
+    * 3 to 5 review cards featuring: star rating badge (`{rating} ★`), publication date, author name/handle, review title (if iOS) or helpful count (if Android), verbatim text in quotation, and Developer Reply badge:
+      - If replied: `<span class="badge-success">✅ Répondu ({reply_date})</span>`
+      - If unreplied: `<span class="badge-danger">❌ Non répondu</span>`
+    * Metric indicator for Developer Response Rate to critical reviews (`Developer Response Rate: {percentage}%`).
+  - **Secondary Applications Table (if present in archive):**
+    * A `.table-container` with columns: App Name, Store Link, Category.
 
 ---
 

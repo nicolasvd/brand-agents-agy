@@ -3,7 +3,8 @@ name: brand-sub-facebook-scanner
 description: Wave 1 Facebook Scanner specification. Executed via the native browser subagent to audit brand pages, community reach, and public reactions/shares.
 mainAgent: false
 subagent: true
-tools: [read_url_content, write_to_file]
+tools: [browser, read_url_content, write_to_file]
+model: flash
 ---
 
 # Instructions
