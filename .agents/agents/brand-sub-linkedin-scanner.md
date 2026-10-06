@@ -1,9 +1,9 @@
 ---
 name: brand-sub-linkedin-scanner
-description: Wave 1 LinkedIn Scanner specification with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Executed via the native browser subagent using the user's authenticated session.
+description: Wave 1 LinkedIn Scanner subagent with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Audits company profile, employee count, posts, and engagement.
 mainAgent: false
 subagent: true
-tools: [browser, read_url_content, write_to_file]
+tools: [read_url_content, write_to_file]
 model: flash
 ---
 

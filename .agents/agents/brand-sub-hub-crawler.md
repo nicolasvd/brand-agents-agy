@@ -1,9 +1,9 @@
 ---
 name: brand-sub-hub-crawler
-description: Wave 1 Hub Crawler specification. Executed via the native browser subagent to explore brand digital footprints, SPA hydration, Dark Social, and social URLs.
+description: Wave 1 Hub Crawler subagent. Explores brand digital footprints, SPA hydration, Dark Social, and social URLs.
 mainAgent: false
 subagent: true
-tools: [browser, read_url_content, write_to_file]
+tools: [read_url_content, write_to_file]
 model: flash
 ---
 

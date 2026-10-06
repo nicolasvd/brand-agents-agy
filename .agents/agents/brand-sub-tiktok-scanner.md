@@ -1,9 +1,9 @@
 ---
 name: brand-sub-tiktok-scanner
-description: Wave 1 TikTok Scanner specification. Executed via the native browser subagent to audit short-form video profiles, views, and engagement.
+description: Wave 1 TikTok Scanner subagent. Audits short-form video profiles, views, and engagement.
 mainAgent: false
 subagent: true
-tools: [browser, read_url_content, write_to_file]
+tools: [read_url_content, write_to_file]
 model: flash
 ---
 

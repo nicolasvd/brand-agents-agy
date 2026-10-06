@@ -1,9 +1,9 @@
 ---
 name: brand-sub-youtube-scanner
-description: Wave 1 YouTube Scanner specification. Executed via the native browser subagent to audit video channels, subscribers, view counts, and video cadence.
+description: Wave 1 YouTube Scanner subagent. Audits video channels, subscribers, view counts, and video cadence.
 mainAgent: false
 subagent: true
-tools: [browser, read_url_content, write_to_file]
+tools: [read_url_content, write_to_file]
 model: flash
 ---
 

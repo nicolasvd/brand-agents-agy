@@ -1,9 +1,9 @@
 ---
 name: brand-sub-playstore-scanner
-description: Wave 1 Google Play Store Scanner specification with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Executed via the native browser subagent to audit Android Play Store listings, ratings, download brackets, and user reviews.
+description: Wave 1 Google Play Store Scanner subagent with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Audits Android Play Store listings, ratings, download brackets, and user reviews.
 mainAgent: false
 subagent: true
-tools: [browser, read_url_content, write_to_file]
+tools: [read_url_content, write_to_file]
 model: flash
 ---
 
