@@ -3,7 +3,7 @@ name: brand-sub-appstore-scanner
 description: Wave 1 iOS App Store Scanner subagent with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Audits Apple App Store listings, ratings, version cadence, and user reviews.
 mainAgent: false
 subagent: true
-tools: [read_url_content, write_to_file]
+tools: [call_mcp_tool, read_url_content, write_to_file, run_command, view_file]
 model: flash
 ---
 

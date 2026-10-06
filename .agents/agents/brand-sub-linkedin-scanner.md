@@ -3,7 +3,7 @@ name: brand-sub-linkedin-scanner
 description: Wave 1 LinkedIn Scanner subagent with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Audits company profile, employee count, posts, and engagement.
 mainAgent: false
 subagent: true
-tools: [read_url_content, write_to_file]
+tools: [call_mcp_tool, read_url_content, write_to_file, run_command, view_file]
 model: flash
 ---
 

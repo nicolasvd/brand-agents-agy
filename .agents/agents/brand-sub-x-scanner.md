@@ -3,7 +3,7 @@ name: brand-sub-x-scanner
 description: Wave 1 X (Twitter) Scanner subagent. Audits profile timeline, tweets, impressions, and metrics.
 mainAgent: false
 subagent: true
-tools: [read_url_content, write_to_file]
+tools: [call_mcp_tool, read_url_content, write_to_file, run_command, view_file]
 model: flash
 ---
 

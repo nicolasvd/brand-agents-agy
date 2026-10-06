@@ -3,7 +3,7 @@ name: brand-sub-youtube-scanner
 description: Wave 1 YouTube Scanner subagent. Audits video channels, subscribers, view counts, and video cadence.
 mainAgent: false
 subagent: true
-tools: [read_url_content, write_to_file]
+tools: [call_mcp_tool, read_url_content, write_to_file, run_command, view_file]
 model: flash
 ---
 
