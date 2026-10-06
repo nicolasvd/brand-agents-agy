@@ -64,11 +64,11 @@ flowchart TD
         E --> F["Ratio Conversationnel & Confrontation Sémantique"]
         E --> G["Vélocité Longitudinale & Trajectoires d'Engagement (Δ)"]
         E --> H["Matrice de Résolution des Failles & Blueprint en 4 Niveaux"]
-        E --> I["Brouillons : w2-draft-audit.md + w2-draft-brandbook.md"]
+        F & G & H --> I["Brouillons de Synthèse : w2-draft-audit.md + w2-draft-brandbook.md"]
     end
 
     subgraph Wave3["Vague 3 : Promotion des Livrables & Compilation HTML Asynchrone"]
-        I --> J["Promotion vers reports/{slug}/markdown/"]
+        I --> J["Promotion vers reports/{slug}/markdown/<br/>(Brand Book, Audit Stratégique & Archives Canaux)"]
         J --> K["brand-sub-styler (Compilateur Asynchrone)"]
         K --> L["OVERVIEW.html (Hub Exécutif)"]
         K --> M["STRATEGIC-AUDIT.html (Critique & Scorecard)"]

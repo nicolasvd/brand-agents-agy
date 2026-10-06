@@ -64,11 +64,11 @@ flowchart TD
         E --> F["Conversational Ratio & Sentiment Confrontation"]
         E --> G["Longitudinal Velocity & Trajectory Deltas (Δ)"]
         E --> H["Gap Resolution Matrix & 4-Tier Blueprint"]
-        E --> I["Draft Outputs: w2-draft-audit.md + w2-draft-brandbook.md"]
+        F & G & H --> I["Synthesized Drafts: w2-draft-audit.md + w2-draft-brandbook.md"]
     end
 
     subgraph Wave3["Wave 3: Deliverable Promotion & Async HTML Compilation"]
-        I --> J["Promotion to reports/{slug}/markdown/"]
+        I --> J["Promotion to reports/{slug}/markdown/<br/>(Brand Book, Strategic Audit & Channel Archives)"]
         J --> K["brand-sub-styler (Async Background Compiler)"]
         K --> L["OVERVIEW.html (Executive Hub)"]
         K --> M["STRATEGIC-AUDIT.html (Critique & Scorecard)"]
