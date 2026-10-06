@@ -59,15 +59,15 @@
       <text x="114" y="21.5" text-anchor="middle" class="font-base pill-text" fill="#1E40AF">Antigravity 2.0 Native</text>
     </g>
 
-    <!-- Badge 2: 100% Declarative Architecture -->
+    <!-- Badge 2: 11 Specialized Agents -->
     <g transform="translate(225, 0)" filter="url(#pill-shadow)">
-      <rect x="0" y="0" width="195" height="34" rx="17" fill="#FFFFFF" stroke="#D1FAE5" stroke-width="1.2"/>
+      <rect x="0" y="0" width="205" height="34" rx="17" fill="#FFFFFF" stroke="#D1FAE5" stroke-width="1.2"/>
       <circle cx="20" cy="17" r="4.5" fill="#059669"/>
-      <text x="108" y="21.5" text-anchor="middle" class="font-base pill-text" fill="#065F46">100% Declarative</text>
+      <text x="112" y="21.5" text-anchor="middle" class="font-base pill-text" fill="#065F46">11 Specialized Agents</text>
     </g>
 
     <!-- Badge 3: Multi-Model AI -->
-    <g transform="translate(435, 0)" filter="url(#pill-shadow)">
+    <g transform="translate(445, 0)" filter="url(#pill-shadow)">
       <rect x="0" y="0" width="195" height="34" rx="17" fill="#FFFFFF" stroke="#EDE9FE" stroke-width="1.2"/>
       <circle cx="20" cy="17" r="4.5" fill="#7C3AED"/>
       <text x="108" y="21.5" text-anchor="middle" class="font-base pill-text" fill="#5B21B6">Multi-Model AI</text>
@@ -87,40 +87,40 @@
 
   <!-- Bottom Feature Cards -->
   <g transform="translate(60, 222)">
-    <!-- Card 1: Omnichannel Scanners -->
+    <!-- Card 1: 9 Dedicated Scanners -->
     <g filter="url(#card-shadow)">
       <rect x="0" y="0" width="252" height="142" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
-      <text x="22" y="36" class="font-base card-tag" fill="#2563EB">Omnichannel Scanners</text>
-      <text x="22" y="66" class="font-base card-title">LinkedIn, Meta, TikTok, YT</text>
-      <text x="22" y="93" class="font-base card-desc">Native browser crawling, pinned</text>
-      <text x="22" y="111" class="font-base card-desc">bypass &amp; K=2 stop counter</text>
+      <text x="22" y="36" class="font-base card-tag" fill="#2563EB">9 Specialized Scanners</text>
+      <text x="22" y="66" class="font-base card-title">Social, Stores &amp; Web Hub</text>
+      <text x="22" y="93" class="font-base card-desc">LinkedIn, Meta, TikTok, YT, X</text>
+      <text x="22" y="111" class="font-base card-desc">+ Apple App Store &amp; Play Store</text>
     </g>
 
-    <!-- Card 2: Hub & Spoke Deliverables -->
+    <!-- Card 2: Hub & Spoke & Scoring -->
     <g transform="translate(276, 0)" filter="url(#card-shadow)">
       <rect x="0" y="0" width="252" height="142" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
-      <text x="22" y="36" class="font-base card-tag" fill="#059669">Deliverable Architecture</text>
-      <text x="22" y="66" class="font-base card-title">Hub &amp; Spoke Reports</text>
-      <text x="22" y="93" class="font-base card-desc">Executive OVERVIEW.html</text>
-      <text x="22" y="111" class="font-base card-desc">+ dedicated channel spokes</text>
+      <text x="22" y="36" class="font-base card-tag" fill="#059669">Deliverables &amp; Scoring</text>
+      <text x="22" y="66" class="font-base card-title">Hub &amp; Spoke · 10-Pt Score</text>
+      <text x="22" y="93" class="font-base card-desc">Executive hub &amp; channel spokes</text>
+      <text x="22" y="111" class="font-base card-desc">Deterministic 10-point scorecard</text>
     </g>
 
-    <!-- Card 3: Deterministic 10-Point Scorecard -->
+    <!-- Card 3: Skills, Guardrails & QA -->
     <g transform="translate(552, 0)" filter="url(#card-shadow)">
       <rect x="0" y="0" width="252" height="142" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
-      <text x="22" y="36" class="font-base card-tag" fill="#7C3AED">Objective Evaluation</text>
-      <text x="22" y="66" class="font-base card-title">Unified 10-Point Score</text>
-      <text x="22" y="93" class="font-base card-desc">Epistemic rigor, real verbatims</text>
-      <text x="22" y="111" class="font-base card-desc">&amp; conversational ratio capping</text>
+      <text x="22" y="36" class="font-base card-tag" fill="#7C3AED">Skills &amp; Guardrails</text>
+      <text x="22" y="66" class="font-base card-title">4 Skills, Fact-Check &amp; QA</text>
+      <text x="22" y="93" class="font-base card-desc">Comment sampling, Dark Social</text>
+      <text x="22" y="111" class="font-base card-desc">Passive safety &amp; zero hallucination</text>
     </g>
 
-    <!-- Card 4: Incremental Re-audits -->
+    <!-- Card 4: Incremental Intelligence -->
     <g transform="translate(828, 0)" filter="url(#card-shadow)">
       <rect x="0" y="0" width="252" height="142" rx="16" fill="#FFFFFF" stroke="#D97706" stroke-width="1.2"/>
-      <text x="22" y="36" class="font-base card-tag" fill="#D97706">Longitudinal Audits</text>
-      <text x="22" y="66" class="font-base card-title">Incremental Engine</text>
-      <text x="22" y="93" class="font-base card-desc">Trajectory deltas, gap tracking</text>
-      <text x="22" y="111" class="font-base card-desc">&amp; zero duplicated scans</text>
+      <text x="22" y="36" class="font-base card-tag" fill="#D97706">Longitudinal Engine</text>
+      <text x="22" y="66" class="font-base card-title">Incremental Re-Audits</text>
+      <text x="22" y="93" class="font-base card-desc">Trajectory deltas (Δ) &amp; gap tracking</text>
+      <text x="22" y="111" class="font-base card-desc">Smart deltas &amp; zero duplicate scans</text>
     </g>
   </g>
 </svg>
