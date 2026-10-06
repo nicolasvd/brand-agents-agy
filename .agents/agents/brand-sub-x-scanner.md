@@ -36,7 +36,7 @@ Extract the exact raw text from the profile bio and the 10-20 most recent tweets
 3. **Visual Proof (Header Screenshot)**: Ensure header and bio are in view. Save screenshot DIRECTLY to `reports/{slug}/assets/screenshot-x-{date_compact}.png`.
 4. **Data Extraction & Canonical Tweet Links**:
    - Extract exact bio, handle, and follower count (STRICTLY NO following count).
-   - Extract the last 10 to 20 tweets: publication dates, **direct canonical tweet URLs** (`x.com/{handle}/status/...`), exact text, and engagement metrics (impressions / views, reposts, likes, replies, and `ad_badge_present: boolean`).
+   - Extract the last 6 to 10 tweets (strict maximum of 10 tweets): publication dates, **direct canonical tweet URLs** (`x.com/{handle}/status/...`), exact text, and engagement metrics (impressions / views, reposts, likes, replies, and `ad_badge_present: boolean`).
 5. **Top 3 Major Tweet Screenshots & Qualitative Sample**:
    - Identify the top 3 most engaging or representative tweets.
    - Take an individual screenshot of each of these 3 tweets and save directly to:

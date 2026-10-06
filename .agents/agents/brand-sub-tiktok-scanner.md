@@ -36,7 +36,7 @@ Extract follower count, total likes, bio text, and the 8-10 most recent videos. 
 3. **Visual Proof (Profile Header)**: Capture avatar, handle, follower count, and total likes. Save directly to `reports/{slug}/assets/screenshot-tiktok-{date_compact}.png`.
 4. **Data Extraction & Canonical Video Links**:
    - Extract handle, verification checkmark, follower count, total accumulated likes, total videos, and bio link. (STRICTLY NO following count).
-   - Extract the last 8-10 videos: title/caption, view count (visible directly on grid), publication date or pinned status, `ad_badge_present: boolean`, and **direct canonical video URL** (`https://www.tiktok.com/@.../video/...`).
+   - Extract the last 6 to 10 videos (strict maximum of 10 videos): title/caption, view count (visible directly on grid), publication date or pinned status, `ad_badge_present: boolean`, and **direct canonical video URL** (`https://www.tiktok.com/@.../video/...`).
 5. **Top 3 Major Video Screenshots & Qualitative Sample**:
    - Identify the top 3 most viewed videos in the grid.
    - Capture individual screenshots of each video card/player and save directly to:

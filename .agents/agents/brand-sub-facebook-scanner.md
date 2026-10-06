@@ -36,7 +36,7 @@ Extract follower count, page category, bio/intro, and the 8-10 most recent publi
 3. **Visual Proof (Page Header)**: Capture page banner, profile avatar, and follower/like metrics. Save directly to `reports/{slug}/assets/screenshot-facebook-{date_compact}.png`.
 4. **Data Extraction & Canonical Post Links**:
    - Extract page name, verification status, follower count, like count, and intro/bio (STRICTLY NO following count).
-   - Extract the last 8-10 posts: publication dates, **direct canonical post URLs** (from timestamp link), post text, media type (photo/video), shares, comments, and `ad_badge_present: boolean`.
+   - Extract the last 6 to 10 posts (strict maximum of 10 posts): publication dates, **direct canonical post URLs** (from timestamp link), post text, media type (photo/video), shares, comments, and `ad_badge_present: boolean`.
 5. **Top 3 Major Post Screenshots & Resonance Metrics**:
    - Identify the top 3 most engaging posts (highest shares/reactions).
    - Capture individual screenshots of each of these 3 posts and save directly to:

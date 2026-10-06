@@ -36,7 +36,7 @@ Extract subscriber count, total video count, channel description, and detailed m
 3. **Visual Proof (Channel Header)**: Capture channel avatar, banner, and subscriber count. Save directly to `reports/{slug}/assets/screenshot-youtube-{date_compact}.png`.
 4. **Data Extraction & Canonical Video Links**:
    - Extract channel name, handle, subscriber count, total video count, **cumulative channel views** (from "About" tab or modal), and description.
-   - Extract the last 8-10 videos: title, publication date / relative age, duration, specific view count, `ad_badge_present: boolean`, and **direct canonical video URL** (`https://www.youtube.com/watch?v=...` or `/shorts/...`).
+   - Extract the last 6 to 10 videos (strict maximum of 10 videos): title, publication date / relative age, duration, specific view count, `ad_badge_present: boolean`, and **direct canonical video URL** (`https://www.youtube.com/watch?v=...` or `/shorts/...`).
 5. **Top 3 Major Video Screenshots & Qualitative Sample**:
    - Identify the top 3 most viewed or prominent recent videos.
    - Capture individual screenshots of each video thumbnail/card and save directly to:

@@ -81,7 +81,7 @@ When starting without historical archives:
 3. **Profile Screenshot**: Save screenshot directly to `reports/{slug}/assets/screenshot-instagram-{date_compact}.png`.
 4. **Data Extraction & Canonical Post Links**:
    - Extract bio text, link in bio, verification status, follower count (no following count), total posts, and Story Highlights count.
-   - Extract the last 10 to 12 posts: publication dates, **direct canonical post/reel URLs** (`instagram.com/reel/...` or `/p/...`), format (Reel vs Image), captions, content pillars, and engagement metrics (video/reel views on grid, likes, comments, `ad_badge_present: boolean`).
+   - Extract the last 6 to 10 posts/reels (strict maximum of 10 posts): publication dates, **direct canonical post/reel URLs** (`instagram.com/reel/...` or `/p/...`), format (Reel vs Image), captions, content pillars, and engagement metrics (video/reel views on grid, likes, comments, `ad_badge_present: boolean`).
 5. **Top 3 Major Post/Reel Screenshots & Qualitative Sample**:
    - Identify the top 3 most engaging or representative posts/reels. Save screenshots to `reports/{slug}/assets/instagram-post-{date_compact}-1.png`, `-2.png`, `-3.png`.
    - Extract qualitative sample of 3 to 5 verbatims for each of the top 3 posts (or `comment_status: NONE_OR_DISABLED` if 0 comments).
