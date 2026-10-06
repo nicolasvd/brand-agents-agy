@@ -3,8 +3,15 @@ name: brand-sub-instagram-scanner
 description: Wave 1 Instagram Scanner subagent with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Extracts grid posts, reels, captions, dates, and engagement.
 mainAgent: false
 subagent: true
-tools: [call_mcp_tool, read_url_content, write_to_file, run_command, view_file]
 model: flash
+tools:
+  - read_url_content
+  - view_file
+  - write_to_file
+  - run_command
+skills:
+  - .agents/skills/comment-sampling
+  - .agents/skills/incremental-crawl-protocol
 ---
 
 # Instructions

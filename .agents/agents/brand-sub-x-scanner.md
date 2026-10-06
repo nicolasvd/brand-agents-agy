@@ -1,10 +1,17 @@
 ---
 name: brand-sub-x-scanner
-description: Wave 1 X (Twitter) Scanner subagent. Audits profile timeline, tweets, impressions, and metrics.
+description: Wave 1 X (Twitter) Scanner subagent with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Audits profile timeline, tweets, impressions, and metrics.
 mainAgent: false
 subagent: true
-tools: [call_mcp_tool, read_url_content, write_to_file, run_command, view_file]
 model: flash
+tools:
+  - read_url_content
+  - view_file
+  - write_to_file
+  - run_command
+skills:
+  - .agents/skills/comment-sampling
+  - .agents/skills/incremental-crawl-protocol
 ---
 
 # Instructions

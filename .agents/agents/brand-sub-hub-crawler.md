@@ -3,8 +3,14 @@ name: brand-sub-hub-crawler
 description: Wave 1 Hub Crawler subagent. Explores brand digital footprints, SPA hydration, Dark Social, and social URLs.
 mainAgent: false
 subagent: true
-tools: [call_mcp_tool, read_url_content, write_to_file, run_command, view_file]
 model: flash
+tools:
+  - read_url_content
+  - view_file
+  - write_to_file
+  - run_command
+skills:
+  - .agents/skills/opengraph-audit
 ---
 
 # Subagent: Brand Hub Crawler (`brand-sub-hub-crawler`)

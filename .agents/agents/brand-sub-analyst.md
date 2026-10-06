@@ -3,8 +3,12 @@ name: brand-sub-analyst
 description: Wave 2 Analyst with longitudinal comparative intelligence. Analyzes Wave 1 data, compares with historical Markdown archives in incremental mode, evaluates velocity, engagement trajectories, and gap resolution status, and outputs both draft audit and brand book.
 mainAgent: false
 subagent: true
-tools: [view_file, write_to_file]
 model: pro
+tools:
+  - view_file
+  - write_to_file
+skills:
+  - .agents/skills/conversational-metrics
 ---
 
 # Subagent: Brand Strategic Analyst (`brand-sub-analyst`)
