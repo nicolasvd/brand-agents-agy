@@ -19,6 +19,7 @@ Evaluates alignment between stated positioning and real-world audience reception
 | Severe dissonance between corporate claims and customer reality | 4.0 – 6.9 |
 | Comments section acts as unhandled customer complaint overflow | **Capped at max 6.5 / 10** |
 | Conversational Ratio ($\frac{\text{Comments}}{\text{Reactions}}$) $< 0.5\%$ | **Flag audience passivity / severe moderation** |
+| **Mobile App Store Capping Rule:** Average mobile rating $< 3.0 / 5.0$ OR developer response rate to critical 1-2★ reviews $< 20\%$ (when critical 1-2★ reviews are present) | **Capped at max 6.5 / 10** |
 
 $$\text{Conversational Ratio} = \frac{\text{Total Comments}}{\text{Total Reactions}}$$
 
@@ -39,8 +40,9 @@ Evaluates sustained publishing rhythm, content half-life, and multi-format vital
 |---|---|
 | Active, predictable publishing cadence across all verified tier-1 platforms | 8.5 – 10.0 |
 | Healthy format distribution (% Reels / Shorts, Carousels, Thought Leadership) | +1.0 bonus |
-| Fading frequency (> 30 days without post on primary channel) | 4.0 – 6.0 |
-| Broken cadence or abandoned channels (> 90 days silence) | 1.0 – 3.9 |
+| Mobile app release vitality (version updated $< 45$ days) | +0.5 bonus |
+| Fading frequency (> 30 days without post on primary channel, or app update $> 6$ months) | 4.0 – 6.0 |
+| Broken cadence or abandoned channels (> 90 days silence, or app update $> 1$ year) | 1.0 – 3.9 |
 | Engagement trajectory ($\Delta$ reactions, $\Delta$ comments) positive over elapsed audit window | Trajectory: 🟢 Positive |
 
 ### Pillar 4: Conversion & Product Narrative (0–10 pts)
@@ -49,6 +51,7 @@ Evaluates commercial activation, link-in-bio infrastructure, and organic vs ampl
 | Evaluation Criteria | Scoring Impact |
 |---|---|
 | Frictionless conversion paths, clear CTA, multi-link hub configured | 8.5 – 10.0 |
+| **Mobile Conversion Bonus:** Flagship app rating $\ge 4.4 / 5.0$ AND downloads bracket $\ge 1\text{M}+$ downloads | **+0.5 bonus** |
 | Generic link-in-bio (pointing only to homepage without context) | 6.0 – 8.4 |
 | Dead links, 404 targets, or missing calls to action | 1.0 – 5.9 |
 | Confirmed native advertising badge in DOM (`ad_badge_present: true`) | Documented as verified paid media |

@@ -45,9 +45,9 @@ No package managers (`npm`, `pip`), runtime setups, or environment variables req
 
 ```mermaid
 flowchart TD
-    subgraph Wave1["Wave 1: Digital Footprint & Scanners"]
+    subgraph Wave1["Wave 1: Digital Footprint & Omnichannel Scanners"]
         A["Target URL"] --> B["brand-sub-hub-crawler"]
-        B --> C["Value Proposition, Dark Social, Social URLs"]
+        B --> C["Value Proposition, Dark Social, Social URLs & App Store Badges"]
         C --> D["Native Browser Scanners (Parallel)"]
         D --> D1["LinkedIn Scanner"]
         D --> D2["Instagram Scanner"]
@@ -55,43 +55,46 @@ flowchart TD
         D --> D4["Facebook Scanner"]
         D --> D5["YouTube Scanner"]
         D --> D6["X (Twitter) Scanner"]
+        D --> D7["iOS App Store Scanner"]
+        D --> D8["Android Play Store Scanner"]
     end
 
     subgraph Wave2["Wave 2: Strategic Synthesis & Longitudinal Intelligence"]
-        D1 & D2 & D3 & D4 & D5 & D6 --> E["brand-sub-analyst"]
+        D1 & D2 & D3 & D4 & D5 & D6 & D7 & D8 --> E["brand-sub-analyst"]
         E --> F["Conversational Ratio & Sentiment Confrontation"]
         E --> G["Longitudinal Velocity & Trajectory Deltas (Δ)"]
         E --> H["Gap Resolution Matrix & 4-Tier Blueprint"]
-        E --> I["Draft Outputs: w2-draft-audit.md + w2-draft-brandbook.md"]
+        F & G & H --> I["Synthesized Drafts: w2-draft-audit.md + w2-draft-brandbook.md"]
     end
 
     subgraph Wave3["Wave 3: Deliverable Promotion & Async HTML Compilation"]
-        I --> J["Promotion to reports/{slug}/markdown/"]
+        I --> J["Promotion to reports/{slug}/markdown/<br/>(Brand Book, Strategic Audit & Channel Archives)"]
         J --> K["brand-sub-styler (Async Background Compiler)"]
         K --> L["OVERVIEW.html (Executive Hub)"]
         K --> M["STRATEGIC-AUDIT.html (Critique & Scorecard)"]
-        K --> N["channels/*.html (Dedicated Platform Spokes)"]
+        K --> N["channels/*.html (Dedicated Social & App Store Spokes)"]
         K --> O["reports/index.html (Global Cockpit Update)"]
         K --> P[".done Sentinel & Automatic Scratchpad GC"]
     end
 ```
 
 ### Wave 1: The Zero-Knowledge Footprint
-- **`brand-sub-hub-crawler`**: Navigates to the brand homepage with full SPA hydration. Captures above-the-fold visual proof, extracts Dark Social Open Graph metadata (`og:*`, `twitter:*`), and maps all outbound social channels.
-- **Parallel Browser Scanners**: Drive human-simulated Chrome browser sessions to bypass anti-scraping walls on LinkedIn, Instagram, TikTok, Facebook, YouTube, and X.
-  - Extracts follower metrics (strictly no vanity following).
-  - Collects 3 to 5 authentic qualitative verbatims on top posts (`comment-sampling`).
-  - Fast-exit sentinel (`NONE_OR_DISABLED`) when comments are absent or disabled.
+- **`brand-sub-hub-crawler`**: Navigates to the brand homepage with full SPA hydration. Captures above-the-fold visual proof, extracts Dark Social Open Graph metadata (`og:*`, `twitter:*`), scans `<head>` for iOS Smart App Banners (`<meta name="apple-itunes-app">`), and maps all outbound social channels and mobile app store links.
+- **Parallel Browser Scanners**: Drive human-simulated Chrome browser sessions to bypass anti-scraping walls on LinkedIn, Instagram, TikTok, Facebook, YouTube, X, Apple App Store, and Google Play Store.
+  - Social scanners extract verified community metrics (strictly no vanity following) and sample 3 to 5 authentic qualitative verbatims (`comment-sampling`).
+  - Mobile store scanners audit application rating (/5.0), rating volume, public download tiers (`1M+`, `500k+`), version release notes, changelog cadence, and user reviews with official developer replies.
+  - Fast-exit sentinel (`NONE_OR_DISABLED`, `NONE_OR_EMPTY`) when comments or reviews are absent.
 
 ### Wave 2: Strategic & Longitudinal Evaluation
 - **`brand-sub-analyst`**: Ingests Wave 1 findings and historical Markdown archives.
   - Evaluates Tone of Voice (ToV) coherence and calculates Conversational Ratio ($\frac{\text{Comments}}{\text{Reactions}}$).
-  - Enforces Tone of Voice capping (max 6.5/10) if unresolved customer complaints appear in comments.
+  - Enforces Tone of Voice capping (max 6.5/10) if customer support complaints appear in comments, or if flagship mobile app rating $< 3.0 / 5.0$, or developer reply rate to critical reviews $< 20\%$.
+  - Awards commercial conversion bonus (+0.5 pt) for high-performing mobile apps ($\ge 4.4 / 5.0$ and $\ge 1\text{M}+$ downloads).
   - Tracks prior gaps across audits (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`).
   - Writes a comprehensive 4-Tier Action Blueprint for every unaddressed gap.
 
 ### Wave 3: Deliverable Promotion & Asynchronous HTML Compilation
-- **`brand-sub-styler`**: Deterministic, offline compiler. Reads directly from permanent Markdown archives in `reports/{slug}/markdown/` and builds agency-grade HTML views with shared design tokens and bi-directional source linking. Automatically bootstraps `reports/index.html` on first run.
+- **`brand-sub-styler`**: Deterministic, offline compiler. Reads directly from permanent Markdown archives in `reports/{slug}/markdown/` and builds agency-grade HTML views with shared design tokens and bi-directional source linking. Generates platform spokes for all detected social networks and mobile stores (`channels/appstore.html`, `channels/playstore.html`), embedding changelog boxes and developer reply cards. Automatically bootstraps `reports/index.html` on first run.
 
 ---
 
@@ -99,9 +102,10 @@ flowchart TD
 
 When auditing a brand that was audited previously:
 1. **Archive Detection:** `brand-lead` automatically detects existing archives in `reports/{slug}/markdown/REVERSE-BRAND-BOOK.md` and activates `AUDIT_MODE = INCREMENTAL_UPDATE`.
-2. **Pinned Post Bypass & $K=2$ Stop Counter:** Scanners inspect recent feed posts, bypass pinned posts without advancing the counter, and halt scrolling as soon as $K=2$ consecutive unpinned posts are recognized as already archived.
-3. **Engagement Trajectory Deltas ($\Delta$):** Top-performing historical posts are re-checked for freshness, logging delta velocity ($\Delta$ reactions, $\Delta$ comments).
-4. **Screenshot Restraint:** Existing header screenshots and archived post media are reused. Zero redundant screenshot captures.
+2. **Pinned Post Bypass & $K=2$ Stop Counter:** Social scanners inspect recent feed posts, bypass pinned posts without advancing the counter, and halt scrolling as soon as $K=2$ consecutive unpinned posts are recognized as already archived.
+3. **Store Version & Rating Tracking:** Mobile scanners compare version string with `{known_version}` and compute $\Delta$ rating count and $\Delta$ score.
+4. **Engagement Trajectory Deltas ($\Delta$):** Top-performing historical posts are re-checked for freshness, logging delta velocity ($\Delta$ reactions, $\Delta$ comments).
+5. **Screenshot Restraint:** Existing header screenshots and archived post media are reused. Zero redundant screenshot captures.
 
 ---
 
@@ -122,7 +126,9 @@ reports/
     │   ├── tiktok.html
     │   ├── facebook.html
     │   ├── youtube.html
-    │   └── x.html
+    │   ├── x.html
+    │   ├── appstore.html                    # Mobile Spoke: Apple App Store
+    │   └── playstore.html                   # Mobile Spoke: Google Play Store
     ├── assets/                              # Permanent Screenshots & CSS
     │   ├── css/
     │   │   └── design-tokens.css
@@ -133,6 +139,8 @@ reports/
         ├── STRATEGIC-AUDIT.md
         └── channels/
             ├── linkedin.md
+            ├── appstore.md
+            ├── playstore.md
             └── ...
 ```
 
@@ -144,10 +152,10 @@ All appraisals use the standardized 10-point scale (US letter grades are strictl
 
 $$\text{Global Consistency Score (/10)} = \frac{\text{P1 (ToV)} + \text{P2 (Dark Social)} + \text{P3 (Velocity)} + \text{P4 (Conversion)}}{4}$$
 
-- **Pillar 1: Tone of Voice & Community Reception (0–10):** Semantic alignment, conversational ratio ($< 0.5\%$ alert), customer support overflow detection (capped at 6.5/10 if unresolved complaints exist).
-- **Pillar 2: Omnichannel Consistency & Dark Social (0–10):** Visual identity cohesion, complete Open Graph tags, private sharing simulation (`RESOLVED` vs `FAILED`).
-- **Pillar 3: Publication Velocity & Cadence (0–10):** Publishing frequency, multi-format distribution (% Reels/Shorts), engagement half-life.
-- **Pillar 4: Conversion & Product Narrative (0–10):** Bio link infrastructure, clear commercial CTA, paid vs organic epistemic rigor (`ad_badge_present`).
+- **Pillar 1: Tone of Voice & Community Reception (0–10):** Semantic alignment, conversational ratio ($< 0.5\%$ alert), customer support overflow detection. Capped at 6.5/10 if unresolved complaints exist, mobile app average rating $< 3.0 / 5.0$, or developer reply rate to critical reviews $< 20\%$.
+- **Pillar 2: Omnichannel Consistency & Dark Social (0–10):** Visual identity cohesion, complete Open Graph tags, private sharing simulation (`RESOLVED` vs `FAILED`), store developer naming consistency.
+- **Pillar 3: Publication Velocity & Cadence (0–10):** Publishing frequency, multi-format distribution (% Reels/Shorts), mobile release vitality (updated $< 45$ days: +0.5 bonus, $> 6$ months: penalty).
+- **Pillar 4: Conversion & Product Narrative (0–10):** Bio link infrastructure, clear commercial CTA, mobile conversion bonus (+0.5 pt if app rating $\ge 4.4 / 5.0$ and $\ge 1\text{M}+$ downloads), paid vs organic epistemic rigor (`ad_badge_present`).
 
 ### Qualitative Scale
 - **8.0 – 10.0 / 10:** *Excellence & Strong Cohesion* (`.score-high`)

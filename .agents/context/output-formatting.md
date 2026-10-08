@@ -18,13 +18,15 @@ reports/
 └── {slug}/                                  # Brand workspace
     ├── OVERVIEW.html                        # Central Hub: Executive Reverse Brand Book
     ├── STRATEGIC-AUDIT.html                 # Spoke: Multi-Audit Scorecard & 4-Tier Action Plan
-    ├── channels/                            # Channel Spokes (Dedicated platform reports)
+    ├── channels/                            # Channel Spokes (Dedicated platform & store reports)
     │   ├── linkedin.html
     │   ├── instagram.html
     │   ├── tiktok.html
     │   ├── facebook.html
     │   ├── youtube.html
-    │   └── x.html
+    │   ├── x.html
+    │   ├── appstore.html
+    │   └── playstore.html
     ├── assets/                              # Permanent screenshots and stylesheets
     │   ├── css/
     │   │   └── design-tokens.css
@@ -36,6 +38,8 @@ reports/
         └── channels/
             ├── linkedin.md
             ├── instagram.md
+            ├── appstore.md
+            ├── playstore.md
             └── ...
 ```
 

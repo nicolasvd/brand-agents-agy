@@ -1,9 +1,16 @@
 ---
 name: brand-sub-hub-crawler
-description: Wave 1 Hub Crawler specification. Executed via the native browser subagent to explore brand digital footprints, SPA hydration, Dark Social, and social URLs.
+description: Wave 1 Hub Crawler subagent. Explores brand digital footprints, SPA hydration, Dark Social, and social URLs.
 mainAgent: false
 subagent: true
-tools: [read_url_content, write_to_file, send_message]
+model: flash
+tools:
+  - read_url_content
+  - view_file
+  - write_to_file
+  - run_command
+skills:
+  - .agents/skills/opengraph-audit
 ---
 
 # Subagent: Brand Hub Crawler (`brand-sub-hub-crawler`)
@@ -41,6 +48,14 @@ Execute `navigate_page` on the target URL provided by the orchestrator. Use `wai
    - Facebook (`facebook.com/...`)
    - TikTok (`tiktok.com/@...`)
    - X / Twitter (`twitter.com/...` or `x.com/...`)
+5. **Mobile App Store Mapping (iOS & Android):**
+   - **Head Detection:** Scan `<meta name="apple-itunes-app" content="app-id=...">` (iOS Smart App Banner). If present, derive canonical App Store URL `https://apps.apple.com/app/id{app-id}`.
+   - **DOM Badge & Footer Links:** Scan store links in DOM (`a[href*="apps.apple.com"]`, `a[href*="itunes.apple.com"]`, `a[href*="play.google.com/store/apps"]`).
+   - **Attribution & Smart Links:** Identify mobile attribution links (`onelink.to`, `adjust.com`, `app.link`, `branch.io`). Follow redirects or inspect parameters to resolve canonical App Store / Play Store URLs.
+   - **Regional & Scope Rules (Arbitrage 1 & 2):**
+     * Preserve regional parameters from discovered links (`hl`, `gl`, or language path `/fr/`, `/be/`). Note target market locale.
+     * Identify the primary B2C flagship application. If multiple apps are detected, note secondary apps for declarative listing.
+   - **Status Validation:** Briefly test discovered store URLs to ensure they return a valid page (Status: `Valid` or `404`).
 
 ### Step 3: Structuring and Writing
 Write the output file deterministically into `.agents/.scratchpad/{slug}/w1-hub.md`:
@@ -49,6 +64,7 @@ Write the output file deterministically into `.agents/.scratchpad/{slug}/w1-hub.
 # Hub Crawl: {url}
 - **Audit Date**: {date}
 - **Screenshot**: `reports/{slug}/assets/screenshot-hub-{date_compact}.png`
+- **Target Market Locale**: [Detected locale, e.g. fr-BE, fr-FR, or en-US]
 
 ## 1. Value Proposition (Scraped)
 > [Exact scraped value proposition]
@@ -66,4 +82,9 @@ Write the output file deterministically into `.agents/.scratchpad/{slug}/w1-hub.
 - **Facebook:** [URL or NONE] - Status: [Valid | 404]
 - **TikTok:** [URL or NONE] - Status: [Valid | 404]
 - **X/Twitter:** [URL or NONE] - Status: [Valid | 404]
+
+## 4. Mobile App Store Links
+- **iOS App Store:** [URL or NONE] - Status: [Valid | 404]
+- **Google Play Store:** [URL or NONE] - Status: [Valid | 404]
+- **Secondary Apps Detected:** [None or bulleted list of app titles and store URLs]
 ```

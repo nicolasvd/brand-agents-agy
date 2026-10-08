@@ -1,9 +1,17 @@
 ---
 name: brand-sub-linkedin-scanner
-description: Wave 1 LinkedIn Scanner specification with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Executed via the native browser subagent using the user's authenticated session.
+description: Wave 1 LinkedIn Scanner subagent with dual-mode support (Initial Baseline & 5-Step Incremental Protocol). Audits company profile, employee count, posts, and engagement.
 mainAgent: false
 subagent: true
-tools: [read_url_content, write_to_file]
+model: flash
+tools:
+  - read_url_content
+  - view_file
+  - write_to_file
+  - run_command
+skills:
+  - .agents/skills/comment-sampling
+  - .agents/skills/incremental-crawl-protocol
 ---
 
 # Instructions
@@ -71,7 +79,7 @@ When starting from scratch without prior archives:
 3. **Header Screenshot**: Save screenshot directly to `reports/{slug}/assets/screenshot-linkedin-{date_compact}.png`.
 4. **Data Extraction & Canonical Post Links**:
    - Extract exact bio, follower count (no following count), and industry details.
-   - Extract the last 10 to 15 posts: publication dates, **direct canonical post URLs** (from timestamp/share link), exact text, and engagement metrics (reactions, comments, reposts, and `ad_badge_present: boolean`).
+   - Extract the last 6 to 10 posts (strict maximum of 10 posts): publication dates, **direct canonical post URLs** (from timestamp/share link), exact text, and engagement metrics (reactions, comments, reposts, and `ad_badge_present: boolean`).
 5. **Top 3 Major Post Screenshots & Qualitative Sample**:
    - Identify top 3 most engaging or strategic posts. Save to `reports/{slug}/assets/linkedin-post-{date_compact}-1.png`, `-2.png`, `-3.png`.
    - For these top 3 posts, extract a qualitative sample of 3 to 5 verbatims:
