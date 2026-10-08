@@ -40,12 +40,18 @@ Evaluate overall tag health and assign a deterministic status:
 
 - **`RESOLVED`**:
   - `og:title`, `og:description`, and `og:image` are all present.
-  - `og:image` is an absolute URL pointing to a valid, high-resolution visual asset.
-  - Private messaging previews render a rich branded card.
+  - `og:image` is an absolute, reachable URL pointing to a high-resolution visual asset.
+  - `og:url` is a valid canonical absolute URL matching destination domain.
+  - Private messaging previews render an optimal rich branded card.
+- **`PARTIAL`**:
+  - `og:image` is present and reachable, and `og:title` is present.
+  - However, `og:url` is missing/relative, or `og:description` is missing/generic.
+  - Real-world messaging apps (WhatsApp, Slack, Teams, iMessage) **still render the actual image and title**, but domain provenance or descriptive context is degraded.
+  - The live visual simulation MUST display the real image rather than an empty placeholder, while the diagnostic table highlights the missing canonical tags.
 - **`FAILED`**:
-  - `og:image` is missing, relative (e.g., `/img/preview.png` without origin), or returns HTTP 404.
-  - `og:title` or `og:description` is completely absent or returns default CMS placeholder text.
-  - Private messaging shares render as plain raw text or broken image icons.
+  - `og:image` is completely missing, unresolvable relative path, or returns HTTP 404/5xx.
+  - `og:title` or `og:description` is completely absent or returns empty placeholder text.
+  - Private messaging shares render as plain raw text links or broken image icons.
 
 ---
 
@@ -56,23 +62,29 @@ Format findings in markdown for reporting and styling:
 ```markdown
 ## Dark Social Footprint (Open Graph)
 
-- **Status:** RESOLVED | FAILED
+- **Status:** RESOLVED | PARTIAL | FAILED
 - **og:title:** "AG Insurance — Supporter de votre vie"
 - **og:description:** "Découvrez nos solutions d'assurance vie, santé et auto..."
 - **og:image:** `https://www.ag.be/assets/og-share-1200x630.png` [Valid, 1200x630]
 - **og:url:** `https://www.ag.be`
 - **twitter:card:** `summary_large_image`
 
-### Visual Simulation
+### Visual Simulation Contract
+- **live_image_url:** `https://www.ag.be/assets/og-share-1200x630.png` (or `null` if absent/broken)
+- **live_title:** "AG Insurance — Supporter de votre vie" (falls back to `<title>` if og:title missing)
+- **live_description:** "Découvrez nos solutions d'assurance..." (falls back to meta description if missing)
+- **live_domain:** "ag.be" (extracted from page URL)
+
 | Metric | Stated Target | Live Rendering |
 |---|---|---|
-| Slack / Teams Preview | Rich Card with Visual Banner | ✅ Formatted (or ❌ Raw Link Fallback) |
-| WhatsApp / SMS | Image Thumbnail + Description | ✅ Rich Snippet (or ❌ Missing Card) |
+| Slack / Teams Preview | Rich Card with Visual Banner | ✅ Formatted (or ⚠️ Degraded Image Only, or ❌ Raw Link Fallback) |
+| WhatsApp / SMS | Image Thumbnail + Description | ✅ Rich Snippet (or ⚠️ Partial Snippet, or ❌ Missing Card) |
 ```
 
 ---
 
 ## 5. Downstream Integration
 
-- Directly determines Pillar 2 (Omnichannel Consistency & Dark Social) scoring in `scoring.md`.
-- Injects side-by-side Broken vs Recommended card mockups into `OVERVIEW.html`.
+- Directly determines Pillar 2 (Omnichannel Consistency & Dark Social) scoring in `scoring.md` (RESOLVED: 10/10, PARTIAL: 6.5–7.5/10, FAILED: 3.0–4.0/10).
+- Injects side-by-side Live Preview vs Recommended Card mockups into `OVERVIEW.html`, ensuring real images are always rendered whenever `og:image` is present.
+

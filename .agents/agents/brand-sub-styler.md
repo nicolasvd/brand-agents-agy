@@ -97,7 +97,14 @@ Generate the Executive Reverse Brand Book Hub:
         </div>
       </div>
       ```
-  - Dark Social Simulation & Open Graph Table: Visual chat preview comparison (Broken vs Recommended) + technical metadata diagnostic table (`og:title`, `og:description`, `og:image`, `og:url`, `twitter:card`).
+  - Dark Social Simulation & Open Graph Table:
+    * Side-by-side Visual Chat Preview Comparison (Current Live Share vs Target Recommended).
+    * **Granular Tag-Accurate Live Preview:**
+      - If `og:image` is present and reachable in the brand's live DOM, the live chat mockup MUST render the actual image (`<img src="{live_og_image}" alt="Live OG Preview" />` or background cover) inside the card, even if `og:url` or `og:description` is missing!
+      - If `og:image` is completely missing or broken, render the fallback placeholder container (`[ No Open Graph Image Defined ]`).
+      - Display the live title (`og:title` or fallback to `<title>`), live description (or fallback), and domain provenance.
+      - Apply realistic contextual status badge: `badge-live` for `RESOLVED`, `badge-warning` for `PARTIAL` (e.g. `⚠️ Degraded Preview · Image Rendered, Missing og:url`), or `badge-danger` for `FAILED` (e.g. `❌ Critical Failure · No Image`).
+    * Technical Metadata Diagnostic Table: Document exact values of `og:title`, `og:description`, `og:image`, `og:url`, and `twitter:card`, highlighting specific RFC violations or missing tags without masking working image assets.
 
 ---
 

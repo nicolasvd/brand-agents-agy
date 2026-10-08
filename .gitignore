@@ -26,3 +26,8 @@ Thumbs.db
 .env
 .env.*
 *.local
+
+# Repository social preview (local asset for GitHub settings upload)
+social-preview.png
+social-preview.svg
+
