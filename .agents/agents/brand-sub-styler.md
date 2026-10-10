@@ -141,8 +141,17 @@ For each audited social platform (e.g. `linkedin`, `instagram`, `facebook`, `tik
     * TikTok: Followers, Total Video Likes, Top Video Views, Total Videos
     * Instagram: Followers, Total Publications, Story Highlights, Reels Viewership
     * YouTube: Subscribers, Cumulative Channel Views, Total Videos, Top Video Views
-    * LinkedIn: Followers, Cadence, Cumulative Reposts, Engagement Rate
-  - Cumulative Scanned Posts Table: Chronological table with publication dates, formats, content pillars, editorial messages, clickable canonical post links, and engagement metrics.
+  - **Cumulative Scanned Posts Table (`.table-container`):**
+    * Columns: `Date / Récence`, `Format`, `Pilier de Contenu`, `Message Clé & Verbatim Scanné`, `Preuve & Lien` (width: ~150px), `Résonance & Engagement`.
+    * **Dual Proof & Link Cell (`.post-preview-cell`):**
+      - For posts with a dedicated screenshot (`post_screenshot` or `- **Capture d'écran dédiée**` in markdown archive, e.g. `../assets/{platform}-post-{date_compact}-{n}.png`):
+        Render the offline proof thumbnail (`max-width: 150px; max-height: 110px`) wrapped in `<a href="../assets/..." target="_blank" class="post-thumb-link" title="Agrandir la capture offline">`, with the canonical target link button `<a href="{canonical_url}" target="_blank" rel="noopener" class="card-link post-canonical-btn">Post ↗</a>` directly underneath!
+      - For posts without dedicated screenshot (secondary posts from feed):
+        Render `<div class="post-preview-cell"><span class="badge-na-compact">Archive URL</span><a href="{canonical_url}" target="_blank" rel="noopener" class="card-link post-canonical-btn">Post ↗</a></div>`.
+  - **Qualitative Sémantique Section (Top 3 Major Posts):**
+    * For each Top Post card (`.box-item`), organize the layout into two columns using `.top-post-body`:
+      - **Sidebar Media Column (`.top-post-media`):** The post screenshot thumbnail (`.post-thumb-link`) linking to the high-res PNG offline proof in a new tab, with the live post button (`.post-canonical-btn`) directly underneath.
+      - **Content & Verbatims Column (`.top-post-content`):** Post hook / editorial quote, followed by the authentic 1st-level comment verbatims extracted by the scanner with brand reply indicator.
 
 #### 4.2. Mobile App Store Spokes (`channels/appstore.html` & `channels/playstore.html`)
 For each audited mobile store channel (`appstore`, `playstore`):

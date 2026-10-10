@@ -78,12 +78,38 @@ When passed `AUDIT_MODE: INCREMENTAL_UPDATE` along with `{known_post_urls}`, `{l
 When starting without historical archives:
 1. **Navigate**: Open the provided profile URL using `navigate_page`.
 2. **Scroll & Wait**: Scroll progressively to trigger lazy-loading of media grid.
-3. **Profile Screenshot**: Save screenshot directly to `reports/{slug}/assets/screenshot-instagram-{date_compact}.png`.
+3. **DOM Overlay Cleanup & Profile Screenshot**:
+   - Run the cleanup script via `evaluate_script` to remove cookie dialogs, login walls, and sticky bottom banners:
+     ```javascript
+     (() => {
+       const overlaySelectors = [
+         '[role="dialog"]', '[aria-modal="true"]', '#cookie-banner', '#login_popup',
+         '.fb_dialog', 'div[data-nosnippet]', 'div[data-testid*="cookie"]', 'div[data-testid*="login"]',
+         'div[id*="cookie"]', 'div[class*="cookie"]', 'div[class*="login-banner"]', 'div[class*="consent"]'
+       ];
+       overlaySelectors.forEach(sel => document.querySelectorAll(sel).forEach(el => el.remove()));
+       document.body.style.overflow = 'auto';
+       document.documentElement.style.overflow = 'auto';
+       document.querySelectorAll('div').forEach(el => {
+         const style = window.getComputedStyle(el);
+         if ((style.position === 'fixed' || style.position === 'sticky') &&
+             /connectez-vous|log in|se connecter|sign up|inscrivez-vous/i.test(el.innerText)) {
+           el.remove();
+         }
+       });
+     })();
+     ```
+   - Capture clean above-the-fold viewport screenshot directly to `reports/{slug}/assets/screenshot-instagram-{date_compact}.png`.
 4. **Data Extraction & Canonical Post Links**:
    - Extract bio text, link in bio, verification status, follower count (no following count), total posts, and Story Highlights count.
    - Extract the last 6 to 10 posts/reels (strict maximum of 10 posts): publication dates, **direct canonical post/reel URLs** (`instagram.com/reel/...` or `/p/...`), format (Reel vs Image), captions, content pillars, and engagement metrics (video/reel views on grid, likes, comments, `ad_badge_present: boolean`).
 5. **Top 3 Major Post/Reel Screenshots & Qualitative Sample**:
-   - Identify the top 3 most engaging or representative posts/reels. Save screenshots to `reports/{slug}/assets/instagram-post-{date_compact}-1.png`, `-2.png`, `-3.png`.
+   - **Selection:** Identify the Top 3 most engaging posts/reels (highest sum of views + likes + comments). In case of a tie or zero engagement, fall back to the most recent posts. Do NOT pick posts #1, #2, #3 blindly.
+   - **Post Framing & Capture (NO Full Page):** For each of these 3 posts:
+     * Scroll the post element into center view: `postElement.scrollIntoView({ block: 'center' })`.
+     * Re-run the DOM cleanup script to purge any bottom banner or modal triggered by scrolling.
+     * Capture the focused post element or centered viewport (NEVER use `full_page=True` on infinite feeds).
+     * Save screenshots to `reports/{slug}/assets/instagram-post-{date_compact}-1.png`, `-2.png`, `-3.png`.
    - Extract qualitative sample of 3 to 5 verbatims for each of the top 3 posts (or `comment_status: NONE_OR_DISABLED` if 0 comments).
 6. **Reporting**: Write formatted report to `.agents/.scratchpad/{slug}/w1-instagram.md` using `write_to_file`.
 

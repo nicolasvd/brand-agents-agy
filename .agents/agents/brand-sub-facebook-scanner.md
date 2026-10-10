@@ -32,16 +32,40 @@ Extract follower count, page category, bio/intro, and the 8-10 most recent publi
 ## Execution Protocol
 
 1. **Navigate**: Go to the provided Facebook page URL.
-2. **Dismiss Login Modals**: If a "Log In / Create Account" modal or banner appears, dismiss it or close it to view the public content.
-3. **Visual Proof (Page Header)**: Capture page banner, profile avatar, and follower/like metrics. Save directly to `reports/{slug}/assets/screenshot-facebook-{date_compact}.png`.
-4. **Data Extraction & Canonical Post Links**:
+2. **DOM Overlay Cleanup & Header Screenshot**:
+   - Run the cleanup script via `evaluate_script` to remove cookie dialogs, login walls, and sticky bottom banners:
+     ```javascript
+     (() => {
+       const overlaySelectors = [
+         '[role="dialog"]', '[aria-modal="true"]', '#cookie-banner', '#login_popup',
+         '.fb_dialog', 'div[data-nosnippet]', 'div[data-testid*="cookie"]', 'div[data-testid*="login"]',
+         'div[id*="cookie"]', 'div[class*="cookie"]', 'div[class*="login-banner"]', 'div[class*="consent"]'
+       ];
+       overlaySelectors.forEach(sel => document.querySelectorAll(sel).forEach(el => el.remove()));
+       document.body.style.overflow = 'auto';
+       document.documentElement.style.overflow = 'auto';
+       document.querySelectorAll('div').forEach(el => {
+         const style = window.getComputedStyle(el);
+         if ((style.position === 'fixed' || style.position === 'sticky') &&
+             /connectez-vous|log in|se connecter|sign up|inscrivez-vous/i.test(el.innerText)) {
+           el.remove();
+         }
+       });
+     })();
+     ```
+   - Capture page banner, profile avatar, and follower/like metrics (clean above-the-fold viewport). Save directly to `reports/{slug}/assets/screenshot-facebook-{date_compact}.png`.
+3. **Data Extraction & Canonical Post Links**:
    - Extract page name, verification status, follower count, like count, and intro/bio (STRICTLY NO following count).
    - Extract the last 6 to 10 posts (strict maximum of 10 posts): publication dates, **direct canonical post URLs** (from timestamp link), post text, media type (photo/video), shares, comments, and `ad_badge_present: boolean`.
-5. **Top 3 Major Post Screenshots & Resonance Metrics**:
-   - Identify the top 3 most engaging posts (highest shares/reactions).
-   - Capture individual screenshots of each of these 3 posts and save directly to:
-     - `reports/{slug}/assets/facebook-post-{date_compact}-1.png`
-     - `reports/{slug}/assets/facebook-post-{date_compact}-2.png`
-     - `reports/{slug}/assets/facebook-post-{date_compact}-3.png`
+4. **Top 3 Major Post Screenshots & Resonance Metrics**:
+   - **Selection:** Identify the Top 3 most engaging posts (highest sum of reactions + shares + comments). In case of a tie or zero engagement, fall back to the most recent posts. Do NOT select posts #1, #2, #3 blindly.
+   - **Post Framing & Capture (NO Full Page):** For each of these 3 posts:
+     * Scroll the post element into center view: `postElement.scrollIntoView({ block: 'center' })`.
+     * Re-run the DOM cleanup script to purge any bottom banner or modal triggered by scrolling.
+     * Capture the focused post element or centered viewport (NEVER use `full_page=True` on infinite feeds to prevent memory crashes and blurry runaway images).
+     * Save screenshots directly to:
+       - `reports/{slug}/assets/facebook-post-{date_compact}-1.png`
+       - `reports/{slug}/assets/facebook-post-{date_compact}-2.png`
+       - `reports/{slug}/assets/facebook-post-{date_compact}-3.png`
    - Extract reaction typology breakdown (Likes, Loves, Care, Angry, etc.) and a qualitative sample of 3 to 5 comment verbatims per post.
-6. **Reporting**: Write structured findings to `.agents/.scratchpad/{slug}/w1-facebook.md` using `write_to_file`. Include header screenshot path, post links, post screenshot paths, reaction breakdown, qualitative comments, and audit date (`{date}`).
+5. **Reporting**: Write structured findings to `.agents/.scratchpad/{slug}/w1-facebook.md` using `write_to_file`. Include header screenshot path, post links, post screenshot paths, reaction breakdown, qualitative comments, and audit date (`{date}`).

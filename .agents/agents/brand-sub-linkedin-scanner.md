@@ -76,12 +76,38 @@ When passed `AUDIT_MODE: INCREMENTAL_UPDATE` along with `{known_post_urls}`, `{l
 When starting from scratch without prior archives:
 1. **Navigate**: Go to the provided profile URL using `navigate_page`.
 2. **Scroll & Wait**: Scroll down progressively to trigger lazy-loading of posts.
-3. **Header Screenshot**: Save screenshot directly to `reports/{slug}/assets/screenshot-linkedin-{date_compact}.png`.
+3. **DOM Overlay Cleanup & Header Screenshot**:
+   - Run the cleanup script via `evaluate_script` to remove cookie dialogs, login walls, and sticky bottom banners:
+     ```javascript
+     (() => {
+       const overlaySelectors = [
+         '[role="dialog"]', '[aria-modal="true"]', '#cookie-banner', '#login_popup',
+         '.fb_dialog', 'div[data-nosnippet]', 'div[data-testid*="cookie"]', 'div[data-testid*="login"]',
+         'div[id*="cookie"]', 'div[class*="cookie"]', 'div[class*="login-banner"]', 'div[class*="consent"]'
+       ];
+       overlaySelectors.forEach(sel => document.querySelectorAll(sel).forEach(el => el.remove()));
+       document.body.style.overflow = 'auto';
+       document.documentElement.style.overflow = 'auto';
+       document.querySelectorAll('div').forEach(el => {
+         const style = window.getComputedStyle(el);
+         if ((style.position === 'fixed' || style.position === 'sticky') &&
+             /connectez-vous|log in|se connecter|sign up|inscrivez-vous/i.test(el.innerText)) {
+           el.remove();
+         }
+       });
+     })();
+     ```
+   - Capture clean above-the-fold viewport screenshot directly to `reports/{slug}/assets/screenshot-linkedin-{date_compact}.png`.
 4. **Data Extraction & Canonical Post Links**:
    - Extract exact bio, follower count (no following count), and industry details.
    - Extract the last 6 to 10 posts (strict maximum of 10 posts): publication dates, **direct canonical post URLs** (from timestamp/share link), exact text, and engagement metrics (reactions, comments, reposts, and `ad_badge_present: boolean`).
 5. **Top 3 Major Post Screenshots & Qualitative Sample**:
-   - Identify top 3 most engaging or strategic posts. Save to `reports/{slug}/assets/linkedin-post-{date_compact}-1.png`, `-2.png`, `-3.png`.
+   - **Selection:** Identify the Top 3 most engaging posts (highest sum of reactions + reposts + comments). In case of a tie or zero engagement, fall back to the most recent posts. Do NOT pick posts #1, #2, #3 blindly.
+   - **Post Framing & Capture (NO Full Page):** For each of these 3 posts:
+     * Scroll the post element into center view: `postElement.scrollIntoView({ block: 'center' })`.
+     * Re-run the DOM cleanup script to eliminate any sticky banners spawned on scroll.
+     * Capture the focused post element or centered viewport (NEVER use `full_page=True` on infinite feeds).
+     * Save to `reports/{slug}/assets/linkedin-post-{date_compact}-1.png`, `-2.png`, `-3.png`.
    - For these top 3 posts, extract a qualitative sample of 3 to 5 verbatims:
      ```yaml
      top_posts_qualitative_sample:

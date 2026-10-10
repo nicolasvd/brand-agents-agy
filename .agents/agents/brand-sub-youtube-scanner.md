@@ -33,15 +33,29 @@ Extract subscriber count, total video count, channel description, and detailed m
 
 1. **Navigate**: Go to the provided YouTube channel URL (e.g. `https://www.youtube.com/@channel/videos`).
 2. **Scroll & Wait**: Ensure video thumbnails and metadata are fully loaded.
-3. **Visual Proof (Channel Header)**: Capture channel avatar, banner, and subscriber count. Save directly to `reports/{slug}/assets/screenshot-youtube-{date_compact}.png`.
+3. **DOM Overlay Cleanup & Channel Header Screenshot**:
+   - Run the cleanup script via `evaluate_script` to remove cookie/consent bumps and dialogs:
+     ```javascript
+     (() => {
+       const overlaySelectors = [
+         'ytd-consent-bump-v2-lightbox', 'tp-yt-paper-dialog', '[role="dialog"]', '[aria-modal="true"]',
+         '#cookie-banner', 'div[class*="consent"]'
+       ];
+       overlaySelectors.forEach(sel => document.querySelectorAll(sel).forEach(el => el.remove()));
+       document.body.style.overflow = 'auto';
+       document.documentElement.style.overflow = 'auto';
+     })();
+     ```
+   - Capture clean above-the-fold viewport screenshot (channel avatar, banner, and subscriber count). Save directly to `reports/{slug}/assets/screenshot-youtube-{date_compact}.png`.
 4. **Data Extraction & Canonical Video Links**:
    - Extract channel name, handle, subscriber count, total video count, **cumulative channel views** (from "About" tab or modal), and description.
    - Extract the last 6 to 10 videos (strict maximum of 10 videos): title, publication date / relative age, duration, specific view count, `ad_badge_present: boolean`, and **direct canonical video URL** (`https://www.youtube.com/watch?v=...` or `/shorts/...`).
 5. **Top 3 Major Video Screenshots & Qualitative Sample**:
-   - Identify the top 3 most viewed or prominent recent videos.
-   - Capture individual screenshots of each video thumbnail/card and save directly to:
+   - **Selection:** Identify the Top 3 most viewed/engaged recent videos. In case of a tie, fall back to the most recent videos. Do NOT pick videos #1, #2, #3 blindly.
+   - **Framing & Capture (NO Full Page):** For each video, scroll the video card into center view (`videoCard.scrollIntoView({ block: 'center' })`), re-run the cleanup script if a sticky banner appeared, and capture the focused card or centered viewport.
+   - Save screenshots directly to:
      - `reports/{slug}/assets/youtube-video-{date_compact}-1.png`
      - `reports/{slug}/assets/youtube-video-{date_compact}-2.png`
      - `reports/{slug}/assets/youtube-video-{date_compact}-3.png`
-   - Extract 3 to 5 qualitative comment verbatims per video.
+   - Extract 3 to 5 qualitative comment verbatims per video (or `comment_status: NONE_OR_DISABLED` if comments are 0 or disabled).
 6. **Reporting**: Write structured findings to `.agents/.scratchpad/{slug}/w1-youtube.md` using `write_to_file`. Include channel screenshot path, video links, video screenshot paths, cumulative channel views, qualitative comment samples, and audit date (`{date}`).

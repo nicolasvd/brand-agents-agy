@@ -32,16 +32,37 @@ Extract follower count, total likes, bio text, and the 8-10 most recent videos. 
 ## Execution Protocol
 
 1. **Navigate**: Go to the provided TikTok profile URL (e.g. `https://www.tiktok.com/@channel`).
-2. **Handle Modals**: Dismiss any guest login overlay.
-3. **Visual Proof (Profile Header)**: Capture avatar, handle, follower count, and total likes. Save directly to `reports/{slug}/assets/screenshot-tiktok-{date_compact}.png`.
-4. **Data Extraction & Canonical Video Links**:
-   - Extract handle, verification checkmark, follower count, total accumulated likes, total videos, and bio link. (STRICTLY NO following count).
+2. **DOM Overlay Cleanup & Profile Header Screenshot**:
+   - Run the cleanup script via `evaluate_script` to remove cookie dialogs, login overlays, and floating signup banners:
+     ```javascript
+     (() => {
+       const overlaySelectors = [
+         '[role="dialog"]', '[aria-modal="true"]', '#cookie-banner', '#login_popup',
+         'div[class*="login-modal"]', 'div[class*="modal-mask"]', 'div[data-nosnippet]',
+         'div[class*="cookie"]', 'div[class*="consent"]'
+       ];
+       overlaySelectors.forEach(sel => document.querySelectorAll(sel).forEach(el => el.remove()));
+       document.body.style.overflow = 'auto';
+       document.documentElement.style.overflow = 'auto';
+       document.querySelectorAll('div').forEach(el => {
+         const style = window.getComputedStyle(el);
+         if ((style.position === 'fixed' || style.position === 'sticky') &&
+             /connexion|log in|se connecter|sign up|inscription/i.test(el.innerText)) {
+           el.remove();
+         }
+       });
+     })();
+     ```
+   - Capture clean above-the-fold viewport screenshot (avatar, handle, follower count, total likes). Save directly to `reports/{slug}/assets/screenshot-tiktok-{date_compact}.png`.
+3. **Data Extraction & Canonical Video Links**:
+   - Extract handle, verification checkmark, follower count, total accumulated likes, total videos, and bio link (STRICTLY NO following count).
    - Extract the last 6 to 10 videos (strict maximum of 10 videos): title/caption, view count (visible directly on grid), publication date or pinned status, `ad_badge_present: boolean`, and **direct canonical video URL** (`https://www.tiktok.com/@.../video/...`).
-5. **Top 3 Major Video Screenshots & Qualitative Sample**:
-   - Identify the top 3 most viewed videos in the grid.
-   - Capture individual screenshots of each video card/player and save directly to:
+4. **Top 3 Major Video Screenshots & Qualitative Sample**:
+   - **Selection:** Identify the Top 3 most viewed/engaged videos in the grid. In case of a tie, fall back to the most recent videos. Do NOT pick videos #1, #2, #3 blindly.
+   - **Framing & Capture (NO Full Page):** For each video, scroll the video card into center view (`videoCard.scrollIntoView({ block: 'center' })`), re-run the cleanup script if a sticky banner appeared, and capture the focused card or centered viewport (NEVER use `full_page=True` on infinite feeds).
+   - Save screenshots directly to:
      - `reports/{slug}/assets/tiktok-video-{date_compact}-1.png`
      - `reports/{slug}/assets/tiktok-video-{date_compact}-2.png`
      - `reports/{slug}/assets/tiktok-video-{date_compact}-3.png`
-   - Extract 3 to 5 qualitative verbatims per video from the comments section.
-6. **Reporting**: Write structured findings to `.agents/.scratchpad/{slug}/w1-tiktok.md` using `write_to_file`. Include profile screenshot path, video links, video screenshot paths, qualitative comment sample, and audit date (`{date}`).
+   - Extract 3 to 5 qualitative verbatims per video from the comments section (or `comment_status: NONE_OR_DISABLED` if comments are 0 or disabled).
+5. **Reporting**: Write structured findings to `.agents/.scratchpad/{slug}/w1-tiktok.md` using `write_to_file`. Include profile screenshot path, video links, video screenshot paths, qualitative comment sample, and audit date (`{date}`).

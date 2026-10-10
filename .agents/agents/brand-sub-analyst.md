@@ -119,15 +119,19 @@ Save to `.agents/.scratchpad/{slug}/w2-draft-audit.md`:
   - **Tier 3 — Step-by-Step Rollout Protocol (Step 1, 2, 3)**
   - **Tier 4 — Impact KPI & Measurable Success Threshold**
 
-#### Deliverable B: `w2-draft-brandbook.md` (The Reconstructed Identity)
-Save to `.agents/.scratchpad/{slug}/w2-draft-brandbook.md`:
-- YAML Frontmatter updated with:
-  * `slug`
-  * `brand_name`, `primary_url`
-  * `first_audit_date`, `latest_audit_date: "{date}"`
+#### Deliverable B: `w2-draft-brandbook.md` (The Reconstructed Identity — 100% Markdown Parity)
+Save to `.agents/.scratchpad/{slug}/w2-draft-brandbook.md`. This file is the permanent Markdown twin of `OVERVIEW.html` and MUST be comprehensive, structured, and factual (never truncated or simplified):
+- **YAML Frontmatter:**
+  * `slug`: brand slug
+  * `brand_name`: official brand name
+  * `primary_url`: root portal URL
+  * `first_audit_date`: ISO date
+  * `latest_audit_date`: "{date}"
   * `total_audits`: incremented count
-  * `header_screenshot`: permanent relative path
-  * `design_tokens`: extracted color palette & typography
+  * `header_screenshot`: permanent relative path `reports/{slug}/assets/screenshot-hub-{date_compact}.png`
+  * `design_tokens`:
+    - `colors`: list of verified HEX codes with functional labels (e.g. `"#004d38 (Primary Institutional)"`, `"#6b46c1 (Strategic Accent)"`, `"#78be20 (CTA Highlight)"`, `"#0f172a (Slate Text)"`, `"#f8fafc (Surface)"`)
+    - `typography`: font family stack and hierarchy description
   * `dark_social_status`: (`FAILED` | `RESOLVED`)
   * `audits_history`: list of past audits with `audit_id`, `date`, `score` (strictly numeric /10, NO letter grades), `mode`:
     ```yaml
@@ -141,7 +145,20 @@ Save to `.agents/.scratchpad/{slug}/w2-draft-brandbook.md`:
         score: 6.6
         mode: INCREMENTAL_UPDATE
     ```
-- Slogans & Stated Brand Positioning
-- De-Facto Color Palette (#hex swatches, tokens) & Typography standards
-- Dark Social Open Graph audit table
-- Omnichannel Matrix Table linking to channel Markdown archives (`channels/{platform}.md` as well as `channels/appstore.md` and `channels/playstore.md` when present)
+- **Section 1: Stated Brand Identity, Mission & Positioning:**
+  * **Primary Brand Signatures & Slogans:** Exact verbatims across detected languages (FR / NL / EN / DE).
+  * **Brand Purpose & Core Promise:** Ethical, commercial, or operational mandate as stated on official portals.
+  * **Commercial Pillars & Scale:** Verified business lines, key operational metrics (founding year, customer count, loan portfolio, certifications like B Corp).
+  * **Market & Linguistic Topology:** Operational headquarters, territorial reach, and linguistic breakdown across channels.
+- **Section 2: De-Facto Design System & Visual Palette:**
+  * **Palette Swatches Table:** Markdown table with `Color Name`, `Hex Code`, `Functional Role / Usage`, and `Preview Notes`.
+  * **Typography Stack:** Declared font families, weights, and legibility standards.
+  * **Visual Tone & Art Direction:** Empirical photography guidelines, iconography, carousels, or video art direction.
+- **Section 3: Omnichannel Network Matrix & Visual Footprint:**
+  * **Omnichannel Matrix Table:** Comprehensive Markdown table listing ALL audited channels:
+    `| Platform | URL / Handle | Markdown Archive Link | Strategic Role & Target Audience | Resonance Tier & Cadence | Permanent Header Screenshot |`
+    (Include Web Hub, LinkedIn, Instagram, Facebook, YouTube, TikTok, X, iOS App Store, Google Play Store when audited).
+  * **Visual Footprint Showcase:** Links and descriptions of visual header assets for each active channel.
+- **Section 4: Dark Social Status & Open Graph Diagnostics:**
+  * **Metadata Audit Table:** `| Meta Tag | Observed Value | Integrity Status | Peer-to-Peer Impact |` (`og:title`, `og:description`, `og:image`, `og:url`, `twitter:card`).
+  * **Private Messaging Simulation:** Narrative reconstruction of how links preview on WhatsApp, Signal, Slack, Teams, and diagnosis of visual failure or success.
