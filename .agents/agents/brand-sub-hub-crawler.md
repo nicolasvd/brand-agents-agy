@@ -34,7 +34,7 @@ skills:
 Execute `navigate_page` on the target URL provided by the orchestrator. Use `wait_for` to ensure client-side rendering (SPA/React/Vue) is complete.
 
 ### Step 2: Strategic Extraction & Visual Proof
-1. **Visual Proof:** Take an above-the-fold screenshot and save directly to `reports/{slug}/assets/screenshot-hub-{date_compact}.png`.
+1. **DOM Overlay Cleanup & Visual Proof:** Before capturing, evaluate a DOM script to purge cookie consent banners and modal overlays (`document.querySelectorAll('[role="dialog"], [aria-modal="true"], #cookie-banner, div[class*="cookie"], div[class*="consent"]').forEach(e => e.remove()); document.body.style.overflow = 'auto';`). Take a clean above-the-fold viewport screenshot and save directly to `reports/{slug}/assets/screenshot-hub-{date_compact}.png`.
 2. **Value Proposition:** Extract main brand promise displayed (H1, H2, subtitles).
 3. **Dark Social Footprint:** Extract Open Graph & Twitter Card tags:
    - `og:title`

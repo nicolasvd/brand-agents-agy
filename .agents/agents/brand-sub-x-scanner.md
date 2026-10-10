@@ -33,17 +33,42 @@ Extract the exact raw text from the profile bio and the 10-20 most recent tweets
 
 1. **Navigate**: Go to the provided profile URL using `navigate_page`.
 2. **Scroll & Wait (Human Simulation)**: Scroll progressively (using `evaluate_script` like `window.scrollBy(0, 500)`) to trigger timeline lazy-loading. After each scroll step, pause using `wait_for` to fetch tweets.
-3. **Visual Proof (Header Screenshot)**: Ensure header and bio are in view. Save screenshot DIRECTLY to `reports/{slug}/assets/screenshot-x-{date_compact}.png`.
+3. **DOM Overlay Cleanup & Header Screenshot**:
+   - Run the cleanup script via `evaluate_script` to remove cookie dialogs, bottom signup sheets, and login overlays:
+     ```javascript
+     (() => {
+       const overlaySelectors = [
+         '[role="dialog"]', '[aria-modal="true"]', '#cookie-banner', '#login_popup',
+         'div[data-testid*="sheetDialog"]', 'div[data-testid*="BottomBar"]',
+         'div[class*="cookie"]', 'div[class*="consent"]'
+       ];
+       overlaySelectors.forEach(sel => document.querySelectorAll(sel).forEach(el => el.remove()));
+       document.body.style.overflow = 'auto';
+       document.documentElement.style.overflow = 'auto';
+       document.querySelectorAll('div').forEach(el => {
+         const style = window.getComputedStyle(el);
+         if ((style.position === 'fixed' || style.position === 'sticky') &&
+             /connexion|log in|se connecter|sign up|inscription/i.test(el.innerText)) {
+           el.remove();
+         }
+       });
+     })();
+     ```
+   - Ensure header and bio are in clean viewport view. Save screenshot DIRECTLY to `reports/{slug}/assets/screenshot-x-{date_compact}.png`.
 4. **Data Extraction & Canonical Tweet Links**:
    - Extract exact bio, handle, and follower count (STRICTLY NO following count).
    - Extract the last 6 to 10 tweets (strict maximum of 10 tweets): publication dates, **direct canonical tweet URLs** (`x.com/{handle}/status/...`), exact text, and engagement metrics (impressions / views, reposts, likes, replies, and `ad_badge_present: boolean`).
 5. **Top 3 Major Tweet Screenshots & Qualitative Sample**:
-   - Identify the top 3 most engaging or representative tweets.
-   - Take an individual screenshot of each of these 3 tweets and save directly to:
-     - `reports/{slug}/assets/x-post-{date_compact}-1.png`
-     - `reports/{slug}/assets/x-post-{date_compact}-2.png`
-     - `reports/{slug}/assets/x-post-{date_compact}-3.png`
-   - Extract 3 to 5 qualitative replies/verbatims for each top tweet.
+   - **Selection:** Identify the Top 3 most engaging tweets (highest sum of likes + reposts + replies + impressions). In case of a tie, fall back to the most recent tweets. Do NOT pick tweets #1, #2, #3 blindly.
+   - **Framing & Capture (NO Full Page):** For each of these 3 tweets:
+     * Scroll the tweet element into center view: `tweetElement.scrollIntoView({ block: 'center' })`.
+     * Re-run the DOM cleanup script to purge any bottom banner spawned on scroll.
+     * Capture the focused tweet element or centered viewport (NEVER use `full_page=True` on infinite feeds).
+     * Save directly to:
+       - `reports/{slug}/assets/x-post-{date_compact}-1.png`
+       - `reports/{slug}/assets/x-post-{date_compact}-2.png`
+       - `reports/{slug}/assets/x-post-{date_compact}-3.png`
+   - Extract 3 to 5 qualitative replies/verbatims for each top tweet (or `comment_status: NONE_OR_DISABLED` if 0 replies).
 6. **Reporting**: Write formatted report to `.agents/.scratchpad/{slug}/w1-x.md` using `write_to_file`. Include header screenshot path, tweet links, individual tweet screenshot paths, qualitative sample, and audit date (`{date}`).
 
 Remember: Exact text extraction, no hallucinations. Do not call orchestration tools.

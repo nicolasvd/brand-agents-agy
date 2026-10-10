@@ -75,7 +75,16 @@ When starting without historical archives:
 
 1. **Navigate:** Open the provided Google Play Store URL using `navigate_page`.
 2. **Wait for DOM Hydration:** Ensure ratings and metadata badges are fully rendered.
-3. **Store Header Screenshot:** Capture the above-the-fold store presentation (icon, title, rating summary, downloads badge, hero screenshots). Save directly to `reports/{slug}/assets/screenshot-playstore-{date_compact}.png`.
+3. **DOM Overlay Cleanup & Store Header Screenshot**:
+   - Run the cleanup script via `evaluate_script` to remove cookie dialogs or consent overlays:
+     ```javascript
+     (() => {
+       document.querySelectorAll('[role="dialog"], [aria-modal="true"], #cookie-banner, div[class*="cookie"], div[class*="consent"]').forEach(el => el.remove());
+       document.body.style.overflow = 'auto';
+       document.documentElement.style.overflow = 'auto';
+     })();
+     ```
+   - Capture clean above-the-fold store presentation (icon, title, rating summary, downloads badge, hero screenshots). Save directly to `reports/{slug}/assets/screenshot-playstore-{date_compact}.png`.
 4. **Data Extraction:**
    - `app_name`: Full app title
    - `developer`: Official developer entity name

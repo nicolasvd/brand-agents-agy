@@ -884,6 +884,122 @@ tbody tr:hover {
   gap: 0.5rem;
 }
 
+/* Post Media Proof & Thumbnail Component (Max 150px) */
+.post-preview-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 150px;
+  min-width: 130px;
+}
+
+.post-thumb-link {
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-subtle);
+  position: relative;
+  text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.post-thumb-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary);
+  text-decoration: none;
+}
+
+.post-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.post-canonical-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 100%;
+  max-width: 150px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  text-align: center;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.post-canonical-btn:hover {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  text-decoration: none;
+}
+
+.badge-na-compact {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface-subtle);
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.4rem;
+  text-align: center;
+  width: 100%;
+  max-width: 150px;
+  margin-bottom: 0.2rem;
+  display: inline-block;
+}
+
+/* Qualitative Top 3 Post Layout with Sidebar Thumbnail */
+.top-post-body {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  align-items: flex-start;
+}
+
+.top-post-media {
+  flex-shrink: 0;
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.top-post-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+@media (max-width: 768px) {
+  .top-post-body {
+    flex-direction: column;
+  }
+  .top-post-media {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
 .failure-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1047,6 +1163,12 @@ details.collapsible-section .collapsible-body {
     max-width: 100% !important;
     height: auto !important;
     break-inside: avoid;
+  }
+
+  .post-thumb-link {
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    height: 90px !important;
   }
 
   table {

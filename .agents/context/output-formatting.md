@@ -55,6 +55,13 @@ reports/
 | **Channel Spokes** | `reports/{slug}/channels/{platform}.html` | Community Managers | `reports/{slug}/markdown/channels/{platform}.md` |
 | **Canonical Archives** | `reports/{slug}/markdown/**/*.md` | Subagents (AI Memory) | Produced by Wave 1 & Wave 2 agents |
 
+### 2.1. Social Media Post Proof & Thumbnail Standard
+In all social channel spoke deliverables (`reports/{slug}/channels/{platform}.html`), publications documented with a visual capture must feature:
+- An offline proof thumbnail (`max-width: 150px; max-height: 110px`, class `.post-thumb-link`) linking to the high-resolution PNG (`target="_blank"`).
+- The canonical live link button (`.post-canonical-btn`) positioned directly underneath.
+- Secondary posts without dedicated captures display the compact badge `.badge-na-compact` (`Archive URL`) along with the canonical link.
+- In Qualitative Sample (Top 3) cards, use `.top-post-body` to display the thumbnail sidebar on the left and the verbatim analysis on the right.
+
 ---
 
 ## 3. Strict Relative Path Hygiene
