@@ -27,7 +27,7 @@ Extract subscriber count, total video count, channel description, and detailed m
 4. **Local Path Hygiene & Relative Sanctuary**: Never record or output absolute local filesystem URIs (`file:///Users/...`, `/Users/...`, `/var/folders/...`, or temporary DevTools screenshot paths). Document exclusively project-relative target paths (`reports/{slug}/assets/...`).
 5. **Cumulative Channel Metrics**: Extract channel subscribers, total video count, and **cumulative channel views** (`cumulative_channel_views`, extracted from the "About" tab/modal).
 6. **Epistemic Rigor & Ad Badge**: Never speculate or assert that video views are driven by paid advertising or ad-tech campaigns. Check only for native DOM ad badges: `ad_badge_present: boolean`.
-7. **Deterministic Semantic Sample**: For each of the top 3 videos, extract 3 to 5 qualitative verbatims (author, text, comment likes). If `comments == 0`, record `comment_status: NONE_OR_DISABLED`.
+7. **Deterministic Semantic Sample & Conversational Loop**: For each of the top 3 videos, extract 3 to 5 qualitative verbatims (author, text, comment likes) AND the full conversational thread: check for official channel replies (`brand_replied: boolean`, `brand_reply_author`, `brand_reply_text`, `brand_reply_date`, `conversational_stance`). If `comments == 0`, record `comment_status: NONE_OR_DISABLED`.
 
 ## Execution Protocol
 
@@ -57,5 +57,5 @@ Extract subscriber count, total video count, channel description, and detailed m
      - `reports/{slug}/assets/youtube-video-{date_compact}-1.png`
      - `reports/{slug}/assets/youtube-video-{date_compact}-2.png`
      - `reports/{slug}/assets/youtube-video-{date_compact}-3.png`
-   - Extract 3 to 5 qualitative comment verbatims per video (or `comment_status: NONE_OR_DISABLED` if comments are 0 or disabled).
+   - Extract 3 to 5 qualitative comment verbatims per video with the full conversational thread (user quote, likes, plus creator/brand reply author, reply text, date, and conversational stance, or `comment_status: NONE_OR_DISABLED` if comments are 0 or disabled).
 6. **Reporting**: Write structured findings to `.agents/.scratchpad/{slug}/w1-youtube.md` using `write_to_file`. Include channel screenshot path, video links, video screenshot paths, cumulative channel views, qualitative comment samples, and audit date (`{date}`).

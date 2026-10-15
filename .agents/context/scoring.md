@@ -18,9 +18,13 @@ Evaluates alignment between stated positioning and real-world audience reception
 | Minor tonal drift between corporate (B2B) and social/lifestyle channels | 7.0 – 8.4 |
 | Severe dissonance between corporate claims and customer reality | 4.0 – 6.9 |
 | Comments section acts as unhandled customer complaint overflow | **Capped at max 6.5 / 10** |
+| Active Resonance Ratio ($\text{ARR} = \frac{\text{Comments} + \text{Shares}}{\text{Reactions}}$) $< 1.0\%$ | **Capped at max 6.5 / 10 (Audience Passivity / Vanity Alert)** |
 | Conversational Ratio ($\frac{\text{Comments}}{\text{Reactions}}$) $< 0.5\%$ | **Flag audience passivity / severe moderation** |
+| Radio Silence on high-friction brand debates (Loop Rate = 0%) | −1.0 penalty |
 | **Mobile App Store Capping Rule:** Average mobile rating $< 3.0 / 5.0$ OR developer response rate to critical 1-2★ reviews $< 20\%$ (when critical 1-2★ reviews are present) | **Capped at max 6.5 / 10** |
 
+$$\text{Active Resonance Ratio (ARR)} = \frac{\text{Total Comments} + \text{Total Shares/Reposts}}{\text{Total Reactions}}$$
+*(Boundary condition: If Total Reactions = 0, ARR = 0.0% if comments+shares = 0; Loop Rate penalty is bypassed if 0 substantive comments exist).*
 $$\text{Conversational Ratio} = \frac{\text{Total Comments}}{\text{Total Reactions}}$$
 
 ### Pillar 2: Omnichannel Consistency & Dark Social (0–10 pts)
@@ -51,15 +55,32 @@ Evaluates commercial activation, link-in-bio infrastructure, and organic vs ampl
 | Evaluation Criteria | Scoring Impact |
 |---|---|
 | Frictionless conversion paths, clear CTA, multi-link hub configured | 8.5 – 10.0 |
+| **Algorithmic Reach Multiplier Bonus:** $\text{ARM} \ge 2.0\times$ ($\frac{\text{Average Video Views}}{\text{Followers}} \ge 2.0\times$ on video/reel channels) | **+0.5 bonus (Algorithmic Breakout)** |
 | **Mobile Conversion Bonus:** Flagship app rating $\ge 4.4 / 5.0$ AND downloads bracket $\ge 1\text{M}+$ downloads | **+0.5 bonus** |
 | Generic link-in-bio (pointing only to homepage without context) | 6.0 – 8.4 |
 | Dead links, 404 targets, or missing calls to action | 1.0 – 5.9 |
 | Confirmed native advertising badge in DOM (`ad_badge_present: true`) | Documented as verified paid media |
 | Anomalous view velocity without DOM badge | Must use conditional formulation: *estimated amplified reach* (*portée amplifiée estimée*) with methodological caveat |
 
+$$\text{Algorithmic Reach Multiplier (ARM)} = \frac{\text{Average Video Views}}{\text{Total Followers}}$$
+*(Boundary condition: If Total Followers = 0 or if channel has 0 video publications, ARM = 0.0x / Not applicable. Do not divide by zero).*
+
 ---
 
-## 2. Composite Global Score Formula
+## 2. Strategic Archetype Leniency & North Star Weighting
+
+Audited brands are categorized into one of 4 Strategic Archetypes, which calibrates platform leniency and elevates 2 North Star metrics:
+
+| Strategic Archetype | Representative Brands | Priority North Star Metrics | Platform Leniency & Tolerance Rule |
+|---|---|---|---|
+| **`B2B_THOUGHT_LEADERSHIP`** | Banque Triodos, consulting, B2B SaaS, fintech | **ARR** ($\ge 10.0\%$), **Brand Conversational Loop Rate** (debates/critiques) | Absence of TikTok or viral video is **NOT penalized**. Radio silence on critical debates heavily penalizes Pillar 1. |
+| **`CULTURAL_BREAKOUT`** | Red Bull, Duolingo, DTC brands, beverages, entertainment | **ARM** ($\ge 2.0\times$), **Share / Repost Velocity** | Absence of LinkedIn is **NOT penalized**. Absolute priority to creativity and algorithmic velocity (Pillars 3 and 4). |
+| **`PRODUCT_RETENTION`** | Retail/mobile banks, telecoms, utility apps | **App Store Health** ($\ge 4.4/5$), **Developer Response Rate to 1-2★ reviews** | Severe capping at 6.5/10 if mobile app is neglected or if customer complaints under social posts are ignored. |
+| **`EMPLOYER_BRAND`** | AG Insurance, industrial conglomerates, multi-brands | **Share of Employee/Ambassador Verbatims**, **Linguistic/Territorial Parity (FR/NL)** | Evaluation centers on internal pride, employee advocacy, and regional equilibrium. |
+
+---
+
+## 3. Composite Global Score Formula
 
 $$\text{Global Consistency Score (/10)} = \frac{\text{P1 (ToV)} + \text{P2 (Dark Social)} + \text{P3 (Velocity)} + \text{P4 (Conversion)}}{4}$$
 
@@ -73,7 +94,7 @@ $$\text{Global Consistency Score (/10)} = \frac{\text{P1 (ToV)} + \text{P2 (Dark
 
 ---
 
-## 3. Gap Resolution Matrix & Statuses
+## 4. Gap Resolution Matrix & Statuses
 
 Every identified brand gap is assigned one of three deterministic lifecycle statuses:
 

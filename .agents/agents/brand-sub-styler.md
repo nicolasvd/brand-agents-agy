@@ -67,9 +67,10 @@ Generate the Executive Reverse Brand Book Hub:
   - In top navigation `.nav-actions`: provide links to `STRATEGIC-AUDIT.html`, `markdown/REVERSE-BRAND-BOOK.md` (`📝 Brand Book MD`), and `markdown/STRATEGIC-AUDIT.md` (`📊 Strategic Audit MD`).
   - In page footer: display reference to `reports/{slug}/markdown/REVERSE-BRAND-BOOK.md`.
 - **Content Requirements:**
-  - Header Hero: Brand name, tagline, Social Consistency Score (/10) with qualitative badge (e.g. `<span class="score-badge">6.6 / 10 · Moderate Cohesion (+0.1)</span>`), audit date. Strictly NO letter grade.
+  - **Header Hero & Strategic Archetype:** Brand name, tagline, Social Consistency Score (/10) with qualitative badge (e.g. `<span class="score-badge">6.6 / 10 · Moderate Cohesion (+0.1)</span>`), and **Strategic Archetype Badge** (`.badge-archetype`, e.g. `B2B_THOUGHT_LEADERSHIP`). Strictly NO letter grade.
+  - **North Star Intelligence Showcase (`.kpi-intelligence-grid`):** Render 2 priority North Star metric cards (`.kpi-calculated-card`) with calculated values (e.g. ARR, ARM, or Store Care), status pill (`OPTIMAL`, `ACCEPTABLE`, `DEFICIT`), and empirical ground truth context (`.kpi-raw-context`).
   - Stated Brand Promise & Commercial Pillars: Extracted from Section 1 of the Markdown source.
-  - De-facto Design System: Color swatches (`#004b87`, `#0072ce`, `#78be20`, `#ff6b35`, `#f1f5f9`), typography stack, and visual style notes.
+  - De-facto Design System: Color swatches, typography stack, and visual style notes.
   - Visual Footprint Showcase: High-definition root header screenshot (`assets/screenshot-hub.png`), with live value proposition.
   - Channel Matrix Grid: Display cards for all audited channels (social channels and mobile stores `channels/appstore.html`, `channels/playstore.html` when present):
     * For social channels: follower counts, posting cadence, and link to spoke HTML.
@@ -119,6 +120,8 @@ Generate the in-depth Strategic Audit Critique:
   - Header Hero & Overall Scorecard (/10, NO letter grade).
   - **Multi-Audit Scorecard Progression Table:** Multi-audit historical scores (/10, NO Grade column), date, mode, pillar breakdowns, and score deltas.
   - Detailed Analysis of the 4 Pillars (ToV & Community Reception, Dark Social & Omnichannel, Velocity & Frequency, Conversion & Product).
+  - **Strategic Blindspots & Content White Spaces (Micro-Change 2):**
+    Render a dedicated section (`.white-space-grid`) with 3 to 5 `.white-space-card` components showcasing unexplored brand themes and concrete campaign concepts.
   - **Prior Gap Tracking & Resolution Table:** Tabular tracking of each gap with status badge (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`) and trajectory notes.
   - Actionable Strategic Recommendations (4-tier format).
 
@@ -136,11 +139,13 @@ For each audited social platform (e.g. `linkedin`, `instagram`, `facebook`, `tik
 - **Content Requirements:**
   - Breadcrumb navigation (`← All Brands Dashboard / {Brand Name} ({slug}) / Platform Report`).
   - Channel header showcase with verified handle, follower count, posting cadence, bio quote, and header screenshot (`../assets/screenshot-{platform}.png`).
-  - **Stat Cards (Resonance Metrics, ZERO Following):**
-    * Facebook: Page Likes, Total Followers, Top Reactions Mix, Total Shares
-    * TikTok: Followers, Total Video Likes, Top Video Views, Total Videos
-    * Instagram: Followers, Total Publications, Story Highlights, Reels Viewership
-    * YouTube: Subscribers, Cumulative Channel Views, Total Videos, Top Video Views
+  - **Calculated Intelligence & Resonance Metrics (ZERO Following):**
+    * Display Calculated KPI Badges: `.badge-arr` (Active Resonance Ratio) and `.badge-arm` (Algorithmic Reach Multiplier) when applicable, alongside `.kpi-raw-context` context pills preserving the raw numbers.
+    * Platform stat cards:
+      - Facebook: Page Likes, Total Followers, Top Reactions Mix, Total Shares
+      - TikTok: Followers, Total Video Likes, Top Video Views, Total Videos
+      - Instagram: Followers, Total Publications, Story Highlights, Reels Viewership
+      - YouTube: Subscribers, Cumulative Channel Views, Total Videos, Top Video Views
   - **Cumulative Scanned Posts Table (`.table-container`):**
     * Columns: `Date / Récence`, `Format`, `Pilier de Contenu`, `Message Clé & Verbatim Scanné`, `Preuve & Lien` (width: ~150px), `Résonance & Engagement`.
     * **Dual Proof & Link Cell (`.post-preview-cell`):**
@@ -151,7 +156,14 @@ For each audited social platform (e.g. `linkedin`, `instagram`, `facebook`, `tik
   - **Qualitative Sémantique Section (Top 3 Major Posts):**
     * For each Top Post card (`.box-item`), organize the layout into two columns using `.top-post-body`:
       - **Sidebar Media Column (`.top-post-media`):** The post screenshot thumbnail (`.post-thumb-link`) linking to the high-res PNG offline proof in a new tab, with the live post button (`.post-canonical-btn`) directly underneath.
-      - **Content & Verbatims Column (`.top-post-content`):** Post hook / editorial quote, followed by the authentic 1st-level comment verbatims extracted by the scanner with brand reply indicator.
+      - **Content, Dialogue & Optimization Column (`.top-post-content`):**
+        * Post hook / editorial quote.
+        * **Conversational Thread (`.conversational-thread`):** For each sampled comment, render `.comment-user-box` (author, quote, likes) and, if an official brand reply exists, a nested `.brand-reply-box` with brand name, reply text, date, and `.stance-badge` (`.stance-dialogue`, `.stance-deflection`, `.stance-template`, or `.stance-silence`).
+        * **Micro-Change 1: Tactical Re-Hook & Algorithmic Boost (`.tactical-rehook-box`):**
+          A concrete tactical optimization card containing:
+          - Header: `⚡ Tactical Re-Hook & Algorithmic Boost` with target KPI (`+ ARR` or `+ ARM`).
+          - Actionable recommendation explaining what friction to remove.
+          - `.tactical-rehook-diff`: Visual comparison showing current hook vs re-hooked version or suggested brand reply starter.
 
 #### 4.2. Mobile App Store Spokes (`channels/appstore.html` & `channels/playstore.html`)
 For each audited mobile store channel (`appstore`, `playstore`):

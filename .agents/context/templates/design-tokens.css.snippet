@@ -998,6 +998,13 @@ tbody tr:hover {
     width: 100%;
     max-width: 200px;
   }
+  .kpi-intelligence-grid,
+  .white-space-grid {
+    grid-template-columns: 1fr;
+  }
+  .brand-reply-box {
+    margin-left: 0.75rem;
+  }
 }
 
 .failure-grid {
@@ -1127,6 +1134,225 @@ details.collapsible-section[open] summary {
 
 details.collapsible-section .collapsible-body {
   padding: 1rem 1.25rem;
+}
+
+/* === Calculated Intelligence Layer & Tactical Components === */
+.kpi-intelligence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.kpi-calculated-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.kpi-calculated-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-border);
+}
+
+.kpi-calculated-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+.badge-arm {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  background: var(--accent-light);
+  color: var(--accent);
+  border: 1px solid var(--primary-border);
+}
+
+.badge-arr {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  background: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+}
+
+.badge-archetype {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--surface-subtle);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+}
+
+.kpi-raw-context {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--surface-subtle);
+  border: 1px dashed var(--border);
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+}
+
+/* Conversational Thread & Stance */
+.conversational-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.comment-user-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.brand-reply-box {
+  background: var(--surface-subtle);
+  border: 1px solid var(--primary-border);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 10px 10px 0;
+  margin-left: 1.5rem;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.stance-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stance-dialogue {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.stance-deflection {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid var(--warning-border);
+}
+
+.stance-template {
+  background: var(--surface-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.stance-silence {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
+}
+
+/* Tactical Re-Hook & Algorithmic Boost (Micro-Change 1) */
+.tactical-rehook-box {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-subtle) 100%);
+  border: 1px solid var(--primary-border);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tactical-rehook-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tactical-rehook-body {
+  font-size: 0.8125rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.tactical-rehook-diff {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text);
+  margin-top: 0.25rem;
+}
+
+/* White Space Opportunity Cards (Micro-Change 2) */
+.white-space-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.white-space-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--brand-coral);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  box-shadow: var(--card-shadow);
 }
 
 /* Print Optimization (PDF Export) */

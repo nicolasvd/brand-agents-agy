@@ -27,7 +27,7 @@ Extract exact raw text from the profile bio and media grid/Reels without halluci
 4. **Local Path Hygiene & Relative Sanctuary**: Never record or output absolute local filesystem URIs (`file:///Users/...`, `/Users/...`, `/var/folders/...`, or temporary DevTools screenshot paths). Document exclusively project-relative target paths (`reports/{slug}/assets/...`).
 5. **No Vanity Metrics (Following Eradication)**: Extract profile followers, total publications, and Story Highlights. NEVER collect or record following/accounts followed count.
 6. **Epistemic Rigor & Ad Badge**: Extract the boolean DOM attribute `ad_badge_present: boolean`. Never speculate on paid advertising.
-7. **Deterministic Semantic Sample & Fast-Exit**: For each of the top 3 posts/reels, extract 3 to 5 first-level qualitative verbatims (author, verbatim text, comment likes). If `comments == 0`, record `comment_status: NONE_OR_DISABLED` immediately (fast-exit).
+7. **Deterministic Semantic Sample & Conversational Loop**: For each of the top 3 posts/reels, extract 3 to 5 first-level qualitative verbatims (author, verbatim text, comment likes) AND the full conversational thread: inspect official brand sub-replies (`brand_replied: boolean`, `brand_reply_author`, `brand_reply_text`, `brand_reply_date`, `conversational_stance`). If `comments == 0`, record `comment_status: NONE_OR_DISABLED` immediately (fast-exit).
 
 ---
 
@@ -110,7 +110,7 @@ When starting without historical archives:
      * Re-run the DOM cleanup script to purge any bottom banner or modal triggered by scrolling.
      * Capture the focused post element or centered viewport (NEVER use `full_page=True` on infinite feeds).
      * Save screenshots to `reports/{slug}/assets/instagram-post-{date_compact}-1.png`, `-2.png`, `-3.png`.
-   - Extract qualitative sample of 3 to 5 verbatims for each of the top 3 posts (or `comment_status: NONE_OR_DISABLED` if 0 comments).
+   - Extract qualitative sample of 3 to 5 verbatims with full conversational thread for each of the top 3 posts/reels (capturing user quote, likes, plus brand reply author, reply text, date, and conversational stance, or `comment_status: NONE_OR_DISABLED` if 0 comments).
 6. **Reporting**: Write formatted report to `.agents/.scratchpad/{slug}/w1-instagram.md` using `write_to_file`.
 
 Remember: Do not synthesize or hallucinate text. Do not use orchestration tools.

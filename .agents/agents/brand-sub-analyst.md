@@ -55,33 +55,60 @@ Identify the audit mode specified in the prompt (`AUDIT_MODE = INCREMENTAL_UPDAT
 ### Step 2: Strategic & Longitudinal Diagnosis
 Analyze the empirical findings across 4 core dimensions:
 
-1. **Real Tone of Voice (ToV) & Community Reception (Pillar 1):**
+1. **Strategic Archetype Deduction & North Star Calibration:**
+   - From the Web Hub crawl (`w1-hub.md`), corporate mission, and channel footprint, deduce one of the 4 standardized Strategic Archetypes:
+     * `B2B_THOUGHT_LEADERSHIP` (B2B, consulting, ethics/impact banks, SaaS): Priority North Stars = **ARR** ($\ge 10\%$) and **Brand Conversational Loop Rate** (debates/critiques). Absence of TikTok/viral video is NOT penalized. Radio silence on critical debates heavily penalizes Pillar 1.
+     * `CULTURAL_BREAKOUT` (DTC, beverages, entertainment, fashion): Priority North Stars = **ARM** ($\ge 2.0\times$) and **Share / Repost Velocity**. Absence of LinkedIn is NOT penalized. Priority on viral velocity (Pillars 3 & 4).
+     * `PRODUCT_RETENTION` (Retail/mobile banks, telecoms, utility apps): Priority North Stars = **App Store Health** ($\ge 4.4/5$) and **Developer Response Rate to 1-2★ reviews**. Capped at 6.5/10 if mobile app is neglected or if customer complaints under social posts are ignored.
+     * `EMPLOYER_BRAND` (Industrial conglomerates, multi-brands): Priority North Stars = **Share of Employee/Ambassador Verbatims** and **Linguistic/Territorial Parity (FR/NL)**. Focus on internal cohesion, employee advocacy, and regional equilibrium.
+   - Automatically select 2 North Star metrics for the brand based on its deduced archetype.
+
+2. **Real Tone of Voice (ToV) & Community Reception (Pillar 1):**
    - Confront stated positioning with actual tone on LinkedIn (corporate/B2B), Instagram (lifestyle/sport), TikTok, etc.
-   - **Calculate Conversational Engagement Ratio:**
-     $$\text{Conversational Ratio} = \frac{\text{Total Comments}}{\text{Total Reactions}}$$
-     If the ratio is $< 0.5\%$, record a presumption of severe moderation or audience passivity.
-   - **Semantic confrontation:** Compare official slogans with real verbatims collected by scanners. Detect if social comments act as an unhandled overflow support channel.
+   - **Calculated Intelligence Layer (ARR & ARM):**
+     * **Active Resonance Ratio (ARR):**
+       $$\text{ARR} = \frac{\text{Total Comments} + \text{Total Shares/Reposts}}{\text{Total Reactions}}$$
+       *(Boundary guard: If Total Reactions = 0, record ARR = 0.0% or Not applicable. Do not divide by zero).*
+       Classify: $\ge 10\%$ (High Substantive Resonance), $3-9.9\%$ (Healthy Baseline), $1-2.9\%$ (Passive Leaning), $< 1.0\%$ (⚠️ Severe Passivity / Vanity Alert).
+     * **Conversational Ratio:** $\frac{\text{Total Comments}}{\text{Total Reactions}}$.
+     * **Conversational Loop & Brand Stance:** Inspect the Top 3 posts per channel for brand responses to customer verbatims. Classify stance: `Constructive Dialogue`, `Support Deflection`, `Automated Template`, or `Radio Silence`. If 0 substantive comments exist, record Loop Rate as `Not applicable` and bypass penalty.
    - **Mobile App Store Customer Care:** Inspect average star rating on Apple App Store & Google Play Store, along with developer response rate to critical 1-star / 2-star reviews.
    - **Pillar 1 Capping Rule:** Pillar 1 score is capped at **6.5 / 10 maximum** if:
-     * Recurring customer complaints or support frictions remain unaddressed by the brand in the social comment sample, OR
+     * Aggregate $\text{ARR} < 1.0\%$ (audience passivity or vanity reach), OR
+     * Recurring customer complaints or support frictions remain unaddressed by the brand (`Radio Silence`), OR
      * Average mobile app rating is $< 3.0 / 5.0$, OR
      * Developer response rate to critical 1-star / 2-star app store reviews is $< 20\%$ (demonstrating customer care abandonment, when critical 1-2★ reviews are present).
 
-2. **Omnichannel Consistency & Dark Social (Pillar 2):**
+3. **Omnichannel Consistency & Dark Social (Pillar 2):**
    - Re-evaluate root domain Open Graph tags (`og:title`, `og:description`, `og:image`, `og:url`) and Twitter cards.
    - Check if dark social sharing preview is broken or resolved (`FAILED` | `RESOLVED`).
    - Audit cross-platform handle consistency across social networks and app store developer signatures.
+   - Apply archetype leniency: do NOT penalize non-core platforms outside the archetype's imperative.
 
-3. **Publication Velocity & Engagement Trajectories (Pillar 3):**
+4. **Publication Velocity & Engagement Trajectories (Pillar 3):**
    - **Velocity over Elapsed Window:** In incremental mode, calculate exact posting frequency during the window between `latest_audit_date` and current `{date}`.
    - **Engagement Trajectory:** For posts in `top_posts_to_recheck`, calculate the delta ($\Delta$ reactions, $\Delta$ comments, $\Delta$ shares/views) to evaluate content half-life and virality momentum.
    - **Mobile Release Vitality:** Evaluate mobile app update recency. Version release $< 45$ days denotes strong product vitality (+0.5 bonus); updates $> 6$ months signal release stagnation / fading cadence.
 
-4. **Conversion & Product Narrative (Pillar 4):**
+5. **Conversion & Product Narrative (Pillar 4):**
    - Evaluate conversion paths, link-in-bio infrastructure, and discovery mechanisms.
+   - **Algorithmic Reach Multiplier (ARM):**
+     $$\text{ARM} = \frac{\text{Average Video Views}}{\text{Total Followers}}$$
+     *(Boundary guard: If Total Followers = 0 or if channel has 0 video publications, record ARM = 0.0x / Not applicable. Do not divide by zero).*
+     If $\text{ARM} \ge 2.0\times$ on video/reel channels, award a **+0.5 bonus** (Algorithmic Breakout beyond follower base).
    - **Mobile Conversion Bonus:** If the brand's flagship application achieves an average rating $\ge 4.4 / 5.0$ AND a public download tier $\ge 1\text{M}+$ downloads (on Play Store), award **+0.5 bonus** for strong product adoption and commercial validation.
 
-5. **Multi-Audit Scorecard Progression & Gap Resolution (Standardized 10-Point Scale):**
+6. **Micro-Change 1: Post Micro-Optimizations (Tactical Re-Hooks):**
+   - For each of the Top 3 posts per social channel, formulate an actionable tactical recommendation ("Tactical Re-Hook & Algorithmic Boost"):
+     * Diagnostic of current friction (e.g. passive statement, closed question, missing CTA, unpinned winner).
+     * Specific recommendation to improve ARR or ARM (e.g. hook rewrite, open debate starter, community reply, UGC prompt).
+     * Embed these recommendations directly into `w2-draft-audit.md` and channel archives so Styler compiles them into `.tactical-rehook-box`.
+
+7. **Micro-Change 2: Strategic Blindspots & Content White Spaces:**
+   - Identify 3 to 5 unexplored themes/angles aligned with brand mission/purpose but absent or neglected on social channels.
+   - For each theme, propose concrete concepts for leadership articles, video series, or campaigns.
+
+8. **Multi-Audit Scorecard Progression & Gap Resolution (Standardized 10-Point Scale):**
    - **Scorecard Progression Table (Strictly without US letter grades):**
      | # Audit | Audit Date | Audit Mode | Global Score (/10) | ToV (P1) | Dark Social (P2) | Velocity (P3) | Conversion (P4) | Trajectory |
      | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
@@ -108,10 +135,13 @@ Save to `.agents/.scratchpad/{slug}/w2-draft-audit.md`:
 - Document title with audit date (e.g. `# Social Media Strategic Audit — {brand} ({date})`)
 - Executive Summary & Multi-Audit Scorecard Progression Table (10-Point Scale, Zero Letter Grades)
 - Detailed analysis of the 4 dimensions:
-  1. Real Tone of Voice (ToV) & Community Reception (Conversational ratio, verbatims, mobile review health & developer responsiveness)
-  2. Omnichannel Consistency & Dark Social
+  1. Real Tone of Voice (ToV) & Community Reception (Conversational ratio, ARR, verbatims & conversational loop, mobile review health & developer responsiveness)
+  2. Omnichannel Consistency & Dark Social (with Archetype tolerance context)
   3. Fading Frequency & Velocity (with post-level trajectory metrics & app release cadence)
-  4. Content Strategy & Prior Gap Tracking Table (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`)
+  4. Content Strategy & Resonance (ARM analysis, conversion tunnels)
+- **Strategic Blindspots & Content White Spaces (Micro-Change 2):**
+  A dedicated section identifying 3 to 5 unexplored themes/angles aligned with brand mission with concrete concepts for leadership articles or campaigns.
+- Prior Gap Tracking Table (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`)
 - **Actionable Tactical Recommendations (Standardized 4-Tier Blueprint):**
   For each persistent gap (`🔴 PERSISTENT`) or gap in progress (`🟡 IN_PROGRESS`), write according to:
   - **Tier 1 — Business Diagnostic & Friction Point**
@@ -125,6 +155,15 @@ Save to `.agents/.scratchpad/{slug}/w2-draft-brandbook.md`. This file is the per
   * `slug`: brand slug
   * `brand_name`: official brand name
   * `primary_url`: root portal URL
+  * `strategic_archetype`: "B2B_THOUGHT_LEADERSHIP" # B2B_THOUGHT_LEADERSHIP | CULTURAL_BREAKOUT | PRODUCT_RETENTION | EMPLOYER_BRAND
+  * `primary_brand_objective`: "Pionnier de la transition éthique et du leadership d'impact B2B"
+  * `north_star_metrics`:
+    - `metric_name`: "Active Resonance Ratio (ARR)"
+      `observed_value`: "12.4%"
+      `status`: "OPTIMAL" # OPTIMAL | ACCEPTABLE | DEFICIT
+    - `metric_name`: "Brand Conversational Loop Rate"
+      `observed_value`: "0% reply on critical debates"
+      `status`: "DEFICIT"
   * `first_audit_date`: ISO date
   * `latest_audit_date`: "{date}"
   * `total_audits`: incremented count
@@ -145,7 +184,8 @@ Save to `.agents/.scratchpad/{slug}/w2-draft-brandbook.md`. This file is the per
         score: 6.6
         mode: INCREMENTAL_UPDATE
     ```
-- **Section 1: Stated Brand Identity, Mission & Positioning:**
+- **Section 1: Stated Brand Identity, Mission & Strategic Archetype:**
+  * **Strategic Archetype & North Star Alignment:** Archetype rationale and key North Star metrics highlighted.
   * **Primary Brand Signatures & Slogans:** Exact verbatims across detected languages (FR / NL / EN / DE).
   * **Brand Purpose & Core Promise:** Ethical, commercial, or operational mandate as stated on official portals.
   * **Commercial Pillars & Scale:** Verified business lines, key operational metrics (founding year, customer count, loan portfolio, certifications like B Corp).
