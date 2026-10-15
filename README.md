@@ -4,7 +4,7 @@
 
 # AI Brand Strategy Team — Antigravity Native
 
-[![Release](https://img.shields.io/badge/Release-v1.0.1-blue.svg?style=flat-square)](https://github.com/nicolasvd/brand-agents-agy/releases)
+[![Release](https://img.shields.io/badge/Release-v1.1.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/brand-agents-agy/releases)
 [![Runtime](https://img.shields.io/badge/Runtime-Google%20Antigravity%202.0-4285F4.svg?style=flat-square)](https://antigravity.google)
 [![Architecture](https://img.shields.io/badge/Architecture-Hub%20%26%20Spoke%20Declarative-success.svg?style=flat-square)](#-hub--spoke-architecture)
 [![Engine](https://img.shields.io/badge/Engine-Multi--Model%20AI-8E75C4.svg?style=flat-square)](#)
@@ -13,7 +13,7 @@
 
 > 🇬🇧 **English** | [🇫🇷 Français](README.fr.md)
 
-Autonomous Brand Strategy and Omnichannel Social Media Intelligence framework engineered natively for **Google Antigravity (Standalone / v2.0)** and powered by **Multi-Model AI**. Starting from a single company URL, it explores the brand's digital footprint, crawls active social channels via human-simulated browser sessions, extracts authentic user verbatims, audits Dark Social previews, and delivers agency-grade visual reports alongside permanent Markdown archives.
+Autonomous Brand Strategy and Omnichannel Social Media Intelligence framework engineered natively for **Google Antigravity (Standalone / v2.0)** and powered by **Multi-Model AI**. Starting from a single company URL, it explores the brand's digital footprint, crawls active social channels via human-simulated browser sessions, extracts authentic user verbatims and official conversational replies, audits Dark Social previews, and delivers agency-grade visual reports alongside permanent Markdown archives.
 
 ---
 
@@ -61,40 +61,46 @@ flowchart TD
 
     subgraph Wave2["Wave 2: Strategic Synthesis & Longitudinal Intelligence"]
         D1 & D2 & D3 & D4 & D5 & D6 & D7 & D8 --> E["brand-sub-analyst"]
-        E --> F["Conversational Ratio & Sentiment Confrontation"]
-        E --> G["Longitudinal Velocity & Trajectory Deltas (Δ)"]
-        E --> H["Gap Resolution Matrix & 4-Tier Blueprint"]
-        F & G & H --> I["Synthesized Drafts: w2-draft-audit.md + w2-draft-brandbook.md"]
+        E --> F["Calculated Intelligence: ARM, ARR & Conversational Loop Rate"]
+        E --> G["Strategic Objective Archetype & North Star Auto-Selection"]
+        E --> H["Post Micro-Optimizations & Strategic Content White Spaces"]
+        E --> I["Longitudinal Velocity & Trajectory Deltas (Δ)"]
+        F & G & H & I --> J["Synthesized Drafts: w2-draft-audit.md + w2-draft-brandbook.md"]
     end
 
     subgraph Wave3["Wave 3: Deliverable Promotion & Async HTML Compilation"]
-        I --> J["Promotion to reports/{slug}/markdown/<br/>(Brand Book, Strategic Audit & Channel Archives)"]
-        J --> K["brand-sub-styler (Async Background Compiler)"]
-        K --> L["OVERVIEW.html (Executive Hub)"]
-        K --> M["STRATEGIC-AUDIT.html (Critique & Scorecard)"]
-        K --> N["channels/*.html (Dedicated Social & App Store Spokes)"]
-        K --> O["reports/index.html (Global Cockpit Update)"]
-        K --> P[".done Sentinel & Automatic Scratchpad GC"]
+        J --> K["Promotion to reports/{slug}/markdown/<br/>(Brand Book, Strategic Audit & Channel Archives)"]
+        K --> L["brand-sub-styler (Async Background Compiler)"]
+        L --> M["OVERVIEW.html (Executive Hub with Archetype & North Stars)"]
+        L --> N["STRATEGIC-AUDIT.html (Critique, Scorecard & White Spaces)"]
+        L --> O["channels/*.html (Spokes with Calculated KPIs & Re-Hook Boxes)"]
+        L --> P["reports/index.html (Global Cockpit Update)"]
+        L --> Q[".done Sentinel & Automatic Scratchpad GC"]
     end
 ```
 
 ### Wave 1: The Zero-Knowledge Footprint
 - **`brand-sub-hub-crawler`**: Navigates to the brand homepage with full SPA hydration. Captures above-the-fold visual proof, extracts Dark Social Open Graph metadata (`og:*`, `twitter:*`), scans `<head>` for iOS Smart App Banners (`<meta name="apple-itunes-app">`), and maps all outbound social channels and mobile app store links.
 - **Parallel Browser Scanners**: Drive human-simulated Chrome browser sessions to bypass anti-scraping walls on LinkedIn, Instagram, TikTok, Facebook, YouTube, X, Apple App Store, and Google Play Store.
-  - Social scanners extract verified community metrics (strictly no vanity following) and sample 3 to 5 authentic qualitative verbatims (`comment-sampling`).
+  - Social scanners extract verified community metrics (strictly no vanity following), capture full conversational interaction threads (user verbatim + official brand reply author, text, date, and 4-tier conversational stance via `comment-sampling`), and capture thumbnail screenshots of top posts.
   - Mobile store scanners audit application rating (/5.0), rating volume, public download tiers (`1M+`, `500k+`), version release notes, changelog cadence, and user reviews with official developer replies.
   - Fast-exit sentinel (`NONE_OR_DISABLED`, `NONE_OR_EMPTY`) when comments or reviews are absent.
 
 ### Wave 2: Strategic & Longitudinal Evaluation
 - **`brand-sub-analyst`**: Ingests Wave 1 findings and historical Markdown archives.
-  - Evaluates Tone of Voice (ToV) coherence and calculates Conversational Ratio ($\frac{\text{Comments}}{\text{Reactions}}$).
-  - Enforces Tone of Voice capping (max 6.5/10) if customer support complaints appear in comments, or if flagship mobile app rating $< 3.0 / 5.0$, or developer reply rate to critical reviews $< 20\%$.
-  - Awards commercial conversion bonus (+0.5 pt) for high-performing mobile apps ($\ge 4.4 / 5.0$ and $\ge 1\text{M}+$ downloads).
-  - Tracks prior gaps across audits (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`).
-  - Writes a comprehensive 4-Tier Action Blueprint for every unaddressed gap.
+  - **Strategic Objective Archetypes**: Deduces one of 4 archetypes (`B2B_THOUGHT_LEADERSHIP`, `CULTURAL_BREAKOUT`, `PRODUCT_RETENTION`, `EMPLOYER_BRAND`) and activates tailored North Star metrics and platform leniency rules.
+  - **Calculated Intelligence Layer**: Calculates Algorithmic Reach Multiplier ($\text{ARM} = \frac{\text{Average Video Views}}{\text{Followers}}$), Active Resonance Ratio ($\text{ARR} = \frac{\text{Comments} + \text{Shares}}{\text{Total Reactions}}$), and Brand Conversational Loop Rate, while keeping raw empirical metrics preserved in context.
+  - **Post Micro-Optimizations**: Delivers concrete tactical recommendations (*Tactical Re-Hook & Algorithmic Boost*) for the Top 3 posts per channel to improve ARR or ARM.
+  - **Content White Spaces**: Identifies 3 to 5 unexplored brand angles and territories with actionable leadership article and campaign concepts.
+  - **Scoring & Guardrails**: Enforces Tone of Voice & Resonance capping (max 6.5/10) if $\text{ARR} < 1.0\%$, customer support complaints appear in comments, or mobile app rating $< 3.0 / 5.0$. Awards algorithmic reach bonus (+0.5 pt) for $\text{ARM} \ge 2.0\times$ and commercial conversion bonus for high-performing mobile apps.
+  - Tracks prior gaps across audits (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`) and provides a 4-Tier Action Blueprint.
 
 ### Wave 3: Deliverable Promotion & Asynchronous HTML Compilation
-- **`brand-sub-styler`**: Deterministic, offline compiler. Reads directly from permanent Markdown archives in `reports/{slug}/markdown/` and builds agency-grade HTML views with shared design tokens and bi-directional source linking. Generates platform spokes for all detected social networks and mobile stores (`channels/appstore.html`, `channels/playstore.html`), embedding changelog boxes and developer reply cards. Automatically bootstraps `reports/index.html` on first run.
+- **`brand-sub-styler`**: Deterministic, offline compiler. Reads directly from permanent Markdown archives in `reports/{slug}/markdown/` and builds agency-grade HTML views with shared design tokens and bi-directional source linking:
+  - **Executive Hub (`OVERVIEW.html`)**: Features the deduced Strategic Archetype badge, North Star metrics showcase, de-facto design tokens, Dark Social simulation, and Channel Matrix Grid.
+  - **Strategic Audit (`STRATEGIC-AUDIT.html`)**: Features the 10-point scorecard, qualitative critiques, Content White Spaces grid, prior gap resolution matrix, and 4-tier blueprint.
+  - **Channel Spokes (`channels/*.html`)**: Features dual-layer calculated KPI cards with raw empirical context pills, thumbnail post screenshots, full conversational reply threads, and tactical re-hook boxes.
+  - Automatically bootstraps `reports/index.html` on first run.
 
 ---
 
@@ -152,10 +158,10 @@ All appraisals use the standardized 10-point scale (US letter grades are strictl
 
 $$\text{Global Consistency Score (/10)} = \frac{\text{P1 (ToV)} + \text{P2 (Dark Social)} + \text{P3 (Velocity)} + \text{P4 (Conversion)}}{4}$$
 
-- **Pillar 1: Tone of Voice & Community Reception (0–10):** Semantic alignment, conversational ratio ($< 0.5\%$ alert), customer support overflow detection. Capped at 6.5/10 if unresolved complaints exist, mobile app average rating $< 3.0 / 5.0$, or developer reply rate to critical reviews $< 20\%$.
+- **Pillar 1: Tone of Voice & Community Reception (0–10):** Semantic alignment, active resonance ratio ($\text{ARR} = \frac{\text{Comments} + \text{Shares}}{\text{Total Reactions}}$), conversational loop stance, customer support overflow detection. Capped at 6.5/10 if $\text{ARR} < 1.0\%$ (audience passivity), unresolved complaints exist, mobile app average rating $< 3.0 / 5.0$, or developer reply rate to critical reviews $< 20\%$.
 - **Pillar 2: Omnichannel Consistency & Dark Social (0–10):** Visual identity cohesion, complete Open Graph tags, private sharing simulation (`RESOLVED` vs `FAILED`), store developer naming consistency.
 - **Pillar 3: Publication Velocity & Cadence (0–10):** Publishing frequency, multi-format distribution (% Reels/Shorts), mobile release vitality (updated $< 45$ days: +0.5 bonus, $> 6$ months: penalty).
-- **Pillar 4: Conversion & Product Narrative (0–10):** Bio link infrastructure, clear commercial CTA, mobile conversion bonus (+0.5 pt if app rating $\ge 4.4 / 5.0$ and $\ge 1\text{M}+$ downloads), paid vs organic epistemic rigor (`ad_badge_present`).
+- **Pillar 4: Conversion & Product Narrative (0–10):** Bio link infrastructure, clear commercial CTA, Algorithmic Reach Multiplier ($\text{ARM} \ge 2.0\times$: +0.5 pt bonus), mobile conversion bonus (+0.5 pt if app rating $\ge 4.4 / 5.0$ and $\ge 1\text{M}+$ downloads), paid vs organic epistemic rigor (`ad_badge_present`).
 
 ### Qualitative Scale
 - **8.0 – 10.0 / 10:** *Excellence & Strong Cohesion* (`.score-high`)

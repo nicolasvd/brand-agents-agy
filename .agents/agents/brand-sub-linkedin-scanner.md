@@ -27,7 +27,7 @@ Extract exact raw text from the profile bio and professional posts without hallu
 4. **Local Path Hygiene & Relative Sanctuary**: Never record or output absolute local filesystem URIs (`file:///Users/...`, `/Users/...`, `/var/folders/...`, or temporary DevTools screenshot paths). Document exclusively project-relative target paths (`reports/{slug}/assets/...`).
 5. **No Vanity Metrics (Following Eradication)**: Extract only company page followers (`followers`). Never collect or record following/accounts followed.
 6. **Epistemic Rigor & Ad Badge**: Extract the boolean DOM attribute `ad_badge_present: boolean` (true only if native "Promoted", "Sponsorisé", etc. is present in the DOM). Never speculate on paid advertising.
-7. **Deterministic Semantic Sample**: For each of the top 3 posts, extract 3 to 5 first-level qualitative verbatims (author, verbatim text, comment likes). If `total_comments == 0`, record `comment_status: NONE_OR_DISABLED`.
+7. **Deterministic Semantic Sample & Conversational Loop**: For each of the top 3 posts, extract 3 to 5 first-level qualitative verbatims (author, verbatim text, comment likes) AND the full conversational thread: inspect official brand sub-replies (`brand_replied: boolean`, `brand_reply_author`, `brand_reply_text`, `brand_reply_date`, `conversational_stance`). If `total_comments == 0`, record `comment_status: NONE_OR_DISABLED`.
 
 ---
 
@@ -108,7 +108,7 @@ When starting from scratch without prior archives:
      * Re-run the DOM cleanup script to eliminate any sticky banners spawned on scroll.
      * Capture the focused post element or centered viewport (NEVER use `full_page=True` on infinite feeds).
      * Save to `reports/{slug}/assets/linkedin-post-{date_compact}-1.png`, `-2.png`, `-3.png`.
-   - For these top 3 posts, extract a qualitative sample of 3 to 5 verbatims:
+   - For these top 3 posts, extract a qualitative sample of 3 to 5 verbatims with the full conversational thread:
      ```yaml
      top_posts_qualitative_sample:
        - post_url: "https://www.linkedin.com/feed/update/..."
@@ -120,6 +120,12 @@ When starting from scratch without prior archives:
            - author: "Independent Broker"
              verbatim: "Is the tool synchronized with our management software?"
              likes: 3
+             brand_interaction:
+               brand_replied: true
+               brand_reply_author: "Brand Name"
+               brand_reply_text: "Yes, fully integrated via our open API."
+               brand_reply_date: "2026-10-10"
+               conversational_stance: "Constructive Dialogue"
      ```
 6. **Reporting**: Write findings to `.agents/.scratchpad/{slug}/w1-linkedin.md` using `write_to_file`.
 

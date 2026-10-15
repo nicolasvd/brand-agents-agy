@@ -4,7 +4,7 @@
 
 # AI Brand Strategy Team — Antigravity Native
 
-[![Release](https://img.shields.io/badge/Release-v1.0.1-blue.svg?style=flat-square)](https://github.com/nicolasvd/brand-agents-agy/releases)
+[![Release](https://img.shields.io/badge/Release-v1.1.0-blue.svg?style=flat-square)](https://github.com/nicolasvd/brand-agents-agy/releases)
 [![Runtime](https://img.shields.io/badge/Runtime-Google%20Antigravity%202.0-4285F4.svg?style=flat-square)](https://antigravity.google)
 [![Architecture](https://img.shields.io/badge/Architecture-Hub%20%26%20Spoke%20Declarative-success.svg?style=flat-square)](#-architecture-des-dossiers-hub--spoke)
 [![Engine](https://img.shields.io/badge/Engine-Multi--Model%20AI-8E75C4.svg?style=flat-square)](#)
@@ -13,7 +13,7 @@
 
 > [🇬🇧 English](README.md) | 🇫🇷 **Français**
 
-Framework autonome d'audit stratégique de marque et d'intelligence réseaux sociaux omnicanale, conçu nativement pour **Google Antigravity (Standalone / v2.0)** et orchestré par **l'IA Multi-Modèles (Gemini, Claude, OpenAI)**. À partir d'une simple URL de marque, il cartographie l'empreinte digitale, pilote des sessions de navigation réelles pour auditer les canaux sociaux sans blocage, échantillonne les verbatims authentiques, analyse les aperçus Dark Social et génère des livrables visuels de niveau exécutif adossés à des archives Markdown permanentes.
+Framework autonome d'audit stratégique de marque et d'intelligence réseaux sociaux omnicanale, conçu nativement pour **Google Antigravity (Standalone / v2.0)** et orchestré par **l'IA Multi-Modèles (Gemini, Claude, OpenAI)**. À partir d'une simple URL de marque, il cartographie l'empreinte digitale, pilote des sessions de navigation réelles pour auditer les canaux sociaux sans blocage, échantillonne les verbatims authentiques et les réponses officielles, analyse les aperçus Dark Social et génère des livrables visuels de niveau exécutif adossés à des archives Markdown permanentes.
 
 ---
 
@@ -61,40 +61,46 @@ flowchart TD
 
     subgraph Wave2["Vague 2 : Synthèse Stratégique & Intelligence Longitudinale"]
         D1 & D2 & D3 & D4 & D5 & D6 & D7 & D8 --> E["brand-sub-analyst"]
-        E --> F["Ratio Conversationnel & Confrontation Sémantique"]
-        E --> G["Vélocité Longitudinale & Trajectoires d'Engagement (Δ)"]
-        E --> H["Matrice de Résolution des Failles & Blueprint en 4 Niveaux"]
-        F & G & H --> I["Brouillons de Synthèse : w2-draft-audit.md + w2-draft-brandbook.md"]
+        E --> F["Intelligence Calculée : ARM, ARR & Boucle Conversationnelle"]
+        E --> G["Archétype Stratégique & Sélection Automatique des North Stars"]
+        E --> H["Micro-Optimisations de Posts & Angles Morts Stratégiques"]
+        E --> I["Vélocité Longitudinale & Trajectoires d'Engagement (Δ)"]
+        F & G & H & I --> J["Brouillons de Synthèse : w2-draft-audit.md + w2-draft-brandbook.md"]
     end
 
     subgraph Wave3["Vague 3 : Promotion des Livrables & Compilation HTML Asynchrone"]
-        I --> J["Promotion vers reports/{slug}/markdown/<br/>(Brand Book, Audit Stratégique & Archives Canaux)"]
-        J --> K["brand-sub-styler (Compilateur Asynchrone)"]
-        K --> L["OVERVIEW.html (Hub Exécutif)"]
-        K --> M["STRATEGIC-AUDIT.html (Critique & Scorecard)"]
-        K --> N["channels/*.html (Rapports Sociaux & Stores Dédiés)"]
-        K --> O["reports/index.html (Mise à jour du Cockpit)"]
-        K --> P["Sentinelle .done & Nettoyage GC du Scratchpad"]
+        J --> K["Promotion vers reports/{slug}/markdown/<br/>(Brand Book, Audit Stratégique & Archives Canaux)"]
+        K --> L["brand-sub-styler (Compilateur Asynchrone)"]
+        L --> M["OVERVIEW.html (Hub Exécutif avec Archétype & North Stars)"]
+        L --> N["STRATEGIC-AUDIT.html (Critique, Scorecard & Angles Morts)"]
+        L --> O["channels/*.html (Spokes avec KPI Calculés & Re-Hook Boxes)"]
+        L --> P["reports/index.html (Mise à jour du Cockpit)"]
+        L --> Q["Sentinelle .done & Nettoyage GC du Scratchpad"]
     end
 ```
 
 ### Vague 1 : Exploration Factualisée (Zero-Knowledge)
 - **`brand-sub-hub-crawler`** : Visite la page d'accueil avec hydratation SPA complète (React, Vue, Next.js). Capture la preuve visuelle au-dessus de la ligne de flottaison, extrait les métadonnées Open Graph (`og:*`, `twitter:*`), analyse le `<head>` pour les Smart App Banners iOS (`<meta name="apple-itunes-app">`), et cartographie l'ensemble des liens sociaux et magasins d'applications.
 - **Scanners Navigateur Natifs** : Pilotent des sessions Chrome réelles pour contourner les protections anti-scraping sur LinkedIn, Instagram, TikTok, Facebook, YouTube, X, Apple App Store et Google Play Store.
-  - Les scanners sociaux extraient les métriques communautaires réelles (zéro vanity metric de following) et échantillonnent 3 à 5 verbatims authentiques (`comment-sampling`).
+  - Les scanners sociaux extraient les métriques communautaires réelles (zéro vanity metric de following), capturent les fils d'interaction complets (verbatim utilisateur + réponse officielle de marque avec auteur, texte, date et posture conversationnelle à 4 niveaux via `comment-sampling`), et capturent les miniatures visuelles des meilleurs posts.
   - Les scanners d'applications mobiles auditent la note moyenne (/5.0), le volume d'avis, le palier public de téléchargements (`1M+`, `500k+`), l'historique de versions et les avis récents avec réponses officielles de l'éditeur.
   - Sentinelle Fast-Exit (`NONE_OR_DISABLED`, `NONE_OR_EMPTY`) en l'absence de commentaires ou d'avis.
 
 ### Vague 2 : Diagnostic Stratégique & Longitudinal
 - **`brand-sub-analyst`** : Ingeste les données de la Vague 1 et les archives historiques.
-  - Évalue la cohérence de la Tonalité (ToV) et calcule le Ratio Conversationnel ($\frac{\text{Commentaires}}{\text{Réactions}}$).
-  - Applique le plafonnement strict à 6.5/10 de la Tonalité si des frictions SAV restent sans réponse, si la note mobile moyenne est $< 3.0 / 5.0$, ou si le taux de réponse développeur aux avis critiques 1-2★ est $< 20\%$.
-  - Attribue un bonus commercial (+0.5 pt) pour les applications mobiles performantes ($\ge 4.4 / 5.0$ et $\ge 1\text{M}+$ téléchargements).
-  - Suit l'évolution des failles entre audits (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`).
-  - Rédige un plan d'action standardisé en 4 niveaux pour chaque faille non résolue.
+  - **Archétypes Stratégiques d'Objectif** : Déduit l'un des 4 archétypes (`B2B_THOUGHT_LEADERSHIP`, `CULTURAL_BREAKOUT`, `PRODUCT_RETENTION`, `EMPLOYER_BRAND`) et active les métriques North Star et les règles de tolérance adaptées.
+  - **Couche d'Intelligence Calculée** : Calcule le Multiplicateur de Portée Algorithmique ($\text{ARM} = \frac{\text{Vues Moyennes Vidéo}}{\text{Followers}}$), le Ratio de Résonance Active ($\text{ARR} = \frac{\text{Commentaires} + \text{Partages}}{\text{Total Réactions}}$), et le Taux de Boucle Conversationnelle Marque, tout en conservant les métriques empiriques brutes en contexte.
+  - **Micro-Optimisations de Posts** : Formule des recommandations tactiques actionnables (*Tactical Re-Hook & Algorithmic Boost*) pour les 3 meilleures publications de chaque canal afin de maximiser l'ARR ou l'ARM.
+  - **Angles Morts & Territoires Inexplorés (White Spaces)** : Identifie 3 à 5 thématiques stratégiques inexploitées par la marque sur ses réseaux, avec des concepts concrets d'articles de leadership ou de campagnes.
+  - **Scorecard & Garde-fous** : Applique le plafonnement strict à 6.5/10 de la Tonalité & Résonance si $\text{ARR} < 1.0\%$ (passivité de l'audience), si des frictions SAV restent sans réponse, ou si la note mobile moyenne est $< 3.0 / 5.0$. Attribue un bonus de portée algorithmique (+0.5 pt) si $\text{ARM} \ge 2.0\times$ et un bonus commercial pour les applications mobiles performantes.
+  - Suit l'évolution des failles entre audits (`🟢 RESOLVED`, `🟡 IN_PROGRESS`, `🔴 PERSISTENT`) et formalise un Blueprint d'Action en 4 Niveaux.
 
 ### Vague 3 : Promotion & Compilation HTML Découplée
-- **`brand-sub-styler`** : Compilateur HTML hors-ligne, déterministe. Lit directement depuis les archives permanentes `reports/{slug}/markdown/` et compile des interfaces soignées avec design tokens partagés et liens bidirectionnels vers les sources Markdown. Génère des spokes dédiés pour les réseaux sociaux et les magasins d'applications (`channels/appstore.html`, `channels/playstore.html`), avec encarts de versions et badges de réponses développeur. Bootstrappe automatiquement `reports/index.html` lors du premier audit.
+- **`brand-sub-styler`** : Compilateur HTML hors-ligne, déterministe. Lit directement depuis les archives permanentes `reports/{slug}/markdown/` et compile des interfaces soignées avec design tokens partagés et liens bidirectionnels vers les sources Markdown :
+  - **Hub Exécutif (`OVERVIEW.html`)** : Présente le badge de l'archétype stratégique déduit, la vitrine des métriques North Star, les jetons de design de facto, la simulation Dark Social et la grille matricielle des canaux.
+  - **Audit Stratégique (`STRATEGIC-AUDIT.html`)** : Affiche la scorecard sur 10 points, les critiques qualitatives, la grille des Angles Morts (White Spaces), la matrice de résolution des failles et le blueprint en 4 niveaux.
+  - **Spokes Plateformes (`channels/*.html`)** : Affichent les cartes KPI calculées à double niveau avec pilules de contexte empirique brut, miniatures de posts, fils de réponses conversationnelles complets et boîtes de re-hook tactique.
+  - Bootstrappe automatiquement `reports/index.html` lors du premier audit.
 
 ---
 
@@ -152,10 +158,10 @@ Toutes les évaluations utilisent l'échelle standardisée sur 10 points (interd
 
 $$\text{Score Global de Cohérence (/10)} = \frac{\text{P1 (ToV)} + \text{P2 (Dark Social)} + \text{P3 (Vélocité)} + \text{P4 (Conversion)}}{4}$$
 
-- **Pilier 1 : Tonalité Réelle & Réception Communautaire (0–10) :** Cohérence des discours, ratio conversationnel (alerte si $< 0.5\%$), détection des débordements SAV. Plafonné à 6.5/10 si frictions non traitées, note mobile $< 3.0 / 5.0$, ou taux de réponse développeur aux avis critiques $< 20\%$.
+- **Pilier 1 : Tonalité Réelle & Réception Communautaire (0–10) :** Cohérence des discours, ratio de résonance active ($\text{ARR} = \frac{\text{Commentaires} + \text{Partages}}{\text{Total Réactions}}$), posture de la boucle conversationnelle, détection des débordements SAV. Plafonné à 6.5/10 si $\text{ARR} < 1.0\%$ (passivité de l'audience), si des frictions SAV restent sans réponse, la note mobile $< 3.0 / 5.0$, ou le taux de réponse développeur aux avis critiques $< 20\%$.
 - **Pilier 2 : Cohérence Omnicanale & Dark Social (0–10) :** Unité graphique, complétude Open Graph, simulation de partage privé (`RESOLVED` ou `FAILED`), cohérence éditeur store.
 - **Pilier 3 : Vélocité de Publication & Cadence (0–10) :** Fréquence d'émission, mix de formats (% Reels/Shorts), vitalité des releases applicatives (mise à jour $< 45$ jours : bonus +0.5, $> 6$ mois : pénalité).
-- **Pilier 4 : Conversion & Récit Produit (0–10) :** Optimisation des liens en bio, clarté des appels à l'action, bonus de conversion mobile (+0.5 pt si note $\ge 4.4 / 5.0$ et $\ge 1\text{M}+$ téléchargements), rigueur épistémique paid vs organic (`ad_badge_present`).
+- **Pilier 4 : Conversion & Récit Produit (0–10) :** Optimisation des liens en bio, clarté des appels à l'action, bonus de portée algorithmique ($\text{ARM} \ge 2.0\times$ : bonus +0.5 pt), bonus de conversion mobile (+0.5 pt si note $\ge 4.4 / 5.0$ et $\ge 1\text{M}+$ téléchargements), rigueur épistémique paid vs organic (`ad_badge_present`).
 
 ### Échelle Qualitative
 - **8.0 – 10.0 / 10 :** *Excellence & Forte Cohérence* (`.score-high`)

@@ -27,7 +27,7 @@ Extract follower count, page category, bio/intro, and the 8-10 most recent publi
 4. **Local Path Hygiene & Relative Sanctuary**: Never record or output absolute local filesystem URIs (`file:///Users/...`, `/Users/...`, `/var/folders/...`, or temporary DevTools screenshot paths). Document exclusively project-relative target paths (`reports/{slug}/assets/...`).
 5. **No Vanity Metrics (Following Eradication)**: Extract page followers and page likes. NEVER extract or record following / suivi(e)s count.
 6. **Epistemic Rigor & Ad Badge**: Extract boolean attribute `ad_badge_present: boolean`. Never speculate on paid advertising.
-7. **Reaction Typology & Deterministic Semantic Sample**: For the top 3 posts, extract reaction breakdown (Likes, Loves, Care, Angry, etc.) using the 2-tier protocol (Tier 1: aria-label/tooltip; Tier 2: modal dialog), total shares, total comments, and 3 to 5 qualitative verbatims. If `comments == 0`, record `comment_status: NONE_OR_DISABLED`.
+7. **Reaction Typology, Semantic Sample & Conversational Loop**: For the top 3 posts, extract reaction breakdown (Likes, Loves, Care, Angry, etc.) using the 2-tier protocol (Tier 1: aria-label/tooltip; Tier 2: modal dialog), total shares, total comments, and 3 to 5 qualitative verbatims along with the full conversational thread: inspect official brand replies (`brand_replied: boolean`, `brand_reply_author`, `brand_reply_text`, `brand_reply_date`, `conversational_stance`). If `comments == 0`, record `comment_status: NONE_OR_DISABLED`.
 
 ## Execution Protocol
 
@@ -67,5 +67,5 @@ Extract follower count, page category, bio/intro, and the 8-10 most recent publi
        - `reports/{slug}/assets/facebook-post-{date_compact}-1.png`
        - `reports/{slug}/assets/facebook-post-{date_compact}-2.png`
        - `reports/{slug}/assets/facebook-post-{date_compact}-3.png`
-   - Extract reaction typology breakdown (Likes, Loves, Care, Angry, etc.) and a qualitative sample of 3 to 5 comment verbatims per post.
+   - Extract reaction typology breakdown (Likes, Loves, Care, Angry, etc.) and a qualitative sample of 3 to 5 comment verbatims per post with the full conversational thread (user quote + brand reply author/text/date/stance, or `comment_status: NONE_OR_DISABLED` if 0 comments).
 5. **Reporting**: Write structured findings to `.agents/.scratchpad/{slug}/w1-facebook.md` using `write_to_file`. Include header screenshot path, post links, post screenshot paths, reaction breakdown, qualitative comments, and audit date (`{date}`).

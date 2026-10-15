@@ -55,12 +55,17 @@ reports/
 | **Channel Spokes** | `reports/{slug}/channels/{platform}.html` | Community Managers | `reports/{slug}/markdown/channels/{platform}.md` |
 | **Canonical Archives** | `reports/{slug}/markdown/**/*.md` | Subagents (AI Memory) | Produced by Wave 1 & Wave 2 agents |
 
-### 2.1. Social Media Post Proof & Thumbnail Standard
+### 2.1. Social Media Post Proof, Conversational Threads & Tactical Re-Hooks
 In all social channel spoke deliverables (`reports/{slug}/channels/{platform}.html`), publications documented with a visual capture must feature:
 - An offline proof thumbnail (`max-width: 150px; max-height: 110px`, class `.post-thumb-link`) linking to the high-resolution PNG (`target="_blank"`).
 - The canonical live link button (`.post-canonical-btn`) positioned directly underneath.
 - Secondary posts without dedicated captures display the compact badge `.badge-na-compact` (`Archive URL`) along with the canonical link.
 - In Qualitative Sample (Top 3) cards, use `.top-post-body` to display the thumbnail sidebar on the left and the verbatim analysis on the right.
+- **Conversational Loop Threads (`.conversational-thread`):** Render full interactive threads displaying user comments and official brand replies with visual attribution and conversational stance tags (`Constructive Dialogue`, `Support Deflection`, `Automated Template`, `Radio Silence`).
+- **Tactical Post Micro-Optimizations (`.tactical-rehook-box`):** For each of the Top 3 posts, provide an actionable recommendation ("Tactical Re-Hook & Algorithmic Boost") describing hook rewrites, open conversation starters, UGC prompts, or community reply strategies to lift ARR or ARM.
+
+### 2.2. Strategic Blindspots & Content White Spaces
+In `STRATEGIC-AUDIT.md` and `STRATEGIC-AUDIT.html`, include a dedicated section identifying 3 to 5 unexplored themes/angles aligned with brand mission but absent from social channels, with concrete editorial angles or campaign concepts.
 
 ---
 
@@ -82,6 +87,15 @@ Every canonical Markdown deliverable begins with standard frontmatter:
 slug: "{slug}"
 brand_name: "{brand_name}"
 primary_url: "{primary_url}"
+strategic_archetype: "B2B_THOUGHT_LEADERSHIP" # B2B_THOUGHT_LEADERSHIP | CULTURAL_BREAKOUT | PRODUCT_RETENTION | EMPLOYER_BRAND
+primary_brand_objective: "Pionnier de la transition éthique et du leadership d'impact B2B"
+north_star_metrics:
+  - metric_name: "Active Resonance Ratio (ARR)"
+    observed_value: "12.4%"
+    status: "OPTIMAL"
+  - metric_name: "Brand Conversational Loop Rate"
+    observed_value: "0% reply on critical debates"
+    status: "DEFICIT"
 first_audit_date: "YYYY-MM-DD"
 latest_audit_date: "YYYY-MM-DD"
 total_audits: 1

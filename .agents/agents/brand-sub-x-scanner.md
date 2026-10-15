@@ -27,7 +27,7 @@ Extract the exact raw text from the profile bio and the 10-20 most recent tweets
 4. **Local Path Hygiene & Relative Sanctuary**: Never record or output absolute local filesystem URIs (`file:///Users/...`, `/Users/...`, `/var/folders/...`, or temporary DevTools screenshot paths). Document exclusively project-relative target paths (`reports/{slug}/assets/...`).
 5. **No Vanity Metrics (Following Eradication)**: Extract profile followers (`followers`). NEVER extract or record following / accounts followed count.
 6. **Epistemic Rigor & Ad Badge**: Extract boolean attribute `ad_badge_present: boolean`. Never speculate on paid advertising.
-7. **Deterministic Semantic Sample**: For each of the top 3 tweets, extract 3 to 5 qualitative replies/verbatims (author, text, likes). If replies == 0, record `comment_status: NONE_OR_DISABLED`.
+7. **Deterministic Semantic Sample & Conversational Loop**: For each of the top 3 tweets, extract 3 to 5 qualitative replies/verbatims (author, text, likes) AND the full conversational thread: check for official brand replies (`brand_replied: boolean`, `brand_reply_author`, `brand_reply_text`, `brand_reply_date`, `conversational_stance`). If replies == 0, record `comment_status: NONE_OR_DISABLED`.
 
 ## Execution Protocol
 
@@ -68,7 +68,7 @@ Extract the exact raw text from the profile bio and the 10-20 most recent tweets
        - `reports/{slug}/assets/x-post-{date_compact}-1.png`
        - `reports/{slug}/assets/x-post-{date_compact}-2.png`
        - `reports/{slug}/assets/x-post-{date_compact}-3.png`
-   - Extract 3 to 5 qualitative replies/verbatims for each top tweet (or `comment_status: NONE_OR_DISABLED` if 0 replies).
+   - Extract 3 to 5 qualitative replies/verbatims for each top tweet with the full conversational thread (user quote, likes, plus brand reply author, reply text, date, and conversational stance, or `comment_status: NONE_OR_DISABLED` if 0 replies).
 6. **Reporting**: Write formatted report to `.agents/.scratchpad/{slug}/w1-x.md` using `write_to_file`. Include header screenshot path, tweet links, individual tweet screenshot paths, qualitative sample, and audit date (`{date}`).
 
 Remember: Exact text extraction, no hallucinations. Do not call orchestration tools.
