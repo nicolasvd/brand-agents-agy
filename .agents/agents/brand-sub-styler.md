@@ -146,6 +146,52 @@ For each audited social platform (e.g. `linkedin`, `instagram`, `facebook`, `tik
       - TikTok: Followers, Total Video Likes, Top Video Views, Total Videos
       - Instagram: Followers, Total Publications, Story Highlights, Reels Viewership
       - YouTube: Subscribers, Cumulative Channel Views, Total Videos, Top Video Views
+    * **Canonical Showcase Header Structure (`.showcase-card`):**
+      Strictly pair all tags. `.channel-header` must only contain `.channel-title-group` and `.channel-badges-group`, and `.showcase-media` must be a direct child of `.showcase-card` (sibling of `.showcase-info`):
+      ```html
+      <article class="showcase-card">
+        <div class="showcase-info">
+          <div>
+            <div class="channel-header">
+              <div class="channel-title-group">
+                <div class="channel-avatar" style="color: var(--{platform});">{icon}</div>
+                <div>
+                  <h3 class="channel-name">{Platform Display Name}</h3>
+                  <a class="channel-handle" href="{canonical_url}" rel="noopener" target="_blank">{handle}</a>
+                </div>
+              </div>
+              <div class="channel-badges-group">
+                <span class="badge-arr">🎯 ARR: {arr_score}%</span>
+                <span class="badge-live">● {status}</span>
+              </div>
+            </div>
+            <div class="bio-container" style="margin-top: 1.25rem;">
+              <div class="bio-label">Bio Officielle &amp; Point de Sortie</div>
+              <div class="bio-quote">"{bio_text}"</div>
+              <div>
+                <button class="btn-copy" onclick="copyText(this, '{bio_text}')">📋 Copy Bio</button>
+              </div>
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+              <strong style="color: var(--{platform});">Dynamique Éditoriale :</strong> {editorial_cadence_and_format_summary}
+            </div>
+          </div>
+          <div>
+            <div class="stats-row">
+              <div class="stat-badge"><span class="stat-num">{followers}</span><span class="stat-caption">Followers</span></div>
+              ...
+            </div>
+            <div class="kpi-raw-context" style="margin-top: 0.75rem;">
+              <span>🎯 {kpi_description_and_raw_context}</span>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-media">
+          <img src="../assets/screenshot-{platform}-{date}.png" alt="{Brand} {Platform}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="badge-na" style="display:none; padding: 2rem;"><span>Screenshot Unavailable</span></div>
+        </div>
+      </article>
+      ```
   - **Cumulative Scanned Posts Table (`.table-container`):**
     * Columns: `Date / Récence`, `Format`, `Pilier de Contenu`, `Message Clé & Verbatim Scanné`, `Preuve & Lien` (width: ~150px), `Résonance & Engagement`.
     * **Dual Proof & Link Cell (`.post-preview-cell`):**
